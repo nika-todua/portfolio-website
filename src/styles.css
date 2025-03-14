@@ -1,1 +1,74 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import "tailwindcss";
+
+body.usa-lang .font{
+    font-family: "Bebas Neue", serif !important;
+}
+body.geo-lang .font{  
+  font-family: "ArchyEDT-Bold", sans-serif !important;
+}
+body{
+  background-color: #0c161f;
+}
+body.light_mode{
+    background-color: #e9ebec!important;
+}
+body.light_mode h1,
+body.light_mode ul li span.number{
+  color: rgb(61, 61, 61) !important;
+}
+
+body.light_mode p,
+body.light_mode span {
+  color: rgb(87, 87, 87)!important;
+}
+
+body.light_mode svg {
+  fill: rgb(87, 87, 87)!important;
+  color: rgb(87, 87, 87)!important;
+}
+
+body.light_mode .hero_inner_btn_cont .btn.contact-btn,
+body.light_mode .hero_inner_btn_cont .btn.contact-btn a {
+  background-color: rgb(248, 249, 250) !important;
+  color: rgb(61, 61, 61) !important;
+  overflow: hidden;
+}
+
+body.light_mode .task_box_wrapper {
+  background-color: rgb(255, 255, 255) !important;
+}
+
+body.light_mode .cursor-pointer.btnActive {
+  background-color: rgb(215, 215, 215) !important;
+
+}
+
+body.light_mode .cursor-pointer{
+  color: rgb(61, 61, 61) !important;
+}
+
+body.light_mode .project_inner_sortintSelect {
+  background-color: rgb(255, 255, 255) !important;
+  color: rgb(12, 22, 31) !important;
+  border: 3px solid rgb(248, 249, 250) !important;
+}
+
+body.light_mode .project_card_item {
+  background-color: rgb(255, 255, 255) !important;
+}
+body.light_mode h2{
+    color: #575757 !important;
+}
+body.light_mode .btn_box button:nth-child(2){
+    background-color: #f8f9fa !important;
+    color: #3d3d3d !important;
+}
+body.light_mode .pagination ul li button{
+    color: #575757 !important;
+    background-color: #fff !important;
+}
+body.light_mode .img_box{
+    background-color: #e9ebec !important;
+}

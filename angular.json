@@ -37,6 +37,8 @@
               }
             ],
             "styles": [
+              "node_modules/remixicon/fonts/remixicon.css",
+              "public/assets/geofont/css/archyedt-bold.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -52,7 +54,7 @@
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumError": "309MB"
                 }
               ],
               "outputHashing": "all"

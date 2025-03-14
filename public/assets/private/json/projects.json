@@ -1,0 +1,101 @@
+[
+    {
+    "id": 11,
+    "title": "Sagar Portfolio",
+    "link": "https://sagarportfolioweb.netlify.app/",
+    "image_desktop": "https://sagarportfolioweb.netlify.app/imgs/Desktop_img.webp",
+    "image_mobile": "https://sagarportfolioweb.netlify.app/imgs/Mobile_img.webp",
+    "date": "20-01-2025",
+    "tag": "portfolio"
+  },
+  {
+    "id": 1,
+    "title": "Personal resume",
+    "link": "https://porsonal-resume.netlify.app/",
+    "image_desktop": "../../../assets/img/project_img/personalresume_banner_desktop.webp",
+    "image_mobile": "../../../assets/img/project_img/personalresume_banner_mobile.webp",
+    "date": "21-01-2024",
+    "tag": "portfolio"
+  },
+  {
+    "id": 2,
+    "title": "Rubics cube scramble",
+    "link": "https://rubics-cube-scrambler.netlify.app/",
+    "image_desktop": "../../../assets/img/project_img/rubicscubescramble_banner_desktop.webp",
+    "image_mobile": "../../../assets/img/project_img/rubicscubescramble_banner_mobile.webp",
+    "date": "16-02-2024",
+    "tag": "game"
+  },
+  {
+    "id": 3,
+    "title": "Choose color game",
+    "link": "https://choosecolorgame.netlify.app/",
+    "image_desktop": "../../../assets/img/project_img/choosecolorgame_banner_desktop.webp",
+    "image_mobile": "../../../assets/img/project_img/choosecolorgame_banner_mobile.webp",
+    "date": "24-03-2024",
+    "tag": "game"
+  },
+  {
+    "id": 4,
+    "title": "Catch word game",
+    "link": "https://catch-words-game.netlify.app/",
+    "image_desktop": "../../../assets/img/project_img/catchwordgame_banner_desktop.webp",
+    "image_mobile": "../../../assets/img/project_img/catchwordgame_banner_mobile.webp",
+    "date": "21-04-2024",
+    "tag": "game"
+  },
+  {
+    "id": 5,
+    "title": "Weather Web",
+    "link": "https://weather-amindi.netlify.app/",
+    "image_desktop": "https://weather-amindi.netlify.app/img/weather_banner_desktop.webp",
+    "image_mobile": "https://weather-amindi.netlify.app/img/weather_banner_mobile.webp",
+    "date": "26-05-2024",
+    "tag": "othen"
+  },
+  {
+    "id": 7,
+    "title": "Todwood",
+    "link": "https://todwoodgeo.netlify.app/",
+    "image_desktop": "../../../assets/img/project_img/todwood_banner_desktop.webp",
+    "image_mobile": "../../../assets/img/project_img/todwood_banner_mobile.webp",
+    "date": "08-07-2024",
+    "tag": "business"
+  },
+  {
+    "id": 6,
+    "title": "Make remote work",
+    "link": "https://nika-todua.github.io/Intro-section-with-dropdown-navigation/",
+    "image_desktop": "https://raw.githubusercontent.com/nika-todua/Intro-section-with-dropdown-navigation/main/design/desktop-preview.jpg",
+    "image_mobile": "https://raw.githubusercontent.com/nika-todua/Intro-section-with-dropdown-navigation/main/design/desktop-preview.jpg",
+    "date": "07-06-2024",
+    "tag": "landing"
+  },
+  {
+    "id": 8,
+    "title": "Startup",
+    "link": "https://web-startup.netlify.app/",
+    "image_desktop": "https://web-startup.netlify.app/images/website-banner.webp",
+    "image_mobile": "https://web-startup.netlify.app/images/website-banner.webp",
+    "date": "26-07-2024",
+    "tag": "business"
+  },
+  {
+    "id": 9,
+    "title": "Nft Hub",
+    "link": "https://nft-hub-web.netlify.app/",
+    "image_desktop": "../../../assets/img/project_img/nft_hub_banner_desktop.webp",
+    "image_mobile": "../../../assets/img/project_img/nft_hub_banner_mobile.webp",
+    "date": "03-08-2024",
+    "tag": "landing"
+  },
+  {
+    "id": 10,
+    "title": "Tic tac toe",
+    "link": "https://nikatodua-tictactoe.netlify.app/",
+    "image_desktop": "https://nikatodua-tictactoe.netlify.app/image/tictactoe_desktop.webp",
+    "image_mobile": "https://nikatodua-tictactoe.netlify.app/image/tictactoe_mobile.webp",
+    "date": "12-11-2024",
+    "tag": "game"
+  }
+]

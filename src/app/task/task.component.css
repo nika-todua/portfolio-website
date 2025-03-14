@@ -1,0 +1,27 @@
+.task_box_wrapper{
+    padding: 15px;
+    gap: 5%;
+    background-color: #191f25;
+}
+.btn{
+    padding-block: 17px;
+    width: 47%;
+    height: fit-content;
+    font-size: 14px;
+}
+.btnActive{
+    background-color: #0c161f;
+}
+
+@media screen and (min-width: 425px) {
+    .btn{
+        padding: 20px 0;
+        font-size: 16px;
+    }
+}
+@media screen and (min-width: 576px) {
+    .btn{
+        padding-block: 25px;
+        font-size: 18px;
+    }
+}

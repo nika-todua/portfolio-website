@@ -1,0 +1,43 @@
+.cards p {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    color: #b8b8b8;
+}
+.cards .skill_inner_ul{
+    margin-top: 30px !important;
+    width: auto;
+    height: auto;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr) !important;
+}
+.cards .skill_inner_ul li svg{
+    width: 20px;
+    height: 20px;
+    fill: #156cbd;
+}
+.cards .skill_inner_ul li{
+    font-size: 18px;
+    color: #f2f2f2;
+}
+@media screen and (min-width: 480px) {
+    .cards p {
+        font-size: 22px;
+    }
+    .cards .skill_inner_ul li{
+        font-size: 20px;
+    }
+}
+@media screen and (min-width: 768px) {
+    .cards p {
+        font-size: 24px;
+    }
+    .cards .skill_inner_ul li svg{
+        width: 26px;
+        height: 26px;
+    }
+    .cards .skill_inner_ul li{
+        font-size: 22px;
+    }
+}

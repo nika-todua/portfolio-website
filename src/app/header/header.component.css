@@ -1,0 +1,14 @@
+.language_btn{
+    width: 40px;
+    aspect-ratio: 40/26.744;
+}
+.darkmode_BTN{
+    width: 32px;
+    height: 32px;
+}
+@media screen and (min-width: 768px) {
+    .darkmode_BTN{
+        width: 36px;
+        height: 36px;
+    }
+}
