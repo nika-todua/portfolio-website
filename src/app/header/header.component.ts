@@ -104,6 +104,12 @@ export class HeaderComponent {
         document.body.classList.add("geo-lang")
         document.body.classList.remove("usa-lang")
         localStorage.setItem("language", this.geotoken)
+      }else{
+        this.flagimg = false
+        document.body.classList.remove("geo-lang")
+        document.body.classList.add("usa-lang")
+        this.languageCount = 0
+        localStorage.setItem("language", this.usetoken)
       }
       
     });
