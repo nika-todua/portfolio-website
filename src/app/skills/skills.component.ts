@@ -10,11 +10,13 @@ import { ApisService } from '../apis.service';
 export class SkillsComponent {
 
 
-  frontentText:string = "Frontend Developer";
-  backendText:string = "Backend Developer";
+  frontentText:string = "";
+  backendText:string = "";
+  toolsText:string = ""
 
-  arrayFrontend:any = ['HTML','CSS','SCSS','JAVASCRIPT','ANGULAR','BOOTSTRAP','GIT']
-  arraybackend:any = ['C#','NodeJs','PHP','Python']
+  arrayFrontend:string[] = ['HTML','CSS','SCSS','JAVASCRIPT','ANGULAR','BOOTSTRAP','TAILWINDCSS','TYPESCRIPT']
+  arraybackend:string[] = ['C#','NodeJs','PHP','Python']
+  arrayTools:string[] = ['POSTMAN','GIT','Github']
 
   constructor(private api:ApisService){this.languageSistem()}
   
@@ -28,6 +30,7 @@ export class SkillsComponent {
 
           this.frontentText = languageArray.personspecialist;
           this.backendText = languageArray.backendTxt;
+          this.toolsText = languageArray.toolsTxt
         })
       } else if(document.querySelector("body")?.className.includes("geo-lang")){
         this.api.getlanguage("ka").subscribe(datalang => {
@@ -35,6 +38,7 @@ export class SkillsComponent {
 
           this.frontentText = languageArray.personspecialist;
           this.backendText = languageArray.backendTxt;
+          this.toolsText = languageArray.toolsTxt
         })
       }
     }, 1);
