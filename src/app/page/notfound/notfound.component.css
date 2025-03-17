@@ -10,17 +10,16 @@
     justify-content: center;
 }
 .text_cont h1{
-    font-size: 32px;
+    font-size: 36px;
     color: #f2f2f2;
 }
 .text_cont p{
     text-align: center;
-    font-size: 18px;
+    font-size: 20px;
     color: #b8b8b8;
 }
 .text_cont .backhomeBtn{
     padding: 8px 12px;
-    font-size: 20px;
     letter-spacing: 2px;
     font-weight: 400;
     outline: none;
@@ -31,22 +30,6 @@
     -ms-user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
-}
-.text_cont .gobackBtn{
-    padding: 8px 12px;
-    outline: none;
-    border: none;
-    width: fit-content;
-    letter-spacing: 1px;
-    cursor: pointer;
-    user-select: none;
-    -ms-user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    
-    font-size: 20px;
-    font-weight: 400;
-    color: #b8b8b8;
 }
 .text_cont .gobackBtn:hover{
     color: #fff;

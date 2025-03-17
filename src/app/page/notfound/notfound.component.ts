@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { ApisService } from '../../apis.service';
 
 @Component({
   selector: 'app-notfound',
@@ -14,9 +15,8 @@ export class NotfoundComponent {
   text1 = 'Page Not Found';
   text2 = 'Sorry, the page you are looking for does not exist.'
   text3 = 'Go home page'
-  text4 = 'Go back';
 
-  constructor(private titleService: Title, private metaTagService: Meta){}
+  constructor(private titleService: Title, private metaTagService: Meta, private api:ApisService){this.languageSistem()}
 
   // seo texts
   description:string = "Hi, I'm Nika Todua, I'm a web developer and I make high-quality websites. I make websites using angular."
@@ -25,7 +25,7 @@ export class NotfoundComponent {
   seolink:string = document.location.href;
 
   ngOnInit() {
-    document.addEventListener("DOMContentLoaded", () => { let count = 0;count=0;var set=setInterval(()=>{count++;if(count>=7){this.clickback();return clearInterval(set)} },1000); })
+    document.addEventListener("DOMContentLoaded", () => { let count = 0;count=0;var set=setInterval(()=>{count++;if(count>=4){this.clickback();return clearInterval(set)} },1000); })
 
     this.titleService.setTitle("404 Error Page Not Found | Portfolio");
     this.metaTagService.addTags([
@@ -49,46 +49,46 @@ export class NotfoundComponent {
       {name: 'googlebot', content: 'follow, nofollow'},
       {name: 'googlebot-news', content: 'follow, nofollow'}
     ]);
-    
+
+  }
+
+  languageSistem(){
+    let languageArray:any = []
     setTimeout(() => {
       if (document.querySelector("body")?.className.includes('usa-lang')) {
-        this.text1 = 'Page Not Found';
-        this.text2 = 'Sorry, the page you are looking for does not exist.'
-        this.text3 = 'Go home page'
-        this.text4 = 'Go back';
+        this.api.getlanguage("en").subscribe(datalang => {
+          languageArray = datalang;
+
+          this.text1 = languageArray.error;
+          this.text2 = languageArray.errormessage
+          this.text3 = languageArray.backhomeBTN
+      })
       } else if(document.querySelector("body")?.className.includes("geo-lang")){
-        this.text1 = 'გვერდი არ მოიძებნა';
-        this.text2 = 'უკაცრავად, გვერდი, რომელსაც ეძებთ, არ არსებობს.'
-        this.text3 = 'დაბრუნება მთავარ გვერძე'
-        this.text4 = 'უკან დაბრუნება';
+        this.api.getlanguage("ka").subscribe(datalang => {
+          languageArray = datalang;
+
+          this.text1 = languageArray.error;
+          this.text2 = languageArray.errormessage
+          this.text3 = languageArray.backhomeBTN
+
+        })
       }
     }, 1);
-    
   }
 
-  clickback():any{
-    let link:any = document.location.href
-    if ( link.includes("http://localhost:4200/links") ||  link.includes("https://nika-todua.netlify.app/links") ){
-      if (link.includes("http://localhost:4200/links")) {
-        let baseURL = `${link.split("/")[0]}//${link.split("/")[2]}/` + 'links/'
-        return window.location.href = baseURL;
-      }else{
-        let baseURL = `${link.split("/")[0]}//${link.split("/")[2]}/` + 'links/'
-        return window.location.href = baseURL;
-      }
-    }else if( link.includes("http://localhost:4200/") ||  link.includes("https://nika-todua.netlify.app/") ){
-      if (link.includes("http://localhost:4200")) {
-        let baseURL = `${link.split("/")[0]}//${link.split("/")[2]}/`
-        return window.location.href = baseURL;
-      }else{
-        let baseURL = `${link.split("/")[0]}//${link.split("/")[2]}/`
-        return window.location.href = baseURL;
-      }
+  clickback(): void {
+    const url = new URL(window.location.href);
+    const baseURL = `${url.origin}/`; // იღებს მხოლოდ დომენის დასაწყისს
+    
+    if ( window.location.href.includes(`${baseURL}links/`)) {  
+      window.location.href = `${baseURL}links/`;
+    } else {
+      window.location.href = baseURL; 
     }
   }
-  
-  
 
-  
+  backpage(){
+    window.location.href = "/";
+  }
 
 }

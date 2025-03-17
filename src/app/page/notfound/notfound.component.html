@@ -1,12 +1,13 @@
-<section class="notfount_inner relative m-auto pb-5" style="width: 90%; padding-top: 30px; max-width: 831px !important;">
-    <div class="img_box relative mx-auto pointer-events-none" style="max-width: 370px; aspect-ratio: 340/307 !important;">
-        <img [src]="imgSrc" style="aspect-ratio: 340/307 !important;" class="w-full h-full object-cover flex select-none pointer-events-none" loading="lazy" alt="404 error image">
+<section class="notfound_inner relative m-auto pb-11" style="width: 90%; padding-top: 30px;  max-width: 831px;">
+    <div class="img_box relative mx-auto pointer-events-none" style="background-color: transparent !important; max-width: 370px; aspect-ratio: 340/307;">
+        <img [src]="imgSrc" style="aspect-ratio: 340/307;" class="w-full h-full object-cover flex select-none pointer-events-none" loading="lazy" alt="404 error image">
     </div>
-    <div class="text_cont m-auto">
-        <h1 class="font">{{text1}}</h1>
-        <p class="font mb-6">{{text2}}</p>
+    <div class="text_cont m-auto text-center">
+        <h1 class="font text-2xl font-bold">{{text1}}</h1>
+        <p class="font mb-6 text-lg">{{text2}}</p>
 
-        <a routerLink="" class="font backhomeBtn rounded-lg">{{text3}}</a>
-        <div class="gobackBtn font mt-3 underline underline-offset-4" (click)="clickback()">{{text4}}</div>
+        <button class="cursor-pointer font backhomeBtn rounded-lg text-base sm:text-xl" (click)="backpage()">
+            {{text3}}
+        </button>    
     </div>
 </section>
