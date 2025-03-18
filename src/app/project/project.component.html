@@ -33,7 +33,7 @@
     </div>
     
 
-    <nav class="pagination relative flex justify-end items-center">
+    <nav class="pagination relative flex justify-center items-center">
         <ul class="relative flex flex-row">
             <li class="overflow-hidden flex">
                 <button type="button" aria-label="left btn" class="outline-none font text-xl cursor-pointer" style="border-radius: 10px 0 0 10px;" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
@@ -41,7 +41,7 @@
                 </button>
             </li>
 
-            <li class="flex" *ngFor="let page of getPaginationRange()">
+            <li class="overflow-hidden flex justify-center items-center" *ngFor="let page of getPaginationRange()">
                 <button type="button" aria-label="pagination number" class="outline-none font text-xl cursor-pointer" (click)="changePage(page)" [class.active]="currentPage === page"> {{ page }} </button>
             </li>
 

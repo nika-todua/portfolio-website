@@ -11,6 +11,8 @@
     color: #a3abb2;
 }
 .project_card_item{
+    position: sticky;
+    top: 15px;
     padding: 14px !important;
     width: 100%;
     background-color: #1a2027;
@@ -129,6 +131,7 @@
         grid-template-columns: repeat(2, 1fr) !important;
     }
     .project_card_item{
+        position: relative;
         width: 100%;
     }
 }

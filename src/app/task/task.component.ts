@@ -17,6 +17,8 @@ export class TaskComponent {
   projectBTNEvent(){
     this.projectbtnClass = 'btnActive'
     this.skillbtnClass = ''
+    console.log( 23 );
+    
     this.componentShowHidden = false
   }
   skillBtnEvent(){
