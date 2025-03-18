@@ -87,19 +87,18 @@ export class ProjectComponent {
           if (i > 0 && i <= total) {
             range.push(i);
           }
-        }
+        };
+        
         // "..." და ბოლო გვერდი, თუ საჭიროა
         if (current < total - 1) range.push("...", total);
       } else {
         // მობილური ეკრანებისთვის (Mobile View)
         // ვაჩვენოთ 3 გვერდი ახლოს
-        for (let i = current - 1; i <= current + 3; i++) {
+        for (let i = current - 1; i <= current + 1; i++) {
           if (i > 0 && i <= total) {
             range.push(i);
           }
         }
-        // "..." და ბოლო გვერდი, თუ საჭიროა
-        if (current < total - 1) range.push("...", total);
       }
     }
     return range;
@@ -204,10 +203,10 @@ export class ProjectComponent {
 
   projectfilterEvent(tagname: string, allArray:any) {
     this.projectfilterarray.length = 0;
+    if (this.totalPages >= 1){
+      this.currentPage = 1;
+    }
     if (tagname.toLowerCase() === "all" || tagname === "ყველა") {
-      if (this.totalPages >= 1){
-        this.currentPage = 1;
-      }
       this.project.length = 0
       this.projectarrayall = allArray;
       let set = setInterval(() => {
@@ -219,9 +218,6 @@ export class ProjectComponent {
       return
     } else {
       let filtertextarray: string[] = []
-      if (this.totalPages >= 1){
-        this.currentPage = 1;
-      }
       filtertextarray.length = 0;
       filtertextarray = this.filterProject(this.projectarrayall, tagname)
       this.projectfilterarray = this.removeDuplicates(filtertextarray)
@@ -231,14 +227,16 @@ export class ProjectComponent {
   }
 
   filterProject(array:any, tagname:any) {
-    let returt:any = []
-    returt.length = 0
-    array.forEach((element: any) => {
-      if(element.tag.toLowerCase() === tagname.toLowerCase()){
-        returt.push(element)
+    const result: any[] = [];
+    const lowerTag = tagname.toLowerCase();
+  
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].tag.toLowerCase() === lowerTag) {
+        result.push(array[i]);
       }
-    })
-    return returt
+    }
+  
+    return result;
   }
   
 

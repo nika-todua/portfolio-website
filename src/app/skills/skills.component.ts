@@ -15,8 +15,8 @@ export class SkillsComponent {
   toolsText:string = ""
 
   arrayFrontend:string[] = ['HTML','CSS','SCSS','JAVASCRIPT','ANGULAR','BOOTSTRAP','TAILWINDCSS','TYPESCRIPT']
-  arraybackend:string[] = ['C#','NodeJs','PHP','Python']
   arrayTools:string[] = ['POSTMAN','GIT','Github']
+  arraybackend:string[] = ['C#','NodeJs','PHP','Python']
 
   constructor(private api:ApisService){this.languageSistem()}
   

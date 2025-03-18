@@ -7,9 +7,8 @@
 
     <div class="project_card_cont relative w-full flex flex-wrap gap-2 justify-center items-start">
 
-        <div class="project_card_item rounded-xl flex flex-col gap-3 max-w-[452px]" *ngFor="let data of paginatedProjects()">
+        <div class="project_card_item rounded-3xl flex flex-col gap-3 max-w-[452px]" *ngFor="let data of paginatedProjects()">
             <div class="img_box relative aspect-video rounded-xl overflow-hidden pointer-events-none" style="background-color: #0c161f;">
-
                 <div class="loading absolute w-full h-full flex justify-center items-center pointer-events-none z-0">
                     <div class="newtons-cradle pointer-events-none">
                         <div class="newtons-cradle__dot pointer-events-none" *ngFor="let i of ['','','','']"></div>
@@ -21,7 +20,7 @@
             
             <div class="card_desc w-full">
                 <h2 class="font title text-2xl" style="color: #b8b8b8;">{{data.title}}</h2>
-                <div class="flex flex-wrap justify-between items-center">
+                <div class="flex flex-wrap justify-between items-center gap-2">
                     <p class="font date" style="color: #b8b8b8;">{{text2}} {{data.date}}</p>
                     <button class="font card_btn cursor-pointer overflow-hidden" type="button" aria-label="project link btn">
                         <a [href]="data.link" rel="nofollow" target="_blank" class="flex w-full text-base sm:text-lg" style="padding: 8px 10px;">{{text3}}</a>

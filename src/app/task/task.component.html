@@ -5,5 +5,7 @@
     </div>
 </div>
 
-<app-project *ngIf="!componentShowHidden" class="flex relative" style="margin-top: 65px;"></app-project>
-<app-skills *ngIf="componentShowHidden" class="flex relative" style="margin-top: 65px;"></app-skills>
+<div class="w-full flex relative" style="margin-top: 65px; min-height: 330px; max-height: max-content;">
+    <app-project *ngIf="!componentShowHidden" class="w-full flex relative"></app-project>
+    <app-skills *ngIf="componentShowHidden" class="w-full flex relative"></app-skills>
+</div>
