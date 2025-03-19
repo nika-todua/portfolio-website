@@ -8,16 +8,12 @@ import { ApisService } from '../apis.service';
   styleUrl: './project.component.css'
 })
 export class ProjectComponent {
-  motebtnText: string = "";
-  selectallText: string = "";
   filterhidden: boolean = false;
-  secontArray:any = []
-  project: any = []
+  secontArray:object = []
+  project: object[] = []
   selectTexts: string[] = []
-  projectfilterarray: any = []
+  projectfilterarray: object[] = []
   projectarrayall:any = []
-  
-  
 
   constructor(private apisService : ApisService){
     this.apisService.getproject().subscribe(data => {
@@ -53,7 +49,7 @@ export class ProjectComponent {
       }
     }, 1);
   }
-  
+
 
   itemsPerPage:number = 6; // თითო გვერდზე ელემენტების რაოდენობა
   currentPage:number = 1;
@@ -132,9 +128,10 @@ export class ProjectComponent {
       scrollTop = 891;
       break;
     }
+    
 
     window.scrollTo({
-      top: scrollTop,
+      top: scrollTop - 25,
       left: 0,
       behavior: "smooth",
     });
@@ -159,7 +156,7 @@ export class ProjectComponent {
   getporjects(data:any){
     data.sort((a: any, b: any) => b.id - a.id);
     this.projectarrayall = data
-    this.sortingText()
+    this.sortingText()    
   }
 
   sortingText(){

@@ -1,6 +1,6 @@
 <section class="socialLinks_cont relative pt-3 w-full mx-auto" style="padding-inline: 15px; max-width: 831px !important;">
     <div class="socialLinks_cont_img_cont aspect-square mx-auto rounded-full overflow-hidden" style="width: 140px;">
-        <img [src]="desktopImg" alt="Profile image of {{username}}" class="pointer-events-none img-fluid aspect-square w-full h-full object-cover" loading="lazy" srcset="{{mobileImg}} 260w, {{desktopImg}} 457w" sizes="(max-width: 600px) 260px, 457px">
+        <img [src]="desktopImg" alt="Profile image of {{username}}" class="pointer-events-none select-none img-fluid aspect-square w-full h-full object-cover" loading="lazy" srcset="{{mobileImg}} 260w, {{desktopImg}} 457w" sizes="(max-width: 600px) 260px, 457px">
     </div>
     
     <aside class="text-center mt-4 mx-auto" style="width: fit-content;">
@@ -11,7 +11,7 @@
     <aside class="w-full mt-4 mb-2">
         <div class="w-full flex flex-col items-center gap-4">
             <div *ngFor="let item of socialLinksArray" class="rounded-lg overflow-hidden w-full max-w-[350px] h-[58px]" [style]="item.boxgradient">
-                <a [href]="item.link" target="_blank" rel="nofollow" title="{{item.name}} Website" class="w-full flex justify-center items-center gap-1 no-underline h-full" role="link" [attr.aria-label]="'Open ' + item.name + ' profile'">
+                <a [href]="item.link" target="_blank" rel="nofollow" title="{{item.name}} Website" class="w-full select-none flex justify-center items-center gap-1 no-underline h-full" role="link" [attr.aria-label]="'Open ' + item.name + ' profile'">
                     <i class="{{item.icon}} flex pointer-events-none text-[26px]" style="margin-top: -2px; color: rgb(242, 242, 242) !important;"></i>
                     <span class="font font-medium pointer-events-none select-none p-0 m-0 leading-[1.2rem] text-2xl" style="color: rgb(242, 242, 242) !important;">
                         {{item.name}}

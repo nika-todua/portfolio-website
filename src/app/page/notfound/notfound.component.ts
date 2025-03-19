@@ -79,16 +79,11 @@ export class NotfoundComponent {
   clickback(): void {
     const url = new URL(window.location.href);
     const baseURL = `${url.origin}/`; // იღებს მხოლოდ დომენის დასაწყისს
-    
-    if ( window.location.href.includes(`${baseURL}links/`)) {  
-      window.location.href = `${baseURL}links/`;
+    if ( window.location.href.includes(`${baseURL}links/`)) {
+      window.location.replace(`${baseURL}links/`);
     } else {
-      window.location.href = baseURL; 
+      window.location.replace( baseURL );
     }
-  }
-
-  backpage(){
-    window.location.href = "/";
   }
 
 }
