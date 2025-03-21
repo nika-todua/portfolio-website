@@ -1,13 +1,12 @@
+.notfound_inner{
+    height: calc(100vh - 72px - 118px);
+    min-height: fit-content;
+}
 .img_box{
-    width: 88% !important;
-    width: 500px;
+    width: 100% !important;
 }
 .text_cont{
     margin-top: 35px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 .text_cont h1{
     font-size: 36px;
@@ -33,4 +32,9 @@
 }
 .text_cont .gobackBtn:hover{
     color: #fff;
+}
+@media screen and (min-width: 768px){
+    .notfound_inner{
+        height: calc(100vh - 98px - 118px);
+    }
 }

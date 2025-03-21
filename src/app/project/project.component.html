@@ -22,9 +22,7 @@
                 <h2 class="font title text-2xl" style="color: #b8b8b8;">{{data.title}}</h2>
                 <div class="flex flex-wrap justify-between items-center gap-2">
                     <p class="font date" style="color: #b8b8b8;">{{text2}} {{data.date}}</p>
-                    <button class="font select-none card_btn cursor-pointer overflow-hidden" type="button" aria-label="project link btn">
-                        <a [href]="data.link" rel="nofollow" target="_blank" class="flex w-full text-base sm:text-lg" style="padding: 8px 10px;">{{text3}}</a>
-                    </button>
+                    <a [href]="data.link" rel="nofollow" target="_blank" class="font select-none card_btn cursor-pointer overflow-hidden text-base sm:text-lg" style="padding: 8px 10px;" type="button" aria-label="project link btn">{{text3}}</a>
                 </div>
             </div>
         </div>
@@ -33,7 +31,7 @@
     </div>
     
 
-    <nav class="pagination relative flex justify-center items-center">
+    <nav class="pagination relative flex justify-center items-center mt-1 md:mt-2">
         <ul class="relative flex flex-row">
             <li class="overflow-hidden flex select-none">
                 <button type="button" aria-label="left btn" class="outline-none font text-xl cursor-pointer" style="border-radius: 10px 0 0 10px;" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">

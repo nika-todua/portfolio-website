@@ -22,7 +22,6 @@
     background-color: #ffc107;
     border-radius: 8px;
     border: none;
-    font-size: 16px;
     font-weight: 400;
     color: #474747;
 }
@@ -132,6 +131,7 @@
     }
     .project_card_item{
         position: relative;
+        top: 0;
         width: 100%;
     }
 }

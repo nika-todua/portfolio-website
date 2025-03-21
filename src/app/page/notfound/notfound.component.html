@@ -1,11 +1,10 @@
 <section class="notfound_inner relative m-auto pb-11" style="width: 90%; padding-top: 30px;  max-width: 831px;">
-    <div class="img_box relative mx-auto pointer-events-none" style="background-color: transparent !important; max-width: 370px; aspect-ratio: 340/307;">
-        <img [src]="imgSrc" style="aspect-ratio: 340/307;" class="w-full h-full object-cover flex select-none pointer-events-none" loading="lazy" alt="404 error image">
+    <div class="img_box relative mx-auto pointer-events-none" style="background-color: transparent !important; max-width: 565px;">
+        <img [src]="imgSrc" class="w-full h-full object-cover flex select-none pointer-events-none" loading="lazy" alt="404 error image">
     </div>
-    <div class="text_cont m-auto text-center">
+    <div class="text_cont m-auto text-center flex flex-col items-center justify-items-center">
         <h1 class="font text-2xl font-bold">{{text1}}</h1>
         <p class="font mb-6 text-lg">{{text2}}</p>
-
         <button class="cursor-pointer font backhomeBtn rounded-lg text-base sm:text-xl" (click)="clickback()">{{text3}}</button>
     </div>
 </section>
