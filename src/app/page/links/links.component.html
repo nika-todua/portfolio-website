@@ -3,24 +3,20 @@
         <img [src]="desktopImg" alt="Profile image of {{username}}" class="pointer-events-none select-none img-fluid aspect-square w-full h-full object-cover" loading="lazy" srcset="{{mobileImg}} 260w, {{desktopImg}} 457w" sizes="(max-width: 600px) 260px, 457px">
     </div>
     
-    <aside class="text-center mt-4 mx-auto" style="width: fit-content;">
+    <section class="text-center mt-4 mx-auto" style="width: fit-content;">
         <h1 class="user-name font" style="font-size: 44px; color: rgb(242, 242, 242);">{{username}}</h1>
         <p class="user-bio font" style="font-size: 22px; color: rgb(184, 184, 184);">{{userbio}}</p>
-    </aside>
+    </section>
     
-    <aside class="w-full mt-4 mb-2">
+    <section class="w-full mt-4 mb-2">
         <div class="w-full flex flex-col items-center gap-4">
             <div *ngFor="let item of socialLinksArray" class="rounded-lg overflow-hidden w-full max-w-[350px] h-[58px]" [style]="item.boxgradient">
                 <a [href]="item.link" target="_blank" rel="nofollow" title="{{item.name}} Website" class="w-full select-none flex justify-center items-center gap-1 no-underline h-full" role="link" [attr.aria-label]="'Open ' + item.name + ' profile'">
                     <i class="{{item.icon}} flex pointer-events-none text-[26px]" style="margin-top: -2px; color: rgb(242, 242, 242) !important;"></i>
-                    <span class="font font-medium pointer-events-none select-none p-0 m-0 leading-[1.2rem] text-2xl" style="color: rgb(242, 242, 242) !important;">
-                        {{item.name}}
-                    </span>
+                    <span class="font font-medium pointer-events-none select-none p-0 m-0 leading-[1.2rem] text-2xl" style="color: rgb(242, 242, 242) !important;">{{item.name}}</span>
                 </a>
             </div>
         </div>
-    </aside>
-    
-
+    </section>
     
 </section>

@@ -9,17 +9,6 @@ ul li span{
 }
 @media screen and (min-width: 425px) {
     ul li{
-        max-width: 100px !important;
-    }
-    ul li span.number{
-        font-size: 22px;
-    }
-    ul li span{
-        font-size: 20px;
-    }
-}
-@media screen and (min-width: 425px) {
-    ul li{
         max-width: 110px !important;
     }
     ul li span.number{
