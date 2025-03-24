@@ -51,11 +51,9 @@ export class ProjectComponent {
     }, 1);
   }
 
-
   itemsPerPage:number = 6; // თითო გვერდზე ელემენტების რაოდენობა
   currentPage:number = 1;
   montharr:string[] = []
-
   newmontharr:string[] = []
 
   paginatedProjects() {
@@ -135,7 +133,6 @@ export class ProjectComponent {
       scrollTop = 891;
       break;
     }
-    
 
     window.scrollTo({
       top: scrollTop - 25,
@@ -164,8 +161,8 @@ export class ProjectComponent {
 
   timeBetweenDates(date1: string, date2: string):any {
     function parseDate(dateStr: string): Date {
-        const [day, month, year] = dateStr.split("-").map(Number);
-        return new Date(year, month, day);
+      const [day, month, year] = dateStr.split("-").map(Number);
+      return new Date(year, month, day);
     }
     
     const d1 = parseDate(date1);
@@ -208,7 +205,6 @@ export class ProjectComponent {
 
   }
 
-  
   getporjects(data:any){
     data.sort((a: any, b: any) => b.id - a.id);
     this.projectarrayall = data
@@ -268,8 +264,17 @@ export class ProjectComponent {
       this.currentPage = 1;
     }
     if (tagname.toLowerCase() === "all" || tagname === "ყველა") {
+      this.montharr.length = 0
       this.project.length = 0
       this.projectarrayall = allArray;
+
+      this.projectarrayall.forEach((element:any) => {
+        const date1 = `${element.date}`; // თარიღი რომლის შორის გვინდა დროის გამოთვლა
+        const date2 = `${new Date().getDate()}-${new Date().getUTCMonth() + 1}-${new Date().getFullYear()}`; // მიმდინარე თარიღი
+        const result = this.timeBetweenDates(date1, date2)
+        this.montharr.push(result)
+      });
+      
       let set = setInterval(() => {
         window.scrollTo(0, window.scrollY + 1);
         return clearInterval(set)
@@ -278,9 +283,19 @@ export class ProjectComponent {
       this.filterhidden = false;
       return
     } else {
+      this.montharr.length = 0
       let filtertextarray: string[] = []
       filtertextarray.length = 0;
       filtertextarray = this.filterProject(this.projectarrayall, tagname)
+
+      filtertextarray.forEach((element:any) => {
+        const date1 = `${element.date}`; // თარიღი რომლის შორის გვინდა დროის გამოთვლა
+        const date2 = `${new Date().getDate()}-${new Date().getUTCMonth() + 1}-${new Date().getFullYear()}`; // მიმდინარე თარიღი
+        const result = this.timeBetweenDates(date1, date2)
+        this.montharr.push(result)
+      });
+      
+      
       this.projectfilterarray = this.removeDuplicates(filtertextarray)
       this.filterhidden = true;
       return
@@ -289,15 +304,12 @@ export class ProjectComponent {
 
   filterProject(array:any, tagname:any) {
     const result: any[] = [];
-    const lowerTag = tagname.toLowerCase();
-  
-    for (let i = 0; i < array.length; i++) {
-      if (array[i].tag.toLowerCase() === lowerTag) {
-        result.push(array[i]);
+    array.forEach((element:any) => {
+      if(element.tag === tagname){
+        result.push(element)
       }
-    }
-  
-    return result;
+    });
+    return result
   }
   
 
