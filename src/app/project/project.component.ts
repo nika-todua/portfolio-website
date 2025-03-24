@@ -32,12 +32,13 @@ export class ProjectComponent {
     setTimeout(() => {
       if (document.querySelector("body")?.className.includes('usa-lang')) {
         this.apisService.getlanguage("en").subscribe(datalang => {
-          languageArray = datalang;
-          
-          this.text1 = languageArray.all
+            languageArray = datalang;
+            
+            this.text1 = languageArray.all
           this.text2 = languageArray.publish
           this.text3 = languageArray.webView
-      })
+          
+        })
       } else if(document.querySelector("body")?.className.includes("geo-lang")){
         this.apisService.getlanguage("ka").subscribe(datalang => {
           languageArray = datalang;
@@ -53,8 +54,13 @@ export class ProjectComponent {
 
   itemsPerPage:number = 6; // თითო გვერდზე ელემენტების რაოდენობა
   currentPage:number = 1;
+  montharr:string[] = []
+
+  newmontharr:string[] = []
 
   paginatedProjects() {
+    this.newmontharr = this.montharr.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)
+
     const start = (this.currentPage - 1) * this.itemsPerPage;
     if(!this.filterhidden){
       return this.projectarrayall.slice(start, start + this.itemsPerPage);
@@ -67,6 +73,7 @@ export class ProjectComponent {
     const total = this.totalPages;
     const current = this.currentPage;
     const range:any = [];
+    
     // ვიღებთ ეკრანის სიგანეს
     const isMobile = window.innerWidth <= 480; // 480px-ზე ნაკლები ეკრანი (მობილური)
     // თუ 5-ზე ნაკლები გვერდია, ვაჩვენოთ ყველა
@@ -144,19 +151,76 @@ export class ProjectComponent {
       return Math.ceil(this.projectfilterarray.length / this.itemsPerPage);
     }
   }
+  
 
   changePage(page: any) {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
+      this.newmontharr = this.montharr.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)
     }
     this.projectScroll()
   }
 
 
+  timeBetweenDates(date1: string, date2: string):any {
+    function parseDate(dateStr: string): Date {
+        const [day, month, year] = dateStr.split("-").map(Number);
+        return new Date(year, month, day);
+    }
+    
+    const d1 = parseDate(date1);
+    const d2 = parseDate(date2);
+    
+    let years = d2.getFullYear() - d1.getFullYear();
+    let months = d2.getMonth() - d1.getMonth();
+    let days = d2.getDate() - d1.getDate();
+    
+    if (days < 0) {
+      months--;
+      const prevMonth = new Date(d2.getFullYear(), d2.getMonth(), 0);
+      days += prevMonth.getDate();
+    }
+    
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+    
+    if (document.querySelector("body")?.className.includes('usa-lang')){
+      if(years === 0 && months === 0){
+        return `${days} day ago`;
+      } else if(years === 0 && months !== 0){
+        return `${months} month ago`;
+      } else if(years !== 0){
+        return `${years} year ago`;
+      }
+
+    } else if (document.querySelector("body")?.className.includes('geo-lang')){
+      if(years === 0 && months === 0){
+        return `${days} დღის წინ`;
+      } else if(years === 0 && months !== 0){
+        return `${months} თვის წინ`;
+      } else if(years !== 0){
+        return `${years} წლის წინ`;
+      }
+      
+    }
+
+  }
+
+  
   getporjects(data:any){
     data.sort((a: any, b: any) => b.id - a.id);
     this.projectarrayall = data
-    this.sortingText()    
+    this.sortingText()
+
+    this.projectarrayall.forEach((element:any) => {
+      const date1 = `${element.date}`; // თარიღი რომლის შორის გვინდა დროის გამოთვლა
+      const date2 = `${new Date().getDate()}-${new Date().getUTCMonth() + 1}-${new Date().getFullYear()}`; // მიმდინარე თარიღი
+      const result = this.timeBetweenDates(date1, date2)
+      this.montharr.push(result)
+    });
+    
   }
 
   sortingText(){
