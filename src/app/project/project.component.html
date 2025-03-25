@@ -19,9 +19,9 @@
             </div>
             
             <div class="card_desc w-full">
-                <h2 class="font title text-2xl" style="color: #b8b8b8;">{{data.title}}</h2>
+                <h2 class="font title text-2xl lg:text-[26px]" style="color: #b8b8b8;">{{data.title}}</h2>
                 <div class="flex flex-wrap justify-between items-center gap-2">
-                    <p class="font date" style="color: #b8b8b8;">{{text2}} {{ newmontharr[i] }}</p>
+                    <p class="font date text-base md:text-lg" style="color: #b8b8b8;">{{text2}}: {{ newmontharr[i] }}</p>
                     <a [href]="data.link" rel="nofollow" target="_blank" class="font select-none card_btn cursor-pointer overflow-hidden text-base sm:text-lg" style="padding: 8px 10px;" type="button" aria-label="project link btn">{{text3}}</a>
                 </div>
             </div>

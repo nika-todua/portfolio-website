@@ -184,6 +184,10 @@ export class ProjectComponent {
     }
     
     if (document.querySelector("body")?.className.includes('usa-lang')){
+      if (years === 0 && months === 0 && days === 0){
+        return 'today';
+      }
+
       if(years === 0 && months === 0){
         return `${days} day ago`;
       } else if(years === 0 && months !== 0){
@@ -193,6 +197,10 @@ export class ProjectComponent {
       }
 
     } else if (document.querySelector("body")?.className.includes('geo-lang')){
+      if (years === 0 && months === 0 && days === 0){
+        return 'დღეს';
+      }
+      
       if(years === 0 && months === 0){
         return `${days} დღის წინ`;
       } else if(years === 0 && months !== 0){
@@ -209,14 +217,15 @@ export class ProjectComponent {
     data.sort((a: any, b: any) => b.id - a.id);
     this.projectarrayall = data
     this.sortingText()
+    this.projectdates(this.projectarrayall)
+  }
 
-    this.projectarrayall.forEach((element:any) => {
-      const date1 = `${element.date}`; // თარიღი რომლის შორის გვინდა დროის გამოთვლა
-      const date2 = `${new Date().getDate()}-${new Date().getUTCMonth() + 1}-${new Date().getFullYear()}`; // მიმდინარე თარიღი
-      const result = this.timeBetweenDates(date1, date2)
-      this.montharr.push(result)
-    });
-    
+  projectdates(array:any){
+    const pad = (num: number) => String(num).padStart(2, '0');
+    const today = new Date();
+    const date2 = `${pad(today.getDate())}-${pad(today.getUTCMonth() + 1)}-${today.getFullYear()}`; // დღე-თვე-წელი (დღეს)
+    this.montharr.length = 0;
+    this.montharr = array.map((element:typeof array) => { return this.timeBetweenDates(element.date, date2); });
   }
 
   sortingText(){
@@ -234,11 +243,9 @@ export class ProjectComponent {
     this.selectfilter()
   }
   
-  
   sortWordsByFirstLetter(wordArray:string[]) {
     return wordArray.sort((a:any, b:any) => a[0].toLowerCase().localeCompare(b[0].toLowerCase()));
   }
-  
 
   selectfilter() {
     const selectElement = document.querySelector<HTMLSelectElement>("#project_sort");
@@ -264,17 +271,9 @@ export class ProjectComponent {
       this.currentPage = 1;
     }
     if (tagname.toLowerCase() === "all" || tagname === "ყველა") {
-      this.montharr.length = 0
       this.project.length = 0
       this.projectarrayall = allArray;
-
-      this.projectarrayall.forEach((element:any) => {
-        const date1 = `${element.date}`; // თარიღი რომლის შორის გვინდა დროის გამოთვლა
-        const date2 = `${new Date().getDate()}-${new Date().getUTCMonth() + 1}-${new Date().getFullYear()}`; // მიმდინარე თარიღი
-        const result = this.timeBetweenDates(date1, date2)
-        this.montharr.push(result)
-      });
-      
+      this.projectdates(this.projectarrayall)
       let set = setInterval(() => {
         window.scrollTo(0, window.scrollY + 1);
         return clearInterval(set)
@@ -283,19 +282,10 @@ export class ProjectComponent {
       this.filterhidden = false;
       return
     } else {
-      this.montharr.length = 0
       let filtertextarray: string[] = []
       filtertextarray.length = 0;
       filtertextarray = this.filterProject(this.projectarrayall, tagname)
-
-      filtertextarray.forEach((element:any) => {
-        const date1 = `${element.date}`; // თარიღი რომლის შორის გვინდა დროის გამოთვლა
-        const date2 = `${new Date().getDate()}-${new Date().getUTCMonth() + 1}-${new Date().getFullYear()}`; // მიმდინარე თარიღი
-        const result = this.timeBetweenDates(date1, date2)
-        this.montharr.push(result)
-      });
-      
-      
+      this.projectdates(filtertextarray)
       this.projectfilterarray = this.removeDuplicates(filtertextarray)
       this.filterhidden = true;
       return
