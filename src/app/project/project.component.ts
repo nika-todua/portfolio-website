@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ApisService } from '../apis.service';
+import { Project } from '../shared/project.model';
 
 @Component({
   selector: 'app-project',
@@ -9,11 +10,11 @@ import { ApisService } from '../apis.service';
 })
 export class ProjectComponent {
   filterhidden: boolean = false;
-  secontArray:object = []
-  project: object[] = []
+  secontArray:string[] = []
+  project: Project[] = []
   selectTexts: string[] = []
-  projectfilterarray: object[] = []
-  projectarrayall:any = []
+  projectfilterarray: Project[] = []
+  projectarrayall:(Project[] | any) = []
 
   constructor(private apisService : ApisService){
     this.apisService.getproject().subscribe(data => {
@@ -32,12 +33,11 @@ export class ProjectComponent {
     setTimeout(() => {
       if (document.querySelector("body")?.className.includes('usa-lang')) {
         this.apisService.getlanguage("en").subscribe(datalang => {
-            languageArray = datalang;
+          languageArray = datalang;
             
-            this.text1 = languageArray.all
+          this.text1 = languageArray.all
           this.text2 = languageArray.publish
           this.text3 = languageArray.webView
-          
         })
       } else if(document.querySelector("body")?.className.includes("geo-lang")){
         this.apisService.getlanguage("ka").subscribe(datalang => {
@@ -150,7 +150,7 @@ export class ProjectComponent {
   }
   
 
-  changePage(page: any) {
+  changePage(page: number) {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
       this.newmontharr = this.montharr.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)
@@ -195,7 +195,6 @@ export class ProjectComponent {
       } else if(years !== 0){
         return `${years} year ago`;
       }
-
     } else if (document.querySelector("body")?.className.includes('geo-lang')){
       if (years === 0 && months === 0 && days === 0){
         return 'დღეს';
@@ -208,28 +207,29 @@ export class ProjectComponent {
       } else if(years !== 0){
         return `${years} წლის წინ`;
       }
-      
     }
 
   }
 
-  getporjects(data:any){
-    data.sort((a: any, b: any) => b.id - a.id);
+  getporjects(data:Project[]){
+    data.sort((a: Project, b: Project) => b.id - a.id);
     this.projectarrayall = data
     this.sortingText()
     this.projectdates(this.projectarrayall)
   }
 
-  projectdates(array:any){
+  projectdates(array:(Project[] | any)) {
     const pad = (num: number) => String(num).padStart(2, '0');
     const today = new Date();
-    const date2 = `${pad(today.getDate())}-${pad(today.getUTCMonth() + 1)}-${today.getFullYear()}`; // დღე-თვე-წელი (დღეს)
-    this.montharr.length = 0;
-    this.montharr = array.map((element:typeof array) => { return this.timeBetweenDates(element.date, date2); });
+    const date2 = `${pad(today.getDate())}-${pad(today.getMonth() + 1)}-${today.getFullYear()}`;
+    this.montharr = new Array(array.length);
+    for (let i = 0; i < array.length; i++) {
+      this.montharr[i] = this.timeBetweenDates(array[i].date, date2);
+    }    
   }
 
   sortingText(){
-    let projectTags: any = [];
+    let projectTags: string[] = [];
     this.projectarrayall.forEach((element: any) => projectTags.push(element.tag) );
     let uniqueArray: string[] = Array.from(new Set(projectTags));
     projectTags = uniqueArray
@@ -265,7 +265,7 @@ export class ProjectComponent {
     return uniqueArray;
   }
 
-  projectfilterEvent(tagname: string, allArray:any) {
+  projectfilterEvent(tagname: string, allArray:Project[]) {
     this.projectfilterarray.length = 0;
     if (this.totalPages >= 1){
       this.currentPage = 1;
@@ -292,7 +292,7 @@ export class ProjectComponent {
     }
   }
 
-  filterProject(array:any, tagname:any) {
+  filterProject(array:Project[], tagname:string) {
     const result: any[] = [];
     array.forEach((element:any) => {
       if(element.tag === tagname){
