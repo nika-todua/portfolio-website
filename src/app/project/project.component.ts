@@ -182,31 +182,29 @@ export class ProjectComponent {
       years--;
       months += 12;
     }
-    
-    if (document.querySelector("body")?.className.includes('usa-lang')){
-      if (years === 0 && months === 0 && days === 0){
-        return 'today';
-      }
 
-      if(years === 0 && months === 0){
-        return `${days} day ago`;
-      } else if(years === 0 && months !== 0){
-        return `${months} month ago`;
-      } else if(years !== 0){
-        return `${years} year ago`;
+    if (document.querySelector("body")?.className.includes('usa-lang')){
+      if (years === 0 && months === 0 && days === 0) {
+        return 'Today';
       }
+      if (years === 0 && months === 0) {
+        return days === 1 ? '1 day ago' : `${days} days ago`;
+      }
+      if (years === 0) {
+        return months === 1 ? '1 month ago' : `${months} months ago`;
+      }
+      return years === 1 ? '1 year ago' : `${years} years ago`;      
     } else if (document.querySelector("body")?.className.includes('geo-lang')){
-      if (years === 0 && months === 0 && days === 0){
+      if (years === 0 && months === 0 && days === 0) {
         return 'დღეს';
       }
-      
-      if(years === 0 && months === 0){
-        return `${days} დღის წინ`;
-      } else if(years === 0 && months !== 0){
-        return `${months} თვის წინ`;
-      } else if(years !== 0){
-        return `${years} წლის წინ`;
+      if (years === 0 && months === 0) {
+        return days === 1 ? '1 დღე წინ' : `${days} დღის წინ`;
       }
+      if (years === 0) {
+        return months === 1 ? '1 თვე წინ' : `${months} თვის წინ`;
+      }
+      return years === 1 ? '1 წელი წინ' : `${years} წლის წინ`;
     }
 
   }
@@ -225,7 +223,7 @@ export class ProjectComponent {
     this.montharr = new Array(array.length);
     for (let i = 0; i < array.length; i++) {
       this.montharr[i] = this.timeBetweenDates(array[i].date, date2);
-    }    
+    }
   }
 
   sortingText(){
