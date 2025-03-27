@@ -184,29 +184,47 @@ export class ProjectComponent {
     }
 
     if (document.querySelector("body")?.className.includes('usa-lang')){
-      if (years === 0 && months === 0 && days === 0) {
-        return 'Today';
+      
+      if (years > 0) {
+        return `${years} years ago`;
       }
-      if (years === 0 && months === 0) {
-        return days === 1 ? '1 day ago' : `${days} days ago`;
+      if (months > 0) {
+        return `${months} months ago`;
       }
-      if (years === 0) {
-        return months === 1 ? '1 month ago' : `${months} months ago`;
+      if (days > 0 && days < 7) {
+        return `${days} days ago`;
+      } else if (days >= 7 && days < 7 * 2) {
+        return '1 week ago';
+      } else if (days >= 7 * 2 && days < 7 * 3) {
+        return '2 weeks ago';
+      } else if (days >= 7 * 3 && days < 7 * 4) {
+        return '3 weeks ago';
+      } else if (days >= 7 * 4) {
+        return '4 weeks ago';
       }
-      return years === 1 ? '1 year ago' : `${years} years ago`;      
-    } else if (document.querySelector("body")?.className.includes('geo-lang')){
-      if (years === 0 && months === 0 && days === 0) {
-        return 'დღეს';
-      }
-      if (years === 0 && months === 0) {
-        return days === 1 ? '1 დღე წინ' : `${days} დღის წინ`;
-      }
-      if (years === 0) {
-        return months === 1 ? '1 თვე წინ' : `${months} თვის წინ`;
-      }
-      return years === 1 ? '1 წელი წინ' : `${years} წლის წინ`;
-    }
 
+    } else if (document.querySelector("body")?.className.includes('geo-lang')){
+     
+      if (years > 0) {
+        return `${years} წლის წინ`;
+      }
+      if (months > 0) {
+        return `${months} თვის წინ`;
+      }
+      if (days > 0 && days < 7) {
+        return `${days} დღის წინ`;
+      } else if (days >= 7 && days < 7 * 2) {
+        return '1 კვირის წინ';
+      } else if (days >= 7 * 2 && days < 7 * 3) {
+        return '2 კვირის წინ';
+      } else if (days >= 7 * 3 && days < 7 * 4) {
+        return '3 კვირის წინ';
+      } else if (days >= 7 * 4) {
+        return '4 კვირის წინ';
+      }
+
+    }
+    
   }
 
   getporjects(data:Project[]){
@@ -221,14 +239,15 @@ export class ProjectComponent {
     const today = new Date();
     const date2 = `${pad(today.getDate())}-${pad(today.getMonth() + 1)}-${today.getFullYear()}`;
     this.montharr = new Array(array.length);
-    for (let i = 0; i < array.length; i++) {
-      this.montharr[i] = this.timeBetweenDates(array[i].date, date2);
-    }
+    array.forEach((element:typeof array) => {
+      let i = array.indexOf(element)
+      this.montharr[i] = this.timeBetweenDates(element.date, date2);
+    });
   }
 
   sortingText(){
     let projectTags: string[] = [];
-    this.projectarrayall.forEach((element: any) => projectTags.push(element.tag) );
+    this.projectarrayall.forEach((element: Project) => projectTags.push(element.tag) );
     let uniqueArray: string[] = Array.from(new Set(projectTags));
     projectTags = uniqueArray
     const sortedWords = this.sortWordsByFirstLetter(projectTags);
