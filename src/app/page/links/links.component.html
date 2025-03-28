@@ -1,22 +1,28 @@
 <section class="socialLinks_cont relative pt-3 w-full mx-auto" style="padding-inline: 16px; max-width: 831px !important;">
-    <div class="socialLinks_cont_img_cont aspect-square mx-auto rounded-full overflow-hidden" style="width: 140px;">
-        <img [src]="desktopImg" alt="Profile image of {{username}}" class="pointer-events-none select-none img-fluid aspect-square w-full h-full object-cover" loading="lazy" srcset="{{mobileImg}} 260w, {{desktopImg}} 457w" sizes="(max-width: 600px) 260px, 457px">
-    </div>
-    
-    <section class="text-center mt-4 mx-auto" style="width: fit-content;">
-        <h1 class="user-name font" style="font-size: 44px; color: rgb(242, 242, 242);">{{username}}</h1>
-        <p class="user-bio font" style="font-size: 22px; color: rgb(184, 184, 184);">{{userbio}}</p>
-    </section>
-    
-    <section class="w-full mt-4 mb-2">
-        <div class="w-full flex flex-col items-center gap-4">
-            <div *ngFor="let item of socialLinksArray" class="rounded-lg overflow-hidden w-full max-w-[350px] h-[58px]" [style]="item.boxgradient">
-                <a [href]="item.link" target="_blank" rel="nofollow" title="{{item.name}} Website" class="w-full select-none flex justify-center items-center gap-1 no-underline h-full" role="link" [attr.aria-label]="'Open ' + item.name + ' profile'">
-                    <i class="{{item.icon}} flex pointer-events-none text-[26px]" style="margin-top: -2px; color: rgb(242, 242, 242) !important;"></i>
-                    <span class="font font-medium pointer-events-none select-none p-0 m-0 leading-[1.2rem] text-2xl" style="color: rgb(242, 242, 242) !important;">{{item.name}}</span>
-                </a>
-            </div>
+    <aside class="top-sec relative">
+        <img [src]="desktopImg"
+        alt="Profile image of {{username}}"
+        width="140"
+        height="140"
+        class="pointer-events-auto select-none img-fluid aspect-square mx-auto object-cover"
+        loading="lazy" srcset="{{mobileImg}} 260w, {{desktopImg}} 457w" sizes="(max-width: 600px) 260px, 457px">
+        
+        <div class="text-cont text-center w-fit mx-auto mt-4">
+            <h1 class="font user-name text-[44px]" style="color: rgb(242, 242, 242);">{{username}}</h1>
+            <p class="font bioText text-xl ms:text-2xl" style="color: rgb(184, 184, 184);">{{userbio}}</p>
         </div>
-    </section>
-    
+    </aside>
+
+    <aside class="bottom_sec relative w-full mt-5 flex justify-center items-start">
+        <div class="soc_listboc relative w-full flex items-center justify-center flex-wrap gap-4" style="max-width: 400px;">
+            
+            <button class="soc-boc-item font cursor-pointer w-full flex items-center justify-center rounded-xl overflow-hidden" *ngFor="let data of socialLinksArray" style="height: 58px; background-color: white;">
+                <a [href]="data.link" rel="nofollow" target="_blank" class="w-full h-full flex items-center justify-center" [style]="data.boxgradient">
+                    <i class="ri {{data.icon}} flex mr-2" style="margin-bottom: 2px; font-size: 26px; color: rgb(242, 242, 242) !important;"></i>
+                    <span class="text text-2xl" style="color: rgb(242, 242, 242) !important;">{{data.name}}</span>
+                </a>
+            </button>
+            
+        </div>        
+    </aside>
 </section>
