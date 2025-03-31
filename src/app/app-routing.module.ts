@@ -5,7 +5,7 @@ import { LinksComponent } from './page/links/links.component';
 import { NotfoundComponent } from './page/notfound/notfound.component';
 
 const routes: Routes = [
-  {path: "", component:HomepageComponent},
+  {path: "",  component:HomepageComponent},
   {path: "links", component:LinksComponent},
   {path: "**", component:NotfoundComponent}
 ];

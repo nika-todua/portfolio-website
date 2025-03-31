@@ -16,33 +16,38 @@ export class LinksComponent {
   
   socialLinksArray:any = [
     {
-      icon: 'ri-global-line',
+      icon: 'global-line',
+      rel: 'follow',
       name: 'Portfolio',
       link: 'https://nika-todua.netlify.app/',
       boxgradient: `background:#e89c45; background: linear-gradient(to right, #15f746, #5766f5 100%) !important;`
     },
     {
-      icon: 'ri-instagram-line',
+      icon: 'instagram-line',
+      rel: 'nofollow',
       name: 'Instagram',
       link: 'https://www.instagram.com/nika_todua9/',
       boxgradient: `background: #f09433; background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important; background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f09433', endColorstr='#bc1888', GradientType=1) !important;`
     },
     {
-      icon: 'ri-facebook-circle-line',
+      icon: 'facebook-circle-line',
+      rel: 'nofollow',
       name: 'Facebook',
-      link: 'https://www.facebook.com/nika.todua09',
+      link: 'https://www.facebook.com/nika.todua09/',
       boxgradient: `background: #00c6ff; background: linear-gradient( to right,#00c6ff,#0072ff) !important;`
     },
     {
-      icon: 'ri-github-line',
+      icon: 'github-line',
+      rel: 'nofollow',
       name: 'Github',
-      link: 'https://github.com/nika-todua',
+      link: 'https://github.com/nika-todua/',
       boxgradient: `background: #24292e; background: linear-gradient( to right,#24292e,#24292e) !important;`
     },
     {
-      icon: 'ri-twitter-x-line',
+      icon: 'twitter-x-line',
+      rel: 'nofollow',
       name: 'Twitter-X',
-      link: 'https://x.com/nika_todua2',
+      link: 'https://x.com/nika_todua2/',
       boxgradient: `background: #1DA1F2; background: linear-gradient( to right,#1DA1F2,#009ffc) !important;`
     }
   ]
