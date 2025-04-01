@@ -184,15 +184,28 @@ export class ProjectComponent {
     }
 
     if (document.querySelector("body")?.className.includes('usa-lang')){
+
       
       if (years > 0) {
-        return `${years} years ago`;
+        if(years === 1){
+          return `1 year ago`;
+        }else{
+          return `${years} years ago`;
+        }
       }
       if (months > 0) {
-        return `${months} months ago`;
+        if (months === 1){
+          return `1 month ago`;
+        }else{
+          return `${months} months ago`;
+        }
       }
       if (days > 0 && days < 7) {
-        return `${days} days ago`;
+        if(days === 1){
+          return `1 day ago`;
+        }else{
+          return `${days} days ago`;
+        }
       } else if (days >= 7 && days < 7 * 2) {
         return '1 week ago';
       } else if (days >= 7 * 2 && days < 7 * 3) {
