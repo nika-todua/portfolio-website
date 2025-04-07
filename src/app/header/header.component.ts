@@ -12,10 +12,8 @@ export class HeaderComponent {
   darkmodeCount:number = 0
 
    // dark mode event
-   darkcount:number = 0;
    darktoken:string = "Dark";
    lighttoken:string = "Light";
-   darkIcon:boolean = false
   
   
   darkmodeevent(){
@@ -39,10 +37,9 @@ export class HeaderComponent {
   flagimg:boolean = false
 
 
-   // language
-   languagecount:number = 0;
-   usetoken:string = 'USA';
-   geotoken:string = 'GEO';
+  // language
+  usetoken:string = 'USA';
+  geotoken:string = 'GEO';
   
   
   languageEvent(){
@@ -55,19 +52,14 @@ export class HeaderComponent {
       localStorage.setItem("language", this.geotoken)
     } else if(this.languageCount === 2){
       this.flagimg = false
+      this.languageCount = 0
       document.body.classList.remove("geo-lang")
       document.body.classList.add("usa-lang")
       localStorage.setItem("language", this.usetoken)
-      this.languageCount = 0
     }
     location.reload()
   }
-
-
-  flagWidth:(number | string) = 0;
-  flagHeight:(number | string) = 0;
   
-  darkiconClass:string = ''
   
   ngOnInit() {
     document.addEventListener("DOMContentLoaded", () => {

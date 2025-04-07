@@ -1,24 +1,24 @@
-<section class="socialLinks_cont relative pt-3 w-full mx-auto" style="padding-inline: 16px; max-width: 831px !important;">
-    <aside class="top-sec relative">
+<section class="relative w-full pt-3 mx-auto socialLinks_cont" style="padding-inline: 16px; max-width: 831px !important;">
+    <aside class="relative top-sec">
         <img [src]="desktopImg"
         alt="Profile image of {{username}}"
         width="140"
         height="140"
-        class="pointer-events-auto select-none img-fluid aspect-square mx-auto object-cover"
+        class="object-cover mx-auto pointer-events-auto select-none img-fluid aspect-square"
         loading="lazy" srcset="{{mobileImg}} 260w, {{desktopImg}} 457w" sizes="(max-width: 600px) 260px, 457px">
         
-        <div class="text-cont text-center w-fit mx-auto mt-4">
+        <div class="mx-auto mt-4 text-center text-cont w-fit">
             <h1 class="font user-name text-[44px]" style="color: rgb(242, 242, 242);">{{username}}</h1>
-            <p class="font bioText text-xl ms:text-2xl" style="color: rgb(184, 184, 184);">{{userbio}}</p>
+            <p class="text-xl font bioText ms:text-2xl" style="color: rgb(184, 184, 184);">{{userbio}}</p>
         </div>
     </aside>
 
-    <aside class="bottom_sec relative w-full mt-5 flex justify-center items-start">
-        <div class="soc_listboc relative w-full flex items-center justify-center flex-wrap gap-4" style="max-width: 400px;">
+    <aside class="relative flex items-start justify-center w-full mt-5 bottom_sec">
+        <div class="relative flex flex-wrap items-center justify-center w-full gap-4 soc_listboc" style="max-width: 400px;">
             
-            <button class="soc-boc-item font cursor-pointer w-full flex items-center justify-center rounded-xl overflow-hidden" *ngFor="let data of socialLinksArray" style="height: 58px; background-color: white;">
-                <a [href]="data.link" rel="{{data.rel}}" target="_blank" class="w-full h-full flex items-center justify-center" [style]="data.boxgradient">
-                    <span class="icons pointer-events-none">
+            <button class="flex items-center justify-center w-full overflow-hidden cursor-pointer soc-boc-item font rounded-xl" *ngFor="let data of socialLinksArray" style="height: 58px; background-color: white;">
+                <a [href]="data.link" rel="{{data.rel}}" target="_blank" class="flex items-center justify-center w-full h-full" [style]="data.boxgradient">
+                    <span class="pointer-events-none icons">
                         <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" class="flex mr-2 pointer-events-none" style="margin-bottom: 2px; fill: rgb(242, 242, 242) !important;" viewBox="0 0 24 24">
                             <path *ngIf="data.icon === 'global-line'" d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM9.71002 19.6674C8.74743 17.6259 8.15732 15.3742 8.02731 13H4.06189C4.458 16.1765 6.71639 18.7747 9.71002 19.6674ZM10.0307 13C10.1811 15.4388 10.8778 17.7297 12 19.752C13.1222 17.7297 13.8189 15.4388 13.9693 13H10.0307ZM19.9381 13H15.9727C15.8427 15.3742 15.2526 17.6259 14.29 19.6674C17.2836 18.7747 19.542 16.1765 19.9381 13ZM4.06189 11H8.02731C8.15732 8.62577 8.74743 6.37407 9.71002 4.33256C6.71639 5.22533 4.458 7.8235 4.06189 11ZM10.0307 11H13.9693C13.8189 8.56122 13.1222 6.27025 12 4.24799C10.8778 6.27025 10.1811 8.56122 10.0307 11ZM14.29 4.33256C15.2526 6.37407 15.8427 8.62577 15.9727 11H19.9381C19.542 7.8235 17.2836 5.22533 14.29 4.33256Z"></path>
                             
@@ -31,7 +31,7 @@
                             <path *ngIf="data.icon === 'twitter-x-line'" d="M10.4883 14.651L15.25 21H22.25L14.3917 10.5223L20.9308 3H18.2808L13.1643 8.88578L8.75 3H1.75L9.26086 13.0145L2.31915 21H4.96917L10.4883 14.651ZM16.25 19L5.75 5H7.75L18.25 19H16.25Z"></path>
                         </svg>
                     </span>
-                    <span class="text text-2xl" style="color: rgb(242, 242, 242) !important;">{{data.name}}</span>
+                    <span class="text-2xl text" style="color: rgb(242, 242, 242) !important;">{{data.name}}</span>
                 </a>
             </button>
             

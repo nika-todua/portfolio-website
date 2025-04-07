@@ -1,14 +1,14 @@
-<section class="homepage_cont relative mx-auto" style="padding-top: 25px;  max-width: 831px;">
+<section class="relative mx-auto homepage_cont" style="padding-top: 25px;  max-width: 831px;">
 
     <aside class="profile_cont w-full flex justify-center items-center flex-wrap gap-4.5 pt-1 mx-auto" style="max-width: 337.500px;">
 
-        <div class="profile_cont_img_box rounded-full overflow-hidden aspect-square" style="width: 170px; height: auto;">
-            <img class="object-cover select-none w-full h-full pointer-events-none" width="170px" height="170px" [src]="personDesktopImage" [srcset]="personModileImage + ' 260w, ' + personDesktopImage + ' 457w'" alt="Profile image" loading="lazy" sizes="(max-width: 600px) 260px, 457px">
+        <div class="overflow-hidden rounded-full profile_cont_img_box aspect-square" style="width: 170px; height: auto;">
+            <img class="object-cover w-full h-full pointer-events-none select-none" width="170px" height="170px" [src]="personDesktopImage" [srcset]="personModileImage + ' 260w, ' + personDesktopImage + ' 457w'" alt="Profile image" loading="lazy" sizes="(max-width: 600px) 260px, 457px">
         </div>
 
-        <div class="profile_cont_text_box text-center">
-            <h1 class="font text-4xl">{{personname}}</h1>
-            <p class="font text-lg">{{personprofesion}}</p>
+        <div class="text-center profile_cont_text_box">
+            <h1 class="text-4xl font">{{personname}}</h1>
+            <p class="text-lg font">{{personprofesion}}</p>
 
             <ul class="flex justify-center gap-3 mt-2 social_links_list sm:justify-start" style="max-width: 164px;">
                 <li>
@@ -37,15 +37,15 @@
         
     </aside>
     
-    <app-profilefacts style="margin-top: 55px;" class="relative w-full flex"></app-profilefacts>
+    <app-profilefacts style="margin-top: 55px;" class="relative flex w-full"></app-profilefacts>
 
 
-    <div class="btn_box flex flex-wrap gap-3 justify-center" style="margin: 47px 0 75px;">
-        <button aria-label="download btn" class="font select-none w-full rounded-md text-lg flex justify-center items-center cursor-pointer" style="height: 68px; color: #474747; background-color: rgb(255, 193, 7);" type="button">{{downloadBTN}}&nbsp;&nbsp;&nbsp;
+    <div class="flex flex-wrap justify-center gap-3 btn_box" style="margin: 47px 0 75px;">
+        <button aria-label="download btn" class="flex items-center justify-center w-full text-lg rounded-md cursor-pointer select-none font" style="height: 68px; color: #474747; background-color: rgb(255, 193, 7);" type="button">{{downloadBTN}}&nbsp;&nbsp;&nbsp;
             <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px" fill="currentColor" viewBox="0 0 16 16" class="bi bi-download d-flex pe-none" style="margin-top: -5px;"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"></path><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"></path></svg>
         </button>
-        <button aria-label="contact btn" class="font select-none w-full rounded-md text-lg overflow-hidden cursor-pointer" style="height: 68px; background-color: #191f25; color: #b8b8b8;" type="button">
-            <a href="https://m.me/nika.todua09" target="_blank" rel="nofollow" class="h-full w-full flex justify-center items-center">{{contactBtn}}</a>
+        <button aria-label="contact btn" class="w-full overflow-hidden text-lg rounded-md cursor-pointer select-none font" style="height: 68px; background-color: #191f25; color: #b8b8b8;" type="button">
+            <a href="https://m.me/nika.todua09" target="_blank" rel="nofollow" class="flex items-center justify-center w-full h-full">{{contactBtn}}</a>
         </button>
     </div>
     
