@@ -10,16 +10,14 @@ import { Project } from '../shared/project.model';
 })
 export class ProjectComponent {
   filterhidden: boolean = false;
-  secontArray:string[] = []
   project: Project[] = []
   selectTexts: string[] = []
   projectfilterarray: Project[] = []
   projectarrayall:(Project[] | any) = []
 
   constructor(private apisService : ApisService){
-    this.apisService.getproject().subscribe(data => {
-      this.projectarrayall = data;
-      this.getporjects(this.projectarrayall)
+    this.apisService.getproject().subscribe((data:(Project[] | any)) => {
+      this.getporjects(data)
     });
     this.languageSistem()
   }
@@ -106,32 +104,25 @@ export class ProjectComponent {
   }
   
   projectScroll(){
+    const width = window.innerWidth;
     let scrollTop = 0;
-    switch (true) {
-      case window.innerWidth > 991:
+
+    if (width > 991) {
       scrollTop = 685;
-      break;
-      case window.innerWidth <= 991 && window.innerWidth > 767:
+    } else if (width > 767) {
       scrollTop = 686;
-      break;
-      case window.innerWidth <= 767 && window.innerWidth > 575:
+    } else if (width > 575) {
       scrollTop = 644;
-      break;
-      case window.innerWidth <= 575 && window.innerWidth > 479:
+    } else if (width > 479) {
       scrollTop = 632;
-      break;
-      case window.innerWidth <= 479 && window.innerWidth > 424:
+    } else if (width > 424) {
       scrollTop = 610;
-      break;
-      case window.innerWidth <= 424 && window.innerWidth > 369:
+    } else if (width > 369) {
       scrollTop = 800;
-      break;
-      case window.innerWidth <= 369 && window.innerWidth > 339:
+    } else if (width > 339) {
       scrollTop = 795;
-      break;
-      case window.innerWidth <= 339:
+    } else {
       scrollTop = 891;
-      break;
     }
 
     window.scrollTo({
@@ -242,7 +233,7 @@ export class ProjectComponent {
 
   getporjects(data:Project[]){
     data.sort((a: Project, b: Project) => b.id - a.id);
-    this.projectarrayall = data
+    this.projectarrayall = data    
     this.sortingText()
     this.projectdates(this.projectarrayall)
   }
@@ -290,7 +281,7 @@ export class ProjectComponent {
     }
   }
   
-  removeDuplicates(array: string[]):any {
+  removeDuplicates(array: Project[]):any {
     const uniqueArray = [...new Set(array)];
     return uniqueArray;
   }
@@ -312,7 +303,7 @@ export class ProjectComponent {
       this.filterhidden = false;
       return
     } else {
-      let filtertextarray: string[] = []
+      let filtertextarray: Project[] = []
       filtertextarray.length = 0;
       filtertextarray = this.filterProject(this.projectarrayall, tagname)
       this.projectdates(filtertextarray)
@@ -323,15 +314,11 @@ export class ProjectComponent {
   }
 
   filterProject(array:Project[], tagname:string) {
-    const result: any[] = [];
-    array.forEach((element:any) => {
-      if(element.tag === tagname){
-        result.push(element)
-      }
-    });
-    return result
+    const result = array.map((element: any) => {
+      return element.tag === tagname ? element : null;
+    }).filter(Boolean); // ფილტრავს null-ებს
+    return result;
+    
   }
   
-
-
 }
