@@ -110,6 +110,30 @@
         animation-timing-function: ease-in;
     }
 }
+
+.project-date{
+    position: absolute;
+    padding: 4px;
+    display: none !important;
+    background-color:#ffc107;
+    left: 40px;
+    top: 5px;
+    font-size: 14px;
+    color: #474747;
+    border-radius: 3px;
+    opacity: 0;
+}
+.project-date::after{
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #ffc107 transparent transparent transparent;
+}
+
 @media screen and (min-width: 425px){
     .newtons-cradle {
         --uib-size: 105px;
@@ -133,5 +157,14 @@
         position: relative;
         top: 0;
         width: 100%;
+    }
+}
+@media screen and (min-width: 1024px){
+    .project-date{
+        display: flex !important;
+        transition: opacity 0.3s ease-in-out;
+    }
+    .projectDate:hover ~ .project-date{
+        opacity: 1;
     }
 }

@@ -318,7 +318,6 @@ export class ProjectComponent {
       return element.tag === tagname ? element : null;
     }).filter(Boolean); // ფილტრავს null-ებს
     return result;
-    
   }
-  
+
 }
