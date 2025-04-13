@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SkillsComponent } from './skills/skills.component';
 import { LinksComponent } from './page/links/links.component';
 import { NotfoundComponent } from './page/notfound/notfound.component';
+import { AdsComponent } from './ads/ads.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { NotfoundComponent } from './page/notfound/notfound.component';
     SkillsComponent,
     LinksComponent,
     NotfoundComponent,
+    AdsComponent,
   ],
   imports: [
     BrowserModule,
