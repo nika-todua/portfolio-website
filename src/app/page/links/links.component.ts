@@ -51,6 +51,13 @@ export class LinksComponent {
       boxgradient: `background: #1DA1F2; background: linear-gradient( to right,#1DA1F2,#009ffc) !important;`
     }
   ]
+    // {
+    //   icon: 'discord-fil',
+    //   rel: 'nofollow',
+    //   name: 'Discord  Server',
+    //   link: '',
+    //   boxgradient: `background: linear-gradient(45deg, #5865F2, #404EED) !important;`
+    // }
 
   username:string = '';
   userbio:string = '';
