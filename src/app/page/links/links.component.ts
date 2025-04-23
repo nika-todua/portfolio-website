@@ -26,7 +26,7 @@ export class LinksComponent {
       icon: 'instagram-line',
       rel: 'nofollow',
       name: 'Instagram',
-      link: 'https://www.instagram.com/nika_todua9/',
+      link: 'https://www.instagram.com/nicktoduaa/',
       boxgradient: `background: #f09433; background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important; background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f09433', endColorstr='#bc1888', GradientType=1) !important;`
     },
     {
