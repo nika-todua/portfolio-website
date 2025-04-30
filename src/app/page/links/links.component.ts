@@ -23,11 +23,18 @@ export class LinksComponent {
       boxgradient: `background:#e89c45; background: linear-gradient(to right, #15f746, #5766f5 100%) !important;`
     },
     {
+      icon: 'youtube',
+      rel: 'nofollow',
+      name: 'Youtube',
+      link: 'https://www.youtube.com/@nika_todua',
+      boxgradient: `background: #e52d27; background: linear-gradient( to right, #e52d27,#b31217 ) !important;`
+    },
+    {
       icon: 'instagram-line',
       rel: 'nofollow',
       name: 'Instagram',
       link: 'https://www.instagram.com/nicktoduaa/',
-      boxgradient: `background: #f09433; background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important; background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f09433', endColorstr='#bc1888', GradientType=1) !important;`
+      boxgradient: `background: #833ab4; background: linear-gradient( to right, #833ab4,#fd1d1d,#fcb045 ) !important;`
     },
     {
       icon: 'facebook-circle-line',
@@ -51,13 +58,6 @@ export class LinksComponent {
       boxgradient: `background: #1DA1F2; background: linear-gradient( to right,#1DA1F2,#009ffc) !important;`
     }
   ]
-    // {
-    //   icon: 'discord-fil',
-    //   rel: 'nofollow',
-    //   name: 'Discord  Server',
-    //   link: '',
-    //   boxgradient: `background: linear-gradient(45deg, #5865F2, #404EED) !important;`
-    // }
 
   username:string = '';
   userbio:string = '';
