@@ -33,8 +33,8 @@
     color: #f2f2f2;
 }
 .pagination ul li button svg{
-    width: 14px;
-    height: 14px;
+    width: 27px;
+    height: 27px;
     fill: #f2f2f2;
 }
 .pagination ul li button.active{

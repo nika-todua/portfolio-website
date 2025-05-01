@@ -314,9 +314,13 @@ export class ProjectComponent {
   }
 
   filterProject(array:Project[], tagname:string) {
-    const result = array.map((element: any) => {
-      return element.tag === tagname ? element : null;
-    }).filter(Boolean); // ფილტრავს null-ებს
+    let result: Project[] = [];
+    result.length = 0;
+    array.forEach((el:Project) => {
+      if (el.tag.toLowerCase() === tagname.toLowerCase()) {
+        result.push(el);
+      }
+    })
     return result;
   }
 
