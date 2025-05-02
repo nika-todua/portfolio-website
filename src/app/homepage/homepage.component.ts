@@ -10,6 +10,14 @@ import { ApisService } from '../apis.service';
 })
 export class HomepageComponent {
 
+  socialMediaLinks = [
+    { name: 'Instagram', link: 'https://www.instagram.com/nicktoduaa/' },
+    { name: 'GitHub', link: 'https://github.com/nika-todua' },
+    { name: 'X-twitter', link: 'https://x.com/nika_todua2'},
+    { name: 'fb', link: 'https://www.facebook.com/nika.todua09'}
+  ]
+  
+  
   constructor(private titleService: Title, private metaTagService: Meta, private api : ApisService){
     this.languageSistem()
   }
