@@ -25,7 +25,7 @@ export class NotfoundComponent {
   seolink:string = document.location.href;
 
   ngOnInit() {
-    // document.addEventListener("DOMContentLoaded", () => { let count = 0;count=0;var set=setInterval(()=>{count++;if(count>=4){this.clickback();return clearInterval(set)} },1000); })
+    document.addEventListener("DOMContentLoaded", () => { let count = 0;count=0;var set=setInterval(()=>{count++;if(count>=4){this.clickback();return clearInterval(set)} },1000); })
 
     this.titleService.setTitle("404 Error Page Not Found | Portfolio");
     this.metaTagService.addTags([
