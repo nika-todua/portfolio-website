@@ -105,131 +105,89 @@ export class ProjectComponent {
   
   projectScroll(){
     const width = window.innerWidth;
-    let scrollTop = 0;
-
-    if (width > 991) {
-      scrollTop = 685;
-    } else if (width > 767) {
-      scrollTop = 686;
-    } else if (width > 575) {
-      scrollTop = 644;
-    } else if (width > 479) {
-      scrollTop = 632;
-    } else if (width > 424) {
-      scrollTop = 610;
-    } else if (width > 369) {
-      scrollTop = 800;
-    } else if (width > 339) {
-      scrollTop = 795;
-    } else {
-      scrollTop = 891;
-    }
-
+  
+    const scrollMap: { minWidth: number; scrollTop: number }[] = [
+      { minWidth: 992, scrollTop: 685 },
+      { minWidth: 768, scrollTop: 686 },
+      { minWidth: 576, scrollTop: 644 },
+      { minWidth: 480, scrollTop: 632 },
+      { minWidth: 425, scrollTop: 610 },
+      { minWidth: 370, scrollTop: 800 },
+      { minWidth: 340, scrollTop: 795 },
+      { minWidth: 0, scrollTop: 891 }, // fallback
+    ];
+  
+    const matched = scrollMap.find(entry => width >= entry.minWidth);
+    const scrollTop = (matched?.scrollTop || 0) - 25;
+  
     window.scrollTo({
-      top: scrollTop - 25,
+      top: scrollTop,
       left: 0,
       behavior: "smooth",
     });
   }
   
   get totalPages() {
-    if(!this.filterhidden){
-      return Math.ceil(this.projectarrayall.length / this.itemsPerPage);
-    }else{
-      return Math.ceil(this.projectfilterarray.length / this.itemsPerPage);
-    }
+    return Math.ceil((this.filterhidden ? this.projectfilterarray.length : this.projectarrayall.length) / this.itemsPerPage);
   }
   
 
   changePage(page: number) {
-    if (page >= 1 && page <= this.totalPages) {
-      this.currentPage = page;
-      this.newmontharr = this.montharr.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)
-    }
-    this.projectScroll()
+    (page >= 1 && page <= this.totalPages) && (this.currentPage = page, this.newmontharr = this.montharr.slice((page - 1) * this.itemsPerPage, page * this.itemsPerPage)), this.projectScroll();
   }
 
 
   timeBetweenDates(date1: string, date2: string):any {
-    function parseDate(dateStr: string): Date {
-      const [day, month, year] = dateStr.split("-").map(Number);
-      return new Date(year, month, day);
-    }
-    
+    const parseDate = (str: string): Date => {
+      const [day, month, year] = str.split("-").map(Number);
+      return new Date(year, month - 1, day); // JS თვე 0-იდან იწყება
+    };
+  
     const d1 = parseDate(date1);
     const d2 = parseDate(date2);
-    
+  
     let years = d2.getFullYear() - d1.getFullYear();
     let months = d2.getMonth() - d1.getMonth();
     let days = d2.getDate() - d1.getDate();
-    
+  
     if (days < 0) {
       months--;
-      const prevMonth = new Date(d2.getFullYear(), d2.getMonth(), 0);
-      days += prevMonth.getDate();
+      const daysInPrevMonth = new Date(d2.getFullYear(), d2.getMonth(), 0).getDate();
+      days += daysInPrevMonth;
     }
-    
+  
     if (months < 0) {
       years--;
       months += 12;
     }
-
-    if (document.querySelector("body")?.className.includes('usa-lang')){
-
-      
-      if (years > 0) {
-        if(years === 1){
-          return `1 year ago`;
-        }else{
-          return `${years} years ago`;
-        }
+  
+    const lang = document.body.className.includes('geo-lang') ? 'ka' : 'en';
+  
+    const labels = {
+      en: {
+        year: (n: number) => `${n} year${n > 1 ? 's' : ''} ago`,
+        month: (n: number) => `${n} month${n > 1 ? 's' : ''} ago`,
+        day: (n: number) => `${n} day${n > 1 ? 's' : ''} ago`,
+        week: (n: number) => `${n} week${n > 1 ? 's' : ''} ago`
+      },
+      ka: {
+        year: (n: number) => `${n} წლის წინ`,
+        month: (n: number) => `${n} თვის წინ`,
+        day: (n: number) => `${n} დღის წინ`,
+        week: (n: number) => `${n} კვირის წინ`
       }
-      if (months > 0) {
-        if (months === 1){
-          return `1 month ago`;
-        }else{
-          return `${months} months ago`;
-        }
-      }
-      if (days > 0 && days < 7) {
-        if(days === 1){
-          return `1 day ago`;
-        }else{
-          return `${days} days ago`;
-        }
-      } else if (days >= 7 && days < 7 * 2) {
-        return '1 week ago';
-      } else if (days >= 7 * 2 && days < 7 * 3) {
-        return '2 weeks ago';
-      } else if (days >= 7 * 3 && days < 7 * 4) {
-        return '3 weeks ago';
-      } else if (days >= 7 * 4) {
-        return '4 weeks ago';
-      }
-
-    } else if (document.querySelector("body")?.className.includes('geo-lang')){
-     
-      if (years > 0) {
-        return `${years} წლის წინ`;
-      }
-      if (months > 0) {
-        return `${months} თვის წინ`;
-      }
-      if (days > 0 && days < 7) {
-        return `${days} დღის წინ`;
-      } else if (days >= 7 && days < 7 * 2) {
-        return '1 კვირის წინ';
-      } else if (days >= 7 * 2 && days < 7 * 3) {
-        return '2 კვირის წინ';
-      } else if (days >= 7 * 3 && days < 7 * 4) {
-        return '3 კვირის წინ';
-      } else if (days >= 7 * 4) {
-        return '4 კვირის წინ';
-      }
-
-    }
-    
+    };
+  
+    const t = labels[lang];
+  
+    if (years > 0) return t.year(years);
+    if (months > 0) return t.month(months);
+    if (days > 0 && days < 7) return t.day(days);
+    if (days >= 7) return t.week(Math.floor(days / 7));
+  
+    return null;
   }
+  
 
   getporjects(data:Project[]){
     data.sort((a: Project, b: Project) => b.id - a.id);
@@ -239,14 +197,10 @@ export class ProjectComponent {
   }
 
   projectdates(array:(Project[] | any)) {
-    const pad = (num: number) => String(num).padStart(2, '0');
+    const pad = (num: number): string => String(num).padStart(2, '0');
     const today = new Date();
-    const date2 = `${pad(today.getDate())}-${pad(today.getMonth() + 1)}-${today.getFullYear()}`;
-    this.montharr = new Array(array.length);
-    array.forEach((element:typeof array) => {
-      let i = array.indexOf(element)
-      this.montharr[i] = this.timeBetweenDates(element.date, date2);
-    });
+    const formattedToday = `${pad(today.getDate())}-${pad(today.getMonth() + 1)}-${today.getFullYear()}`;
+    this.montharr = array.map((item:any) => this.timeBetweenDates(item.date, formattedToday));
   }
 
   sortingText(){
@@ -269,16 +223,12 @@ export class ProjectComponent {
   }
 
   selectfilter() {
-    const selectElement = document.querySelector<HTMLSelectElement>("#project_sort");
-    if (selectElement) {
-      selectElement.addEventListener("change", (event: Event) => {
-        const target = event.target;
-        if (target instanceof HTMLSelectElement) {
-          const selectedOption = target.value;
-          this.projectfilterEvent(selectedOption, this.projectarrayall)
-        }
-      });
-    }
+    const selectEl = document.querySelector<HTMLSelectElement>("#project_sort");
+    selectEl?.addEventListener("change", (e) => {
+      const select = e.currentTarget as HTMLSelectElement;
+      this.projectfilterEvent(select.value, this.projectarrayall);
+    });
+
   }
   
   removeDuplicates(array: Project[]):any {
@@ -288,9 +238,7 @@ export class ProjectComponent {
 
   projectfilterEvent(tagname: string, allArray:Project[]) {
     this.projectfilterarray.length = 0;
-    if (this.totalPages >= 1){
-      this.currentPage = 1;
-    }
+    if (this.totalPages >= 1){ this.currentPage = 1; }
     if (tagname.toLowerCase() === "all" || tagname === "ყველა") {
       this.project.length = 0
       this.projectarrayall = allArray;

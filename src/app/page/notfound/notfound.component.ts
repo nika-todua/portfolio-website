@@ -25,7 +25,7 @@ export class NotfoundComponent {
   seolink:string = document.location.href;
 
   ngOnInit() {
-    document.addEventListener("DOMContentLoaded", () => { let count = 0;count=0;var set=setInterval(()=>{count++;if(count>=4){this.clickback();return clearInterval(set)} },1000); })
+    // document.addEventListener("DOMContentLoaded", () => { let count = 0;count=0;var set=setInterval(()=>{count++;if(count>=4){this.clickback();return clearInterval(set)} },1000); })
 
     this.titleService.setTitle("404 Error Page Not Found | Portfolio");
     this.metaTagService.addTags([
@@ -77,12 +77,11 @@ export class NotfoundComponent {
   }
 
   clickback(): void {
-    const url = new URL(window.location.href);
-    const baseURL = `${url.origin}/`; // იღებს მხოლოდ დომენის დასაწყისს
-    if ( window.location.href.includes(`${baseURL}links/`)) {
-      window.location.replace(`${baseURL}links/`);
-    } else {
-      window.location.replace( baseURL );
+    const url = new URL(window.location.href);  
+    if (url.href.includes(`${url.origin}/links/`)) {
+      return window.location.replace( `${url.origin}/links/` );
+    }else if (url.href.includes(`${url.origin}/`)) {
+      return window.location.replace( `${url.origin}/` );
     }
   }
 
