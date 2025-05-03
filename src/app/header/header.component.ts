@@ -19,23 +19,25 @@ export class HeaderComponent {
   darkmodeevent(){
     this.darkmodeCount++
 
-    if(this.darkmodeCount === 1){
-      this.darkmodeicon = true
-      this.darkmodeCount = 1
-      document.body.classList.add("light_mode")
-      localStorage.setItem('theme', this.lighttoken)
-    } else if(this.darkmodeCount === 2){
-      this.darkmodeicon = false
-      this.darkmodeCount = 0
-      document.body.classList.remove("light_mode")
-      localStorage.setItem('theme', this.darktoken) 
+    switch (this.darkmodeCount) {
+      case 1:
+      document.body.classList.add("light_mode");
+      this.darkmodeicon = true;
+      this.darkmodeCount = 1;
+      localStorage.setItem('theme', this.lighttoken);
+      break;
+      case 2:
+      document.body.classList.remove("light_mode");
+      this.darkmodeicon = false;
+      this.darkmodeCount = 0;
+      localStorage.setItem('theme', this.darktoken);
+      break;
     }
     
   }
 
   languageCount:number = 0
   flagimg:boolean = false
-
 
   // language
   usetoken:string = 'USA';
@@ -45,17 +47,17 @@ export class HeaderComponent {
   languageEvent(){
     this.languageCount++
     if(this.languageCount === 1){
+      localStorage.setItem("language", this.geotoken)
       this.flagimg = true
       this.languageCount = 1
-      document.body.classList.remove("usa-lang")
       document.body.classList.add("geo-lang")
-      localStorage.setItem("language", this.geotoken)
+      document.body.classList.remove("usa-lang")
     } else if(this.languageCount === 2){
+      localStorage.setItem("language", this.usetoken)
       this.flagimg = false
       this.languageCount = 0
-      document.body.classList.remove("geo-lang")
       document.body.classList.add("usa-lang")
-      localStorage.setItem("language", this.usetoken)
+      document.body.classList.remove("geo-lang")
     }
     location.reload()
   }
@@ -68,15 +70,15 @@ export class HeaderComponent {
       const storedTheme = localStorage.getItem('theme')
 
       if(storedTheme?.includes(this.lighttoken)){
-        this.darkmodeicon = true
-        this.darkmodeCount = 1
-        document.body.classList.add("light_mode")
         localStorage.setItem('theme', this.lighttoken)
+        document.body.classList.add("light_mode")
+        this.darkmodeCount = 1
+        this.darkmodeicon = true
       } else if(storedTheme?.includes(this.darktoken)){
-        this.darkmodeicon = false
-        this.darkmodeCount = 0
-        document.body.classList.remove("light_mode")
         localStorage.setItem('theme', this.darktoken) 
+        document.body.classList.remove("light_mode")
+        this.darkmodeCount = 0
+        this.darkmodeicon = false
       }
       
 
@@ -84,24 +86,28 @@ export class HeaderComponent {
 
       const storagelanguage = localStorage.getItem("language")
 
-      if (storagelanguage?.includes(this.usetoken)) {
-        this.flagimg = false
-        document.body.classList.remove("geo-lang")
-        document.body.classList.add("usa-lang")
-        this.languageCount = 0
-        localStorage.setItem("language", this.usetoken)
-      } else if (storagelanguage?.includes(this.geotoken)){
-        this.languageCount = 1
-        this.flagimg = true
-        document.body.classList.add("geo-lang")
-        document.body.classList.remove("usa-lang")
-        localStorage.setItem("language", this.geotoken)
-      }else{
-        this.flagimg = false
-        document.body.classList.remove("geo-lang")
-        document.body.classList.add("usa-lang")
-        this.languageCount = 0
-        localStorage.setItem("language", this.usetoken)
+      switch (storagelanguage) {
+        case this.usetoken:
+          document.body.classList.add("usa-lang");
+          document.body.classList.remove("geo-lang");
+          localStorage.setItem("language", this.usetoken);
+          this.languageCount = 0;
+          this.flagimg = false;
+          break;
+        case this.geotoken:
+          document.body.classList.add("geo-lang");
+          document.body.classList.remove("usa-lang");
+          localStorage.setItem("language", this.geotoken);
+          this.languageCount = 1;
+          this.flagimg = true;
+          break;
+        default:
+          document.body.classList.add("usa-lang");
+          document.body.classList.remove("geo-lang");
+          localStorage.setItem("language", this.usetoken);
+          this.languageCount = 0;
+          this.flagimg = false;
+          break;
       }
       
     });

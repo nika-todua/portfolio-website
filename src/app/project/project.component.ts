@@ -137,61 +137,61 @@ export class ProjectComponent {
   }
 
 
-  timeBetweenDates(date1: string, date2: string):any {
+  timeBetweenDates(date1: string, date2: string): string {
     const parseDate = (str: string): Date => {
       const [day, month, year] = str.split("-").map(Number);
-      return new Date(year, month - 1, day); // JS თვე 0-იდან იწყება
+      return new Date(year, month - 1, day);
     };
   
     const d1 = parseDate(date1);
     const d2 = parseDate(date2);
   
-    let years = d2.getFullYear() - d1.getFullYear();
-    let months = d2.getMonth() - d1.getMonth();
-    let days = d2.getDate() - d1.getDate();
+    const timeDifference = d2.getTime() - d1.getTime();
   
-    if (days < 0) {
-      months--;
-      const daysInPrevMonth = new Date(d2.getFullYear(), d2.getMonth(), 0).getDate();
-      days += daysInPrevMonth;
-    }
+    const seconds = Math.floor(timeDifference / 1000);
+    const days = Math.floor(seconds / (60 * 60 * 24)); // Total days difference
+    const months = Math.floor(days / 30.44); // 30.44 average days per month
+    const years = Math.floor(days / 365.25); // Average days per year
   
-    if (months < 0) {
-      years--;
-      months += 12;
-    }
+    // Language detection
+    const isGeoLang =
+      typeof document !== "undefined" && document.body?.className.includes("geo-lang");
+    const lang = isGeoLang ? "ka" : "en";
   
-    const lang = document.body.className.includes('geo-lang') ? 'ka' : 'en';
-  
-    const labels = {
+    const units = {
       en: {
-        year: (n: number) => `${n} year${n > 1 ? 's' : ''} ago`,
-        month: (n: number) => `${n} month${n > 1 ? 's' : ''} ago`,
-        day: (n: number) => `${n} day${n > 1 ? 's' : ''} ago`,
-        week: (n: number) => `${n} week${n > 1 ? 's' : ''} ago`
+        year: (n: number) => `${n} year${n !== 1 ? "s" : ""} ago`,
+        month: (n: number) => `${n} month${n !== 1 ? "s" : ""} ago`,
+        days: (n: number) => `${n} day${n !== 1 ? "s" : ""} ago`,
+        today: "today",
       },
       ka: {
-        year: (n: number) => `${n} წლის წინ`,
-        month: (n: number) => `${n} თვის წინ`,
-        day: (n: number) => `${n} დღის წინ`,
-        week: (n: number) => `${n} კვირის წინ`
-      }
+        year: (n: number) => `${n} წელი წინ`,
+        month: (n: number) => `${n} თვე წინ`,
+        days: (n: number) => `${n} დღის წინ`,
+        today: "დღეს",
+      },
     };
   
-    const t = labels[lang];
-  
-    if (years > 0) return t.year(years);
-    if (months > 0) return t.month(months);
-    if (days > 0 && days < 7) return t.day(days);
-    if (days >= 7) return t.week(Math.floor(days / 7));
-  
-    return null;
+    const t = units[lang];
+
+    if (years > 0) {
+      return t.year(years);
+    }
+    if (months > 0) {
+      return t.month(months);
+    }
+    if (days > 0) {
+      return t.days(days);
+    }
+    return t.today;
   }
+  
   
 
   getporjects(data:Project[]){
     data.sort((a: Project, b: Project) => b.id - a.id);
-    this.projectarrayall = data    
+    this.projectarrayall = data
     this.sortingText()
     this.projectdates(this.projectarrayall)
   }
