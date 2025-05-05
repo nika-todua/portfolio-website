@@ -68,7 +68,7 @@ export class ProjectComponent {
   getPaginationRange() {
     const total = this.totalPages;
     const current = this.currentPage;
-    const range:any = [];
+    const range:(number | any) = [];
     
     // ვიღებთ ეკრანის სიგანეს
     const isMobile = window.innerWidth <= 480; // 480px-ზე ნაკლები ეკრანი (მობილური)
@@ -79,24 +79,16 @@ export class ProjectComponent {
       }
     } else {
       if (!isMobile) {
-        // ვაჩვენოთ პირველი გვერდი, ცოტა გვერდი ახლოს და ბოლო (Desktop View)
+        // Desktop View: Show first page, nearby pages, and last page
         if (current > 2) range.push(1, "...");
-        // ვაჩვენოთ მიმდინარე გვერდი და მისი ირგვლივ გვერდები
-        for (let i = current - 1; i <= current + 1; i++) {
-          if (i > 0 && i <= total) {
-            range.push(i);
-          }
-        };
-        
-        // "..." და ბოლო გვერდი, თუ საჭიროა
+        for (let i = Math.max(1, current - 1); i <= Math.min(total, current + 1); i++) {
+          range.push(i);
+        }
         if (current < total - 1) range.push("...", total);
       } else {
-        // მობილური ეკრანებისთვის (Mobile View)
-        // ვაჩვენოთ 3 გვერდი ახლოს
-        for (let i = current - 1; i <= current + 1; i++) {
-          if (i > 0 && i <= total) {
-            range.push(i);
-          }
+        // Mobile View: Show 3 nearby pages
+        for (let i = Math.max(1, current - 1); i <= Math.min(total, current + 1); i++) {
+          range.push(i);
         }
       }
     }
@@ -105,23 +97,23 @@ export class ProjectComponent {
   
   projectScroll(){
     const width = window.innerWidth;
-  
-    const scrollMap: { minWidth: number; scrollTop: number }[] = [
-      { minWidth: 992, scrollTop: 685 },
-      { minWidth: 768, scrollTop: 686 },
-      { minWidth: 576, scrollTop: 644 },
-      { minWidth: 480, scrollTop: 632 },
-      { minWidth: 425, scrollTop: 610 },
-      { minWidth: 370, scrollTop: 800 },
-      { minWidth: 340, scrollTop: 795 },
-      { minWidth: 0, scrollTop: 891 }, // fallback
-    ];
-  
-    const matched = scrollMap.find(entry => width >= entry.minWidth);
-    const scrollTop = (matched?.scrollTop || 0) - 25;
-  
+
+    const scrollMap = new Map<number, number>([
+      [992, 685],
+      [768, 686],
+      [576, 644],
+      [480, 632],
+      [425, 610],
+      [370, 800],
+      [340, 795],
+      [0, 891], // fallback
+    ]);
+
+    const scrollTop = Array.from(scrollMap.entries())
+      .find(([minWidth]) => width >= minWidth)?.[1] ?? 0;
+
     window.scrollTo({
-      top: scrollTop,
+      top: scrollTop - 25,
       left: 0,
       behavior: "smooth",
     });
@@ -145,9 +137,9 @@ export class ProjectComponent {
   
     const d1 = parseDate(date1);
     const d2 = parseDate(date2);
-  
+    
     const timeDifference = d2.getTime() - d1.getTime();
-  
+    
     const seconds = Math.floor(timeDifference / 1000);
     const days = Math.floor(seconds / (60 * 60 * 24)); // Total days difference
     const months = Math.floor(days / 30.44); // 30.44 average days per month
@@ -156,13 +148,13 @@ export class ProjectComponent {
     // Language detection
     const isGeoLang =
       typeof document !== "undefined" && document.body?.className.includes("geo-lang");
-    const lang = isGeoLang ? "ka" : "en";
-  
-    const units = {
-      en: {
-        year: (n: number) => `${n} year${n !== 1 ? "s" : ""} ago`,
-        month: (n: number) => `${n} month${n !== 1 ? "s" : ""} ago`,
-        days: (n: number) => `${n} day${n !== 1 ? "s" : ""} ago`,
+      const lang = isGeoLang ? "ka" : "en";
+      
+      const units = {
+        en: {
+          year: (n: number) => `${n} year${n !== 1 ? "s" : ""} ago`,
+          month: (n: number) => `${n} month${n !== 1 ? "s" : ""} ago`,
+          days: (n: number) => `${n} day${n !== 1 ? "s" : ""} ago`,
         today: "today",
       },
       ka: {
@@ -172,9 +164,9 @@ export class ProjectComponent {
         today: "დღეს",
       },
     };
-  
+    
     const t = units[lang];
-
+    
     if (years > 0) {
       return t.year(years);
     }
@@ -190,10 +182,9 @@ export class ProjectComponent {
   
 
   getporjects(data:Project[]){
-    data.sort((a: Project, b: Project) => b.id - a.id);
-    this.projectarrayall = data
-    this.sortingText()
-    this.projectdates(this.projectarrayall)
+    this.projectarrayall = data.sort((a: Project, b: Project) => b.id - a.id);
+    this.sortingText();
+    this.projectdates(this.projectarrayall);
   }
 
   projectdates(array:(Project[] | any)) {
@@ -204,18 +195,15 @@ export class ProjectComponent {
   }
 
   sortingText(){
-    let projectTags: string[] = [];
-    this.projectarrayall.forEach((element: Project) => projectTags.push(element.tag) );
-    let uniqueArray: string[] = Array.from(new Set(projectTags));
-    projectTags = uniqueArray
-    const sortedWords = this.sortWordsByFirstLetter(projectTags);
-    const index = uniqueArray.indexOf("othen");
-    if (index > -1) {
-      uniqueArray.splice(index, 1);
-      uniqueArray.push("othen");
+    const projectTags:any = Array.from(new Set(this.projectarrayall.map((element: Project) => element.tag)));
+    const sortedTags = this.sortWordsByFirstLetter(projectTags);
+    const otherIndex = sortedTags.indexOf("othen");
+    if (otherIndex > -1) {
+      sortedTags.splice(otherIndex, 1);
+      sortedTags.push("othen");
     }
-    this.selectTexts = sortedWords
-    this.selectfilter()
+    this.selectTexts = sortedTags;
+    this.selectfilter();
   }
   
   sortWordsByFirstLetter(wordArray:string[]) {
@@ -224,10 +212,14 @@ export class ProjectComponent {
 
   selectfilter() {
     const selectEl = document.querySelector<HTMLSelectElement>("#project_sort");
-    selectEl?.addEventListener("change", (e) => {
-      const select = e.currentTarget as HTMLSelectElement;
-      this.projectfilterEvent(select.value, this.projectarrayall);
-    });
+    if (selectEl) {
+      selectEl.addEventListener("change", (e: Event) => {
+      const select = e.target as HTMLSelectElement;
+      if (select) {
+        this.projectfilterEvent(select.value, this.projectarrayall);
+      }
+      });
+    }
 
   }
   
@@ -239,26 +231,20 @@ export class ProjectComponent {
   projectfilterEvent(tagname: string, allArray:Project[]) {
     this.projectfilterarray.length = 0;
     if (this.totalPages >= 1){ this.currentPage = 1; }
-    if (tagname.toLowerCase() === "all" || tagname === "ყველა") {
-      this.project.length = 0
+    if (["all", "ყველა"].includes(tagname.toLowerCase())) {
+      this.project = [];
       this.projectarrayall = allArray;
-      this.projectdates(this.projectarrayall)
-      let set = setInterval(() => {
-        window.scrollTo(0, window.scrollY + 1);
-        return clearInterval(set)
-      }, 0.001);
-      window.scrollTo(0, window.scrollY - 1);
+      this.projectdates(this.projectarrayall);
       this.filterhidden = false;
-      return
     } else {
-      let filtertextarray: Project[] = []
-      filtertextarray.length = 0;
-      filtertextarray = this.filterProject(this.projectarrayall, tagname)
-      this.projectdates(filtertextarray)
-      this.projectfilterarray = this.removeDuplicates(filtertextarray)
+      const filteredProjects = this.filterProject(this.projectarrayall, tagname);
+      this.projectdates(filteredProjects);
+      this.projectfilterarray = this.removeDuplicates(filteredProjects);
       this.filterhidden = true;
-      return
     }
+    // Trigger a slight scroll to refresh the view
+    window.scrollTo({ top: window.scrollY - 1, behavior: "smooth" });
+    window.scrollTo({ top: window.scrollY + 1, behavior: "smooth" });
   }
 
   filterProject(array:Project[], tagname:string) {
