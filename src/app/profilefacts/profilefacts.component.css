@@ -1,11 +1,16 @@
 ul li span.number{
     font-size: 20px;
+    height: 30px;
+    color: #f2f2f2;
+}
+ul li span.number .plusText{
+    margin-top: 3px;
+    font-size: 32px !important;
     color: #f2f2f2;
 }
 ul li span{
     font-size: 18px;
     color: #b8b8b8;
-    fill: #b8b8b8;
 }
 @media screen and (min-width: 425px) {
     ul li{
@@ -13,9 +18,13 @@ ul li span{
     }
     ul li span.number{
         font-size: 24px;
+        height: 36px;
     }
     ul li span{
         font-size: 20px;
+    }
+    ul li span.number .plusText{
+        font-size: 32px !important;
     }
 }
 @media screen and (min-width: 576px) {
@@ -24,6 +33,10 @@ ul li span{
     }
     ul li span.number{
         font-size: 26px;
+        height: 39px;
+    }
+    ul li span.number .plusText{
+        font-size: 36px !important;
     }
     ul li span{
         font-size: 22px;

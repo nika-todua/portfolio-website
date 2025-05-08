@@ -11,12 +11,10 @@ export class SkillsComponent {
 
 
   frontentText:string = "";
-  backendText:string = "";
   toolsText:string = ""
 
   arrayFrontend:string[] = ['HTML','CSS','SCSS','JAVASCRIPT','ANGULAR','BOOTSTRAP','TAILWINDCSS','TYPESCRIPT']
   arrayTools:string[] = ['POSTMAN','GIT','Github']
-  arraybackend:string[] = ['C#','NodeJs','PHP','Python']
 
   constructor(private api:ApisService){this.languageSistem()}
   
@@ -29,7 +27,6 @@ export class SkillsComponent {
           languageArray = datalang;
 
           this.frontentText = languageArray.personspecialist;
-          this.backendText = languageArray.backendTxt;
           this.toolsText = languageArray.toolsTxt
         })
       } else if(document.querySelector("body")?.className.includes("geo-lang")){
@@ -37,7 +34,6 @@ export class SkillsComponent {
           languageArray = datalang;
 
           this.frontentText = languageArray.personspecialist;
-          this.backendText = languageArray.backendTxt;
           this.toolsText = languageArray.toolsTxt
         })
       }

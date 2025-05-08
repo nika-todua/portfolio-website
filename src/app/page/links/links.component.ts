@@ -65,13 +65,7 @@ export class LinksComponent {
   desktopImg:string = 'assets/img/profile_img_desktop.webp'
   mobileImg:string = 'assets/img/profile_img_mobile.webp'
  
-  // seo texts
-  description:string = "Hi, I'm Nika Todua, I'm a web developer and I make high-quality websites. I make websites using angular."
-  seokeiwords:string = "angular developer, frontend developer, forntent, nika, todua, Nika Todua, Nick Todua, portfolio, web dev, programmer, Website Developer, web app dev, Angular Dev, developer, nika's portfolio, Nikoloz Todua, senior developer, developer senior portfolio, developer portfolio, დეველოპერის პორტფოლიო საიტი, portfolio website, World Wide Web, პროგრამისტი, საიტის დამზადება, საიტის დეველოპერი, პროგრამირება, Web development, Portfolio"
-  seoimg:string = this.desktopImg;
-  seolink:string = document.URL
-
-
+  
   languageSistem(){
     let languageArray:any = []
     setTimeout(() => {
@@ -93,7 +87,11 @@ export class LinksComponent {
     }, 1);
   }
   
-  
+  // seo texts
+  description:string = "Hi, I'm Nika Todua, I'm a web developer and I make high-quality websites. I make websites using angular."
+  seokeiwords:string = "angular developer, frontend developer, forntent, nika, todua, Nika Todua, Nick Todua, portfolio, web dev, programmer, Website Developer, web app dev, Angular Dev, developer, nika's portfolio, Nikoloz Todua, senior developer, developer senior portfolio, developer portfolio, დეველოპერის პორტფოლიო საიტი, portfolio website, World Wide Web, პროგრამისტი, საიტის დამზადება, საიტის დეველოპერი, პროგრამირება, Web development, Portfolio"
+  seoimg:string = this.desktopImg;
+  seolink:string = document.URL
 
   ngOnInit(){
     

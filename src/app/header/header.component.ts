@@ -112,7 +112,7 @@ export class HeaderComponent {
         this.flagimg = false;
       }
 
-      // save local storage
+      // save information
       localStorage.setItem('webSetting', JSON.stringify(this.localstorageArray) );
         
       
