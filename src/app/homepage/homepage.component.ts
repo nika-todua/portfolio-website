@@ -55,6 +55,10 @@ export class HomepageComponent {
       }
     }, 1);
   }
+
+  downloadfile(){
+    alert("file is not found")
+  }
   
   // seo texts
   description:string = "Hi, I'm Nika Todua, I'm a web developer and I make high-quality websites. I make websites using angular."
