@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-
   darkmodeicon:boolean = false
   darkmodeCount:number = 0
 
@@ -19,25 +18,27 @@ export class HeaderComponent {
   geotoken:string = 'Georgia';
 
   localstorageArray:any = {
-    darkmode: 'Dark',
-    language: 'English'
+    darkmode: `${this.darktoken}`,
+    language: `${this.usetoken}`
   }
   
   
   darkmodeevent(){
     this.darkmodeCount = (this.darkmodeCount + 1) % 2;
-
-    if (this.darkmodeCount === 1) {
-      document.body.classList.add("light_mode");
-      this.darkmodeicon = true;
-      this.localstorageArray.darkmode = this.lighttoken
-      localStorage.setItem('webSetting', JSON.stringify( this.localstorageArray ));
-    } else {
-      document.body.classList.remove("light_mode");
-      this.darkmodeicon = false;
-      this.localstorageArray.darkmode = this.darktoken
-      localStorage.setItem('webSetting', JSON.stringify( this.localstorageArray ));
+    switch(this.darkmodeCount){
+      case 1:
+        document.body.classList.add("light_mode");
+        this.darkmodeicon = true;
+        this.localstorageArray.darkmode = this.lighttoken
+        break;
+      default:
+        document.body.classList.remove("light_mode");
+        this.darkmodeicon = false;
+        this.localstorageArray.darkmode = this.darktoken
+        break;
     }
+    // save information
+    localStorage.setItem('webSetting', JSON.stringify( this.localstorageArray ));
   }
   
   languageCount:number = 0
@@ -47,20 +48,22 @@ export class HeaderComponent {
 
   languageEvent(){
     this.languageCount = (this.languageCount + 1) % 2;
-
-    if (this.languageCount === 1) {
-      this.localstorageArray.language = this.geotoken
-      this.flagimg = true;
-      document.body.classList.add("geo-lang");
-      document.body.classList.remove("usa-lang");
-    } else {
-      this.localstorageArray.language = this.usetoken
-      this.flagimg = false;
-      document.body.classList.add("usa-lang");
-      document.body.classList.remove("geo-lang");
+    switch(this.languageCount){
+      case 1:
+        this.localstorageArray.language = this.geotoken
+        this.flagimg = true;
+        document.body.classList.add("geo-lang");
+        document.body.classList.remove("usa-lang");
+      break;
+        default:
+          this.localstorageArray.language = this.usetoken
+          document.body.classList.add("usa-lang");
+          this.flagimg = false;
+          document.body.classList.remove("geo-lang");
+      break;
     }
-    localStorage.setItem('webSetting', JSON.stringify( this.localstorageArray ));
-    
+    // save information
+    localStorage.setItem('webSetting', JSON.stringify(this.localstorageArray));
     location.reload();
   }
   
@@ -91,34 +94,29 @@ export class HeaderComponent {
       
       
       // language event
-
       if (websettingstorage?.includes(this.usetoken)) {
-        document.body.classList.add("usa-lang");
-        document.body.classList.remove("geo-lang");
         this.localstorageArray.language = this.usetoken;
+        document.body.classList.remove("geo-lang");
+        document.body.classList.add("usa-lang");
         this.languageCount = 0;
         this.flagimg = false;
       } else if (websettingstorage?.includes(this.geotoken)) {
-        document.body.classList.add("geo-lang");
-        document.body.classList.remove("usa-lang");
         this.localstorageArray.language = this.geotoken;
+        document.body.classList.remove("usa-lang");
+        document.body.classList.add("geo-lang");
         this.languageCount = 1;
         this.flagimg = true;
       } else {
-        document.body.classList.add("usa-lang");
-        document.body.classList.remove("geo-lang");
         this.localstorageArray.language = this.usetoken;
+        document.body.classList.remove("geo-lang");
+        document.body.classList.add("usa-lang");
         this.languageCount = 0;
         this.flagimg = false;
       }
 
       // save information
       localStorage.setItem('webSetting', JSON.stringify(this.localstorageArray) );
-        
-      
     });
   }
   
-  
-
 }
