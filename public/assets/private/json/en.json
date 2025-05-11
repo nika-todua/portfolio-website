@@ -8,15 +8,15 @@
   "contactBTN": "Contact me",
   "projectBTN": "Projects",
   "skillBTN": "Skills",
-  "coppy": "All rigths reserved.",
+  "coppy": "All rights reserved.",
   "all": "All",
   "publish": "was published",
-  "webView" : "View website",
-  "toolsTxt" : "Tools",
+  "webView": "View website",
+  "toolsTxt": "Tools",
 
-  "error" : "Page Not Found",
-  "errormessage" : "Sorry, the page you are looking for does not exist.",
-  "backhomeBTN" : "Go home page",
+  "error": "Page Not Found",
+  "errormessage": "Sorry, the page you are looking for does not exist.",
+  "backhomeBTN": "Go home page",
 
-  "linksBio" : "if not us, then who?"
+  "linksBio": "If not us, then who?"
 }

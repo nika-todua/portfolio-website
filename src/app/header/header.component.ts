@@ -18,7 +18,7 @@ export class HeaderComponent {
   geotoken:string = 'Georgia';
 
   localstorageArray:any = {
-    darkmode: `${this.darktoken}`,
+    theme: `${this.darktoken}`,
     language: `${this.usetoken}`
   }
   
@@ -29,12 +29,12 @@ export class HeaderComponent {
       case 1:
         document.body.classList.add("light_mode");
         this.darkmodeicon = true;
-        this.localstorageArray.darkmode = this.lighttoken
+        this.localstorageArray.theme = this.lighttoken
         break;
       default:
         document.body.classList.remove("light_mode");
         this.darkmodeicon = false;
-        this.localstorageArray.darkmode = this.darktoken
+        this.localstorageArray.theme = this.darktoken
         break;
     }
     // save information
@@ -72,46 +72,55 @@ export class HeaderComponent {
   ngOnInit() {
     document.addEventListener("DOMContentLoaded", () => {
       
-      // dark mode 
       const websettingstorage:any = localStorage.getItem("webSetting")
-      
-      if(websettingstorage?.includes(this.lighttoken)){
-        this.localstorageArray.darkmode = this.lighttoken
-        document.body.classList.add("light_mode")
-        this.darkmodeCount = 1
-        this.darkmodeicon = true
-      } else if(websettingstorage?.includes(this.darktoken)){
-        this.localstorageArray.darkmode = this.darktoken
-        document.body.classList.remove("light_mode")
-        this.darkmodeCount = 0
-        this.darkmodeicon = false
-      }else{
-        this.localstorageArray.darkmode = this.darktoken
-        document.body.classList.remove("light_mode")
-        this.darkmodeCount = 0
-        this.darkmodeicon = false
+
+      if ( websettingstorage == null ) { localStorage.setItem('webSetting', JSON.stringify(this.localstorageArray) ); location.reload(); }
+
+      // --dark mode-- 
+      switch(JSON.parse(websettingstorage).theme){
+        case this.lighttoken:
+          this.localstorageArray.theme = this.lighttoken
+          document.body.classList.add("light_mode")
+          this.darkmodeCount = 1
+          this.darkmodeicon = true
+          break;
+        case this.darktoken:
+          this.localstorageArray.theme = this.darktoken
+          document.body.classList.remove("light_mode")
+          this.darkmodeCount = 0
+          this.darkmodeicon = false
+          break
+        default:
+          this.localstorageArray.theme = this.darktoken
+          document.body.classList.remove("light_mode")
+          this.darkmodeCount = 0
+          this.darkmodeicon = false
+        break;
       }
-      
-      
-      // language event
-      if (websettingstorage?.includes(this.usetoken)) {
-        this.localstorageArray.language = this.usetoken;
-        document.body.classList.remove("geo-lang");
-        document.body.classList.add("usa-lang");
-        this.languageCount = 0;
-        this.flagimg = false;
-      } else if (websettingstorage?.includes(this.geotoken)) {
-        this.localstorageArray.language = this.geotoken;
-        document.body.classList.remove("usa-lang");
-        document.body.classList.add("geo-lang");
-        this.languageCount = 1;
-        this.flagimg = true;
-      } else {
-        this.localstorageArray.language = this.usetoken;
-        document.body.classList.remove("geo-lang");
-        document.body.classList.add("usa-lang");
-        this.languageCount = 0;
-        this.flagimg = false;
+        
+      // --language event--
+      switch(JSON.parse(websettingstorage).language){
+        case this.usetoken:
+          this.localstorageArray.language = this.usetoken;
+          document.body.classList.remove("geo-lang");
+          document.body.classList.add("usa-lang");
+          this.languageCount = 0;
+          this.flagimg = false;
+          break;
+        case this.geotoken:
+          this.localstorageArray.language = this.geotoken;
+          document.body.classList.remove("usa-lang");
+          document.body.classList.add("geo-lang");
+          this.languageCount = 1;
+          this.flagimg = true;
+          break;
+        default:
+          this.localstorageArray.language = this.usetoken;
+          document.body.classList.remove("geo-lang");
+          document.body.classList.add("usa-lang");
+          this.languageCount = 0;
+          this.flagimg = false;
+        break;
       }
 
       // save information
