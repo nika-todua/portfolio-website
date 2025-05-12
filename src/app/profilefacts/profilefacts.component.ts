@@ -8,18 +8,23 @@ import { ApisService } from '../apis.service';
   styleUrl: './profilefacts.component.css'
 })
 export class ProfilefactsComponent {
-  text1: string = '';
-  text2: string = '';
-  text3: string = '';
-  
-  readonly skillyearyear: number = new Date().getFullYear() - 2022;
+  // text1: string = '';
+  // text2: string = '';
+  // text3: string = '';
+
+
+  readonly skillyearyear: number = new Date().getFullYear() - 2022;//2022
   readonly projectMax: number = 20;//20
   readonly customerMax: number = 15;//15
   readonly yearMax: number = 5;//5
   
-  yearCount: number = 0;
-  projectCount: number = 0;
-  customerCount: number = 0;
+
+  elementArray = [
+    { key: 'text1', number: 0 },
+    { key: 'text2', number: 0 },
+    { key: 'text3', number: 0 }
+  ];
+
   
   interval: number = 450;
   projectLength: number = 0;
@@ -60,18 +65,18 @@ export class ProfilefactsComponent {
     if (!lang) return;
   
     this.api.getlanguage(lang).subscribe((data:any) => {
-      this.text1 = data.programmerYear;
-      this.text2 = data.completeproject;
-      this.text3 = data.satifiest;
+      this.elementArray[0].key = data.programmerYear;
+      this.elementArray[1].key = data.completeproject;
+      this.elementArray[2].key = data.satifiest;
     });
   }
   
   private startCounters(): void {
     setTimeout(() => {
       
-      this.animateCount('year', () => this.yearCount++, this.skillyearyear, this.yearMax, 450, () => this.yearExceeded = true);
-      this.animateCount('project', () => this.projectCount++, this.projectLength, this.projectMax, this.interval, () => this.projectExceeded = true);
-      this.animateCount('customer', () => this.customerCount++, this.projectLength, this.customerMax, this.interval, () => this.customerExceeded = true);
+      this.animateCount('year', () =>   this.elementArray[0].number++, this.skillyearyear, this.yearMax, 450, () => this.yearExceeded = true);
+      this.animateCount('project', () => this.elementArray[1].number++, this.projectLength, this.projectMax, this.interval, () => this.projectExceeded = true);
+      this.animateCount('customer', () => this.elementArray[2].number++, this.projectLength, this.customerMax, this.interval, () => this.customerExceeded = true);
     }, 1300);
   }
   
@@ -94,10 +99,9 @@ export class ProfilefactsComponent {
     }, delay);
   }
   private getCurrentValue(counterType: 'year' | 'project' | 'customer'): number {
-    if (counterType === 'year') return this.yearCount;
-    if (counterType === 'project') return this.projectCount;
-    if (counterType === 'customer') return this.customerCount;
+    if (counterType === 'year') return this.elementArray[0].number;
+    if (counterType === 'project') return this.elementArray[1].number;
+    if (counterType === 'customer') return this.elementArray[2].number;
     return 0;
   }
-  
 }
