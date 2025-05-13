@@ -1,36 +1,21 @@
 .project_inner_sortintSelect{
     padding-inline: 5px;
-    height: 40px;
-    max-width: 200px;
-    font-size: 16px;
     font-weight: 400;
     background-color: #0c161f;
     border: 3px solid rgb(53, 53, 53);
-    outline: none;
-    color: #a3abb2;
 }
 .project_card_item{
-    position: sticky;
     top: 15px;
     padding: 14px !important;
-    width: 100%;
     background-color: #1a2027;
 }
 .card_btn{
     height: fit-content;
     background-color: #ffc107;
-    border: none;
     font-weight: 400;
-    color: #474747;
 }
 .pagination ul li button{
-    width: 40px;
-    height: 40px;
     background-color: #1a2027;
-    color: #f2f2f2;
-}
-.pagination ul li button svg{
-    fill: #f2f2f2;
 }
 .pagination ul li button.active{
     background-color: #ffc107 !important;
@@ -48,12 +33,6 @@
     height: var(--uib-size);
 }
 .newtons-cradle__dot {
-    position: relative;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    width: 25%;
-    
     transform-origin: center top;
 }
 .newtons-cradle__dot::after {

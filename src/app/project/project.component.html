@@ -1,17 +1,17 @@
 <section class="relative flex flex-col flex-wrap w-full project pb-[15px] gap-8">
     <!-- პროექტების სორტირების Select -->
-    <select id="project_sort" class="w-full rounded-md project_inner_sortintSelect font" aria-label="Sort projects by">
+    <select id="project_sort" class="w-full rounded-md project_inner_sortintSelect font h-[40px] max-w-[200px] text-base outline-none" style="color: #a3abb2;" aria-label="Sort projects by">
         <option class="font" value="all" selected>{{text1}}</option>
         <option class="font" *ngFor="let sort of selectTexts" [value]="sort">{{sort}}</option>
     </select>
 
     <div class="relative flex flex-wrap items-start justify-center w-full gap-2 project_card_cont">
 
-        <div class="project_card_item rounded-xl flex flex-col gap-3 max-w-[452px]" *ngFor="let data of paginatedProjects(); let i = index">
+        <div class="project_card_item rounded-xl flex flex-col gap-3 max-w-[452px] sticky w-full" *ngFor="let data of paginatedProjects(); let i = index">
             <div class="relative overflow-hidden pointer-events-none img_box aspect-video rounded-lg" style="background-color: #0c161f;">
                 <div class="absolute z-0 flex items-center justify-center w-full h-full pointer-events-none loading">
                     <div class="pointer-events-none newtons-cradle">
-                        <div class="pointer-events-none newtons-cradle__dot" *ngFor="let i of ['','','','']"></div>
+                        <div class="pointer-events-none newtons-cradle__dot relative flex items-center h-full w-[25%]" *ngFor="let i of ['','','','']"></div>
                     </div>
                 </div>
 
@@ -23,7 +23,7 @@
                 <div class="flex flex-wrap items-center justify-between gap-2">
                     <p class="text-base font date md:text-lg projectDate" style="color: #b8b8b8;">{{text2}}: {{ newmontharr[i] }}</p>
                     <div class="pointer-events-none select-none font date project-date">{{data.date}}</div>
-                    <a [href]="data.link" rel="nofollow" target="_blank" class="overflow-hidden text-base rounded-md cursor-pointer select-none font card_btn sm:text-lg" style="padding: 8px 10px;" type="button" aria-label="project link btn">{{text3}}</a>
+                    <a [href]="data.link" rel="nofollow" target="_blank" class="overflow-hidden text-base rounded-md cursor-pointer select-none font border-none card_btn sm:text-lg" style="padding: 8px 10px; color: #474747;" type="button" aria-label="project link btn">{{text3}}</a>
                 </div>
             </div>
         </div>
@@ -35,18 +35,18 @@
     <nav class="relative flex items-center justify-center mt-1 pagination md:mt-2">
         <ul class="relative flex flex-row">
             <li class="flex overflow-hidden select-none">
-                <button type="button" aria-label="left btn" class="text-xl outline-none cursor-pointer font rounded-l-lg" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="m-auto pointer-events-none" width="28" height="28" viewBox="0 0 24 24"><path d="M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z"></path></svg>
+                <button type="button" aria-label="left btn" class="text-xl outline-none cursor-pointer font rounded-l-lg w-[40px] h-[40px]" style="color: #f2f2f2;" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="m-auto pointer-events-none" width="28" height="28" viewBox="0 0 24 24" fill="#f2f2f2"><path d="M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z"></path></svg>
                 </button>
             </li>
 
             <li class="flex items-center justify-center overflow-hidden select-none" *ngFor="let page of getPaginationRange()">
-                <button type="button" aria-label="pagination number" class="text-xl outline-none cursor-pointer font" [disabled]="currentPage === page" (click)="changePage(page)" [class.active]="currentPage === page"> {{ page }} </button>
+                <button type="button" aria-label="pagination number" class="text-xl outline-none cursor-pointer font w-[40px] h-[40px]" style="color: #f2f2f2;" [disabled]="currentPage === page" (click)="changePage(page)" [class.active]="currentPage === page"> {{ page }} </button>
             </li>
 
             <li class="flex overflow-hidden select-none">
-                <button type="button" aria-label="right btn" class="text-xl outline-none cursor-pointer font rounded-r-lg" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages" >
-                    <svg xmlns="http://www.w3.org/2000/svg"  class="m-auto pointer-events-none" width="28" height="28" viewBox="0 0 24 24"><path d="M10.061 19.061 17.121 12l-7.06-7.061-2.122 2.122L12.879 12l-4.94 4.939z"></path></svg>
+                <button type="button" aria-label="right btn" class="text-xl outline-none cursor-pointer font rounded-r-lg w-[40px] h-[40px]" style="color: #f2f2f2;" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages" >
+                    <svg xmlns="http://www.w3.org/2000/svg"  class="m-auto pointer-events-none" width="28" height="28" viewBox="0 0 24 24" fill="#f2f2f2"><path d="M10.061 19.061 17.121 12l-7.06-7.061-2.122 2.122L12.879 12l-4.94 4.939z"></path></svg>
                 </button>
             </li>
             

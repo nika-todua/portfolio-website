@@ -1,13 +1,9 @@
 .task_box_wrapper{
-    padding: 15px;
     gap: 5%;
     background-color: #191f25;
 }
 .btn{
-    padding-block: 17px;
-    width: 47%;
     height: fit-content;
-    font-size: 14px;
 }
 .btnActive{
     background-color: #0c161f;

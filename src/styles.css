@@ -61,6 +61,7 @@ body.light_mode ul li span.number {
   color: rgb(61, 61, 61) !important;
 }
 
+body.light_mode .cards .skill_inner_ul li,
 body.light_mode p,
 body.light_mode span {
   color: rgb(87, 87, 87) !important;
@@ -125,8 +126,4 @@ body.light_mode .img_box {
 
 body.light_mode .cards .skill_inner_ul li svg {
   fill: #156cbd !important;
-}
-
-body.light_mode .cards .skill_inner_ul li {
-  color: rgb(87, 87, 87) !important;
 }

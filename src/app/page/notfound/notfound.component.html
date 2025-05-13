@@ -1,10 +1,13 @@
-<section class="relative m-auto notfound_inner pb-11" style="width: 90%; padding-top: 30px;  max-width: 831px;">
-    <div class="relative mx-auto pointer-events-none img_box" style="background-color: transparent !important; max-width: 640px;">
-        <img [src]="imgSrc" class="flex object-cover w-full h-full pointer-events-none select-none" loading="lazy" alt="404 error image">
-    </div>
-    <div class="flex flex-col items-center m-auto text-center text_cont justify-items-center">
-        <h1 class="text-2xl font-bold font">{{text1}}</h1>
-        <p class="mb-6 text-lg font">{{text2}}</p>
-        <button class="text-base rounded-lg cursor-pointer font backhomeBtn sm:text-xl" (click)="clickback()">{{text3}}</button>
-    </div>
+<section class="relative m-auto pb-11 w-[90%] pt-[30px] max-w-[831px] h-[calc(100vh-72px-118px)] min-h-fit md:h-[calc(100vh-98px-118px)]">
+  <div class="relative mx-auto pointer-events-none w-full max-w-[640px] bg-transparent">
+    <img [src]="imgSrc" class="flex object-cover w-full h-full pointer-events-none select-none" loading="lazy" alt="404 error image"/>
+  </div>
+
+  <div class="flex flex-col items-center m-auto text-center mt-[35px]">
+    <h1 class="text-[36px] text-[#f2f2f2] font font-bold"> {{ text1 }} </h1>
+    <p class="mb-6 text-[20px] text-[#b8b8b8] font"> {{ text2 }} </p>
+    <button class="text-base sm:text-xl rounded-lg cursor-pointer font-normal px-3 py-2 tracking-[2px] outline-none border-none font bg-[#ffc107] text-[#474747] select-none hover:text-white" (click)="clickback()">
+      {{ text3 }}
+    </button>
+  </div>
 </section>
