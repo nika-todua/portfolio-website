@@ -8,30 +8,20 @@ import { ApisService } from '../apis.service';
   styleUrl: './profilefacts.component.css'
 })
 export class ProfilefactsComponent {
-  // text1: string = '';
-  // text2: string = '';
-  // text3: string = '';
-
 
   readonly skillyearyear: number = new Date().getFullYear() - 2022;//2022
+  readonly yearMax: number = 5;//5
   readonly projectMax: number = 20;//20
   readonly customerMax: number = 15;//15
-  readonly yearMax: number = 5;//5
-  
 
   elementArray = [
-    { key: 'text1', number: 0 },
-    { key: 'text2', number: 0 },
-    { key: 'text3', number: 0 }
+    { key: '', number: 0, pluseSet: false },
+    { key: '', number: 0, pluseSet: false },
+    { key: '', number: 0, pluseSet: false }
   ];
 
-  
   interval: number = 450;
   projectLength: number = 0;
-  
-  yearExceeded: boolean = false;
-  projectExceeded: boolean = false;
-  customerExceeded: boolean = false;
   
   constructor(private api: ApisService) {
     this.initializeData();
@@ -43,7 +33,6 @@ export class ProfilefactsComponent {
       this.interval = this.getIntervalByLength(this.projectLength);
       this.startCounters();
     });
-  
     setTimeout(() => this.loadLanguage(), 1);
   }
   
@@ -61,7 +50,8 @@ export class ProfilefactsComponent {
     const bodyClass = document.querySelector('body')?.className;
     const lang = bodyClass?.includes('usa-lang') ? 'en' :
                  bodyClass?.includes('geo-lang') ? 'ka' : null;
-  
+
+    
     if (!lang) return;
   
     this.api.getlanguage(lang).subscribe((data:any) => {
@@ -73,10 +63,9 @@ export class ProfilefactsComponent {
   
   private startCounters(): void {
     setTimeout(() => {
-      
-      this.animateCount('year', () =>   this.elementArray[0].number++, this.skillyearyear, this.yearMax, 450, () => this.yearExceeded = true);
-      this.animateCount('project', () => this.elementArray[1].number++, this.projectLength, this.projectMax, this.interval, () => this.projectExceeded = true);
-      this.animateCount('customer', () => this.elementArray[2].number++, this.projectLength, this.customerMax, this.interval, () => this.customerExceeded = true);
+      this.animateCount('year', () =>   this.elementArray[0].number++, this.skillyearyear, this.yearMax, 450, () => this.elementArray[0].pluseSet = true);
+      this.animateCount('project', () => this.elementArray[1].number++, this.projectLength, this.projectMax, this.interval, () => this.elementArray[1].pluseSet = true);
+      this.animateCount('customer', () => this.elementArray[2].number++, this.projectLength, this.customerMax, this.interval, () => this.elementArray[2].pluseSet = true);
     }, 1300);
   }
   
@@ -91,13 +80,14 @@ export class ProfilefactsComponent {
     const intervalId = setInterval(() => {
       incrementFn();
       const currentValue = this.getCurrentValue(counterType);
-  
-      if (currentValue >= target || currentValue >= max) {
+
+      if (currentValue >= Math.min(target, max)) {
         clearInterval(intervalId);
         if (currentValue >= max) onExceed();
       }
     }, delay);
   }
+  
   private getCurrentValue(counterType: 'year' | 'project' | 'customer'): number {
     if (counterType === 'year') return this.elementArray[0].number;
     if (counterType === 'project') return this.elementArray[1].number;

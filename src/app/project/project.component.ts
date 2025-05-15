@@ -15,16 +15,14 @@ export class ProjectComponent {
   projectfilterarray: Project[] = []
   projectarrayall:(Project[] | any) = []
 
-  constructor(private apisService : ApisService){
-    this.apisService.getproject().subscribe((data:(Project[] | any)) => {
-      this.getporjects(data)
-    });
-    this.languageSistem()
-  }
-
   text1:string = ''
   text2:string = ''
   text3:string = ''
+
+  constructor(private apisService : ApisService){
+    this.apisService.getproject().subscribe((data:(Project[] | any)) => { this.getporjects(data) });
+    this.languageSistem()
+  }
 
   languageSistem(){
     let languageArray:any = []
@@ -125,7 +123,8 @@ export class ProjectComponent {
   
 
   changePage(page: number) {
-    (page >= 1 && page <= this.totalPages) && (this.currentPage = page, this.newmontharr = this.montharr.slice((page - 1) * this.itemsPerPage, page * this.itemsPerPage)), this.projectScroll();
+    (page >= 1 && page <= this.totalPages) && (this.currentPage = page, this.newmontharr = this.montharr.slice((page - 1) * this.itemsPerPage, page * this.itemsPerPage))
+    this.projectScroll();
   }
 
 
@@ -169,18 +168,15 @@ export class ProjectComponent {
     
     if (years > 0) {
       return t.year(years);
-    }
-    if (months > 0) {
+    } else if (months > 0) {
       return t.month(months);
-    }
-    if (days > 0) {
+    } else if (days > 0) {
       return t.days(days);
     }
     return t.today;
   }
   
   
-
   getporjects(data:Project[]){
     this.projectarrayall = data.sort((a: Project, b: Project) => b.id - a.id);
     this.sortingText();
@@ -213,14 +209,14 @@ export class ProjectComponent {
   selectfilter() {
     const selectEl = document.querySelector<HTMLSelectElement>("#project_sort");
     if (selectEl) {
-      selectEl.addEventListener("change", (e: Event) => {
-      const select = e.target as HTMLSelectElement;
-      if (select) {
-        this.projectfilterEvent(select.value, this.projectarrayall);
-      }
-      });
+      // Remove previous event listeners to avoid duplicates
+      selectEl.onchange = (e: Event) => {
+        const select = e.target as HTMLSelectElement;
+        if (select) {
+          this.projectfilterEvent(select.value, this.projectarrayall);
+        }
+      };
     }
-
   }
   
   removeDuplicates(array: Project[]):any {
@@ -250,11 +246,11 @@ export class ProjectComponent {
   filterProject(array:Project[], tagname:string) {
     let result: Project[] = [];
     result.length = 0;
-    array.forEach((el:Project) => {
-      if (el.tag.toLowerCase() === tagname.toLowerCase()) {
-        result.push(el);
+    for (const el of array) {
+      if( el.tag.toLocaleLowerCase().includes(tagname.toLocaleLowerCase()) ){
+        result.push(el)
       }
-    })
+    }
     return result;
   }
 

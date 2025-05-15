@@ -1,20 +1,19 @@
 <section class="relative flex flex-col flex-wrap w-full project pb-[15px] gap-8">
     <!-- პროექტების სორტირების Select -->
-    <select id="project_sort" class="w-full rounded-md project_inner_sortintSelect font h-[40px] max-w-[200px] text-base outline-none" style="color: #a3abb2;" aria-label="Sort projects by">
+    <select id="project_sort" class="w-full rounded-md project_inner_sortintSelect font h-[40px] max-w-[200px] text-base outline-none px-1.5" style="color: #a3abb2;" aria-label="Sort projects by">
         <option class="font" value="all" selected>{{text1}}</option>
         <option class="font" *ngFor="let sort of selectTexts" [value]="sort">{{sort}}</option>
     </select>
 
     <div class="relative flex flex-wrap items-start justify-center w-full gap-2 project_card_cont">
 
-        <div class="project_card_item rounded-xl flex flex-col gap-3 max-w-[452px] sticky w-full" *ngFor="let data of paginatedProjects(); let i = index">
+        <div class="project_card_item rounded-xl flex flex-col gap-3 max-w-[452px] sticky w-full top-3.5" *ngFor="let data of paginatedProjects(); let i = index">
             <div class="relative overflow-hidden pointer-events-none img_box aspect-video rounded-lg" style="background-color: #0c161f;">
                 <div class="absolute z-0 flex items-center justify-center w-full h-full pointer-events-none loading">
                     <div class="pointer-events-none newtons-cradle">
                         <div class="pointer-events-none newtons-cradle__dot relative flex items-center h-full w-[25%]" *ngFor="let i of ['','','','']"></div>
                     </div>
                 </div>
-
                 <img class="absolute top-0 left-0 z-40 block object-cover w-full h-full select-none" loading="lazy" [srcset]="data.image_mobile + ' 600w, ' + data.image_desktop + ' 800w'" [sizes]="'(min-width: 600px) 800px, 600px'" [src]="data.image_desktop" alt="Project banner image">
             </div>
             
@@ -22,7 +21,7 @@
                 <h2 class="font title text-2xl lg:text-[26px]" style="color: #b8b8b8;">{{data.title}}</h2>
                 <div class="flex flex-wrap items-center justify-between gap-2">
                     <p class="text-base font date md:text-lg projectDate" style="color: #b8b8b8;">{{text2}}: {{ newmontharr[i] }}</p>
-                    <div class="pointer-events-none select-none font date project-date">{{data.date}}</div>
+                    <div class="pointer-events-none select-none font date project-date absolute p-1 left-10 top-1 rounded-sm opacity-0">{{data.date}}</div>
                     <a [href]="data.link" rel="nofollow" target="_blank" class="overflow-hidden text-base rounded-md cursor-pointer select-none font border-none card_btn sm:text-lg" style="padding: 8px 10px; color: #474747;" type="button" aria-label="project link btn">{{text3}}</a>
                 </div>
             </div>

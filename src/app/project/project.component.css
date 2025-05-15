@@ -1,11 +1,9 @@
 .project_inner_sortintSelect{
-    padding-inline: 5px;
     font-weight: 400;
     background-color: #0c161f;
     border: 3px solid rgb(53, 53, 53);
 }
 .project_card_item{
-    top: 15px;
     padding: 14px !important;
     background-color: #1a2027;
 }
@@ -22,7 +20,7 @@
     color: #474747 !important;
 }
 .newtons-cradle {
-    --uib-size: 75px; 
+    --uib-size: 75px;
     --uib-speed: 1.2s;
     --uib-color: rgb(255, 193, 7);
     position: relative;
@@ -80,16 +78,10 @@
 }
 
 .project-date{
-    position: absolute;
-    padding: 4px;
     display: none !important;
     background-color:#ffc107;
-    left: 40px;
-    top: 5px;
     font-size: 14px;
     color: #474747;
-    border-radius: 3px;
-    opacity: 0;
 }
 .project-date::after{
     content: '';
