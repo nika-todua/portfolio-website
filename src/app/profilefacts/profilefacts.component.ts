@@ -37,12 +37,17 @@ export class ProfilefactsComponent {
   }
   
   private getIntervalByLength(length: number): number {
-    if (length > 34) return 100;
-    if (length > 29) return 200;
-    if (length > 24) return 250;
-    if (length > 19) return 300;
-    if (length > 14) return 350;
-    if (length > 9)  return 380;
+    const thresholds = [
+      { limit: 34, value: 100 },
+      { limit: 29, value: 200 },
+      { limit: 24, value: 250 },
+      { limit: 19, value: 300 },
+      { limit: 14, value: 350 },
+      { limit: 9,  value: 380 }
+    ];
+    for (const { limit, value } of thresholds) {
+      if (length > limit) return value;
+    }
     return this.interval;
   }
   
