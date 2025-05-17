@@ -1,4 +1,4 @@
-<section class="relative w-full pt-3 mx-auto socialLinks_cont max-w-[831px]" style="padding-inline: 16px;">
+<section class="relative w-full pt-3 mx-auto socialLinks_cont max-w-[831px] h-[calc(100vh-72px-118px)] min-h-fit px-4 md:h-[calc(100vh-98px-118px)]">
     <aside class="relative top-sec">
         <img [src]="desktopImg" alt="Profile image of {{username}}" width="140" height="140" class="object-cover mx-auto pointer-events-none select-none img-fluid aspect-square" loading="lazy" srcset="{{mobileImg}} 260w, {{desktopImg}} 457w" sizes="(max-width: 600px) 260px, 457px">
         
@@ -11,7 +11,7 @@
     <aside class="relative flex items-start justify-center w-full mt-5 bottom_sec">
         <div class="relative flex flex-wrap items-center justify-center w-full gap-4 soc_listboc max-w-[425px]">
             
-            <button class="flex items-center justify-center w-full overflow-hidden rounded-lg cursor-pointer soc-boc-item font" *ngFor="let data of socialLinksArray" style="height: 58px; background-color: transparent !important;">
+            <button class="flex items-center justify-center w-full overflow-hidden rounded-lg cursor-pointer soc-boc-item font h-[58px] bg-transparent" *ngFor="let data of socialLinksArray">
                 <a [href]="data.link" rel="{{data.rel}}" target="_blank" class="flex items-center justify-center w-full h-full" [style]="data.boxgradient">
                     <span class="pointer-events-none icons">
                         <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" class="flex mr-2 pointer-events-none" style="margin-bottom: 2px; fill: rgb(242, 242, 242) !important;" viewBox="0 0 24 24">

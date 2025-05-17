@@ -1,9 +1,0 @@
-.socialLinks_cont{
-    height: calc(100vh - 72px - 118px);
-    min-height: fit-content;
-}
-@media screen and (min-width: 768px){
-    .socialLinks_cont{
-        height: calc(100vh - 98px - 118px);
-    }
-}

@@ -14,7 +14,7 @@ export class LinksComponent {
     this.languageSistem()
   }
   
-  socialLinksArray:any = [
+  socialLinksArray = [
     {
       icon: 'global-line',
       rel: 'follow',
