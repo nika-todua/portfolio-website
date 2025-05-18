@@ -23,15 +23,8 @@
     --uib-size: 75px;
     --uib-speed: 1.2s;
     --uib-color: rgb(255, 193, 7);
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: var(--uib-size);
-    height: var(--uib-size);
-}
-.newtons-cradle__dot {
-    transform-origin: center top;
+    height: fit-content !important;
 }
 .newtons-cradle__dot::after {
     content: '';
@@ -96,7 +89,7 @@
 
 @media screen and (min-width: 425px){
     .newtons-cradle {
-        --uib-size: 105px;
+        --uib-size: 106px;
     }
 }
 @media screen and (min-width: 576px){
@@ -104,7 +97,7 @@
         font-size: 18px;
     }
     .newtons-cradle {
-        --uib-size: 110px;
+        --uib-size: 116px;
     }
 }
 @media screen and (min-width: 710px){
@@ -114,7 +107,6 @@
         grid-template-columns: repeat(2, 1fr) !important;
     }
     .project_card_item{
-        position: relative;
         top: 0;
         width: 100%;
     }
