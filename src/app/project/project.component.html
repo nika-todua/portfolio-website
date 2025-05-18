@@ -1,13 +1,13 @@
-<section class="relative flex flex-col flex-wrap w-full project pb-[15px] gap-5">
+<section class="relative flex flex-col flex-wrap w-full project pb-[15px] gap-7">
     <!-- პროექტების სორტირების Select -->
     <select id="project_sort" class="w-full rounded-md project_inner_sortintSelect font h-[40px] max-w-[200px] text-base outline-none px-1.5" style="color: #a3abb2;" aria-label="Sort projects by">
         <option class="font" value="all" selected>{{text1}}</option>
         <option class="font" *ngFor="let sort of selectTexts" [value]="sort">{{sort}}</option>
     </select>
 
-    <div class="relative flex flex-wrap items-start justify-center w-full gap-2.5 project_card_cont">
+    <div class="relative flex flex-wrap items-start justify-center w-full gap-3 project_card_cont">
 
-        <div class="project_card_item rounded-xl flex flex-col gap-3 max-w-[452px] relative w-full top-3.5" *ngFor="let data of paginatedProjects(); let i = index">
+        <div class="project_card_item rounded-xl flex flex-col gap-3 max-w-[452px] relative w-full" *ngFor="let data of paginatedProjects(); let i = index">
             <div class="relative overflow-hidden rounded-lg pointer-events-none img_box aspect-video bg-[#0c161f] flex items-center justify-center">
                 <div class="relative inset-0 z-0 flex loading newtons-cradle">
                     <div *ngFor="let _ of ['','','','']" class="newtons-cradle__dot bloc h-full w-[25%] origin-top"></div>

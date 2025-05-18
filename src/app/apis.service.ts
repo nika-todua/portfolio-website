@@ -12,18 +12,5 @@ export class ApisService {
   getproject(){
     return this.http.get('/assets/private/json/projects.json');
   }
-
-
-  getlanguage(lang:string){
-    switch(lang){
-      case 'en':
-      return this.http.get('/assets/private/json/en.json');
-      case 'ka':
-      return this.http.get('/assets/private/json/ka.json');
-      default:
-      return this.http.get('/assets/private/json/en.json');
-    }
-  }
-  
   
 }

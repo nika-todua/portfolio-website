@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ApisService } from '../apis.service';
 
 @Component({
   selector: 'app-footer',
@@ -11,26 +10,20 @@ export class FooterComponent {
 
   versionYear:number = 2025
   coppyText:string = 'All rigths reserved.'
-  
-  constructor(private api : ApisService){this.languageSistem()}
 
   languageSistem(){
-    let languageArray:any = []
     setTimeout(() => {
       if (document.querySelector("body")?.className.includes('usa-lang')) {
-        this.api.getlanguage("en").subscribe(datalang => {
-          languageArray = datalang;
-
-          this.coppyText = languageArray.coppy
-        })
+        this.coppyText = 'All rights reserved.'
       } else if(document.querySelector("body")?.className.includes("geo-lang")){
-        this.api.getlanguage("ka").subscribe(datalang => {
-          languageArray = datalang;
-
-          this.coppyText = languageArray.coppy
-        })
+        this.coppyText = 'ყველა უფლება დაცულია.'
       }
     }, 1);
   }
+  
+  ngOnInit(){
+    this.languageSistem()
+  }
+  
   
 }

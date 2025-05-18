@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { ApisService } from '../../apis.service';
 
 @Component({
   selector: 'app-links',
@@ -10,7 +9,7 @@ import { ApisService } from '../../apis.service';
 })
 export class LinksComponent {
 
-  constructor(private titleService: Title, private metaTagService: Meta, private api : ApisService){
+  constructor(private titleService: Title, private metaTagService: Meta){
     this.languageSistem()
   }
   
@@ -67,22 +66,13 @@ export class LinksComponent {
  
   
   languageSistem(){
-    let languageArray:any = []
     setTimeout(() => {
       if (document.querySelector("body")?.className.includes('usa-lang')) {
-        this.api.getlanguage("en").subscribe(datalang => {
-          languageArray = datalang;
-
-          this.username = languageArray.username
-          this.userbio = languageArray.linksBio
-      })
+        this.username = 'Nika Todua'
+        this.userbio = 'If not us, then who?'
       } else if(document.querySelector("body")?.className.includes("geo-lang")){
-        this.api.getlanguage("ka").subscribe(datalang => {
-          languageArray = datalang;
-
-          this.username = languageArray.username
-          this.userbio = languageArray.linksBio
-        })
+        this.username = 'ნიკა თოდუა'
+        this.userbio = 'თუ არა ჩვენ, მაშინ ვინ?'
       }
     }, 1);
   }

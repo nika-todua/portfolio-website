@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { ApisService } from '../../apis.service';
 
 @Component({
   selector: 'app-notfound',
@@ -16,7 +15,7 @@ export class NotfoundComponent {
   text2 = 'Sorry, the page you are looking for does not exist.'
   text3 = 'Go home page'
 
-  constructor(private titleService: Title, private metaTagService: Meta, private api:ApisService){this.languageSistem()}
+  constructor(private titleService: Title, private metaTagService: Meta){this.languageSistem()}
 
   // seo texts
   description:string = "Hi, I'm Nika Todua, I'm a web developer and I make high-quality websites. I make websites using angular."
@@ -53,25 +52,15 @@ export class NotfoundComponent {
   }
 
   languageSistem(){
-    let languageArray:any = []
     setTimeout(() => {
       if (document.querySelector("body")?.className.includes('usa-lang')) {
-        this.api.getlanguage("en").subscribe(datalang => {
-          languageArray = datalang;
-
-          this.text1 = languageArray.error;
-          this.text2 = languageArray.errormessage
-          this.text3 = languageArray.backhomeBTN
-      })
+        this.text1 = 'Page Not Found';
+        this.text2 = 'Sorry, the page you are looking for does not exist.'
+        this.text3 = 'Go home page'
       } else if(document.querySelector("body")?.className.includes("geo-lang")){
-        this.api.getlanguage("ka").subscribe(datalang => {
-          languageArray = datalang;
-
-          this.text1 = languageArray.error;
-          this.text2 = languageArray.errormessage
-          this.text3 = languageArray.backhomeBTN
-
-        })
+          this.text1 = 'გვერდი არ მოიძებნა';
+          this.text2 = 'უკაცრავად, გვერდი, რომელსაც ეძებთ, არ არსებობს.'
+          this.text3 = 'დაბრუნება მთავარ გვერდზე'
       }
     }, 1);
   }

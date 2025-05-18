@@ -25,24 +25,15 @@ export class ProjectComponent {
   }
 
   languageSistem(){
-    let languageArray:any = []
     setTimeout(() => {
       if (document.querySelector("body")?.className.includes('usa-lang')) {
-        this.apisService.getlanguage("en").subscribe(datalang => {
-          languageArray = datalang;
-            
-          this.text1 = languageArray.all
-          this.text2 = languageArray.publish
-          this.text3 = languageArray.webView
-        })
-      } else if(document.querySelector("body")?.className.includes("geo-lang")){
-        this.apisService.getlanguage("ka").subscribe(datalang => {
-          languageArray = datalang;
-          
-          this.text1 = languageArray.all
-          this.text2 = languageArray.publish
-          this.text3 = languageArray.webView
-        })
+        this.text1 = 'All'
+        this.text2 = 'was published'
+        this.text3 = 'View website'
+      } else if(document.querySelector("body")?.className.includes("geo-lang")){  
+        this.text1 = 'ყველა'
+        this.text2 = 'გამოქვეყნდა'
+        this.text3 = 'საიტის ნახვა'
       }
     }, 1);
   }
@@ -145,11 +136,11 @@ export class ProjectComponent {
     const years = Math.floor(days / 365.25); // Average days per year
   
     // Language detection
-    const isGeoLang =
-      typeof document !== "undefined" && document.body?.className.includes("geo-lang");
-      const lang = isGeoLang ? "ka" : "en";
+    const isGeoLang = typeof document !== "undefined" && document.body?.className.includes("geo-lang");
+    
+    const lang = isGeoLang ? "ka" : "en";
       
-      const units = {
+    const units = {
         en: {
           year: (n: number) => `${n} year${n !== 1 ? "s" : ""} ago`,
           month: (n: number) => `${n} month${n !== 1 ? "s" : ""} ago`,
@@ -157,8 +148,8 @@ export class ProjectComponent {
         today: "today",
       },
       ka: {
-        year: (n: number) => `${n} წელი წინ`,
-        month: (n: number) => `${n} თვე წინ`,
+        year: (n: number) => `${n} წლის წინ`,
+        month: (n: number) => `${n} თვის წინ`,
         days: (n: number) => `${n} დღის წინ`,
         today: "დღეს",
       },

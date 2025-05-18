@@ -32,26 +32,17 @@ export class HomepageComponent {
   contactBtn:string = ""
 
   languageSistem(){
-    let languageArray:any = []
     setTimeout(() => {
       if (document.querySelector("body")?.className.includes('usa-lang')) {
-        this.api.getlanguage("en").subscribe(datalang => {
-          languageArray = datalang;
-
-          this.personname = languageArray.username
-          this.personprofesion = languageArray.personspecialist
-          this.downloadBTN = languageArray.downlBTN
-          this.contactBtn = languageArray.contactBTN
-      })
+        this.personname = 'Nika Todua'
+        this.personprofesion = 'Frontend Developer'
+        this.downloadBTN = 'Download CV'
+        this.contactBtn = 'Contact me'
       } else if(document.querySelector("body")?.className.includes("geo-lang")){
-        this.api.getlanguage("ka").subscribe(datalang => {
-          languageArray = datalang;
-
-          this.personname = languageArray.username
-          this.personprofesion = languageArray.personspecialist
-          this.downloadBTN = languageArray.downlBTN
-          this.contactBtn = languageArray.contactBTN
-        })
+        this.personname = 'ნიკა თოდუა'
+        this.personprofesion = 'Frontend დეველოპერი'
+        this.downloadBTN = 'გადმოწერა CV'
+        this.contactBtn = 'კონტაქტი'
       }
     }, 1);
   }

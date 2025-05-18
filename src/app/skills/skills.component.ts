@@ -16,28 +16,21 @@ export class SkillsComponent {
   arrayFrontend:string[] = ['HTML','CSS','SCSS','JAVASCRIPT','ANGULAR','BOOTSTRAP','TAILWINDCSS','TYPESCRIPT']
   arrayTools:string[] = ['POSTMAN','GIT','Github']
 
-  constructor(private api:ApisService){this.languageSistem()}
   
-
   languageSistem(){
-    let languageArray:any = []
     setTimeout(() => {
       if (document.querySelector("body")?.className.includes('usa-lang')) {
-        this.api.getlanguage("en").subscribe(datalang => {
-          languageArray = datalang;
-
-          this.frontentText = languageArray.personspecialist;
-          this.toolsText = languageArray.toolsTxt
-        })
+        this.frontentText = 'Frontend Developer';
+        this.toolsText = 'Tools'
       } else if(document.querySelector("body")?.className.includes("geo-lang")){
-        this.api.getlanguage("ka").subscribe(datalang => {
-          languageArray = datalang;
-
-          this.frontentText = languageArray.personspecialist;
-          this.toolsText = languageArray.toolsTxt
-        })
+          this.frontentText = 'Frontend დეველოპერი';
+          this.toolsText = 'ხელსაწყოები'
       }
     }, 1);
+  }
+
+  ngOnInit(){
+    this.languageSistem()
   }
 
 }

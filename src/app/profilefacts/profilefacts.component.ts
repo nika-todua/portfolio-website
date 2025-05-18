@@ -52,18 +52,17 @@ export class ProfilefactsComponent {
   }
   
   private loadLanguage(): void {
-    const bodyClass = document.querySelector('body')?.className;
-    const lang = bodyClass?.includes('usa-lang') ? 'en' :
-                 bodyClass?.includes('geo-lang') ? 'ka' : null;
 
-    
-    if (!lang) return;
-  
-    this.api.getlanguage(lang).subscribe((data:any) => {
-      this.elementArray[0].key = data.programmerYear;
-      this.elementArray[1].key = data.completeproject;
-      this.elementArray[2].key = data.satifiest;
-    });
+    if (document.querySelector("body")?.className.includes('usa-lang')) {
+      this.elementArray[0].key = 'Years of work experience';
+      this.elementArray[1].key = 'Completed projects';
+      this.elementArray[2].key = 'Satisfied customers';
+    } else if(document.querySelector("body")?.className.includes("geo-lang")){
+      this.elementArray[0].key = 'წლიანი გამოცდილება';
+      this.elementArray[1].key = 'დასრულებული პროექტები';
+      this.elementArray[2].key = 'კმაყოფილი მომხმარებლები';
+    }
+
   }
   
   private startCounters(): void {
