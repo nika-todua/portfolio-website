@@ -38,10 +38,7 @@ export class ProfilefactsComponent {
   
   private getIntervalByLength(length: number): number {
     const thresholds = [
-      { limit: 34, value: 100 },
-      { limit: 29, value: 200 },
-      { limit: 24, value: 250 },
-      { limit: 19, value: 300 },
+      { limit: 19, value: 225 },
       { limit: 14, value: 350 },
       { limit: 9,  value: 380 }
     ];

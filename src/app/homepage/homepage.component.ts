@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { ApisService } from '../apis.service';
 
 @Component({
   selector: 'app-homepage',
@@ -18,7 +17,7 @@ export class HomepageComponent {
   ]
   
   
-  constructor(private titleService: Title, private metaTagService: Meta, private api : ApisService){
+  constructor(private titleService: Title, private metaTagService: Meta){
     this.languageSistem()
   }
   
