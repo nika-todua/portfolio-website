@@ -5,7 +5,7 @@
         max-width: none !important;
     }
     .profile_cont .profile_cont_img_box{
-        outline: 5px solid rgb(255, 193, 7) !important;
+        outline: 5px solid var(--yellow) !important;
     }
     .profile_cont .profile_cont_text_box{
         text-align: left !important;

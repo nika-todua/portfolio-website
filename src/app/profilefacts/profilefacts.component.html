@@ -3,10 +3,10 @@
         
         @for (item of elementArray; track $index) {
             <li class="flex flex-col items-center text-center justify-items-start max-w-[90px]">
-                <span class="flex items-center justify-center font number w-fit text-2xl h-[30px]" style="color: #f2f2f2;">{{item.number}}
-                    <span *ngIf="item.pluseSet" class="plusText text-3xl ml-0.5" style="color: #f2f2f2;">&#43;</span>
+                <span class="flex items-center justify-center font number w-fit text-2xl h-[30px]" style="color: var(--text-white);">{{item.number}}
+                    <span *ngIf="item.pluseSet" class="plusText text-3xl ml-0.5" style="color: var(--text-white);">&#43;</span>
                 </span>
-                <p class="font text text-lg" style="color: #b8b8b8;">{{item.key}}</p>
+                <p class="font text text-lg" style="color: var(--Light-gray);">{{item.key}}</p>
             </li>
         }
             

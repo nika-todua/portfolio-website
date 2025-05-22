@@ -45,7 +45,7 @@ export class ProjectComponent {
 
   paginatedProjects() {
     this.newmontharr = this.montharr.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)
-
+    
     const start = (this.currentPage - 1) * this.itemsPerPage;
     if(!this.filterhidden){
       return this.projectarrayall.slice(start, start + this.itemsPerPage);
@@ -111,13 +111,11 @@ export class ProjectComponent {
   get totalPages() {
     return Math.ceil((this.filterhidden ? this.projectfilterarray.length : this.projectarrayall.length) / this.itemsPerPage);
   }
-  
 
   changePage(page: number) {
     (page >= 1 && page <= this.totalPages) && (this.currentPage = page, this.newmontharr = this.montharr.slice((page - 1) * this.itemsPerPage, page * this.itemsPerPage))
     this.projectScroll();
   }
-
 
   timeBetweenDates(date1: string, date2: string): string {
     const parseDate = (str: string): Date => {
@@ -166,7 +164,6 @@ export class ProjectComponent {
     }
     return t.today;
   }
-  
   
   getporjects(data:Project[]){
     this.projectarrayall = data.sort((a: Project, b: Project) => b.id - a.id);
@@ -234,15 +231,11 @@ export class ProjectComponent {
     window.scrollTo({ top: window.scrollY + 1, behavior: "smooth" });
   }
 
-  filterProject(array:Project[], tagname:string) {
-    let result: Project[] = [];
-    result.length = 0;
-    for (const el of array) {
-      if( el.tag.toLocaleLowerCase().includes(tagname.toLocaleLowerCase()) ){
-        result.push(el)
-      }
-    }
-    return result;
+  filterProject(array: Project[], tagname: string): Project[] {
+    return array.filter(el =>
+      el.tag.toLowerCase().includes(tagname.toLowerCase())
+    );
   }
+
 
 }

@@ -1,28 +1,28 @@
 .project_inner_sortintSelect{
     font-weight: 400;
-    background-color: #0c161f;
-    border: 3px solid rgb(53, 53, 53);
+    background-color: var(--body-dark-bg);
+    border: 3px solid var(--border-dark);
 }
 .project_card_item{
     padding: 14px !important;
-    background-color: #1a2027;
+    background-color: var(--darkblue);
 }
 .card_btn{
     height: fit-content;
-    background-color: #ffc107;
+    background-color: var(--yellow);
     font-weight: 400;
 }
 .pagination ul li button{
-    background-color: #1a2027;
+    background-color: var(--darkblue);
 }
 .pagination ul li button.active{
-    background-color: #ffc107 !important;
-    color: #474747 !important;
+    background-color: var(--yellow) !important;
+    color: var(--darkgray) !important;
 }
 .newtons-cradle {
     --uib-size: 75px;
     --uib-speed: 1.2s;
-    --uib-color: rgb(255, 193, 7);
+    --uib-color: var(--yellow);
     width: var(--uib-size);
     height: fit-content !important;
 }
@@ -72,9 +72,9 @@
 
 .project-date{
     display: none !important;
-    background-color:#ffc107;
+    background-color: var(--yellow);
     font-size: 14px;
-    color: #474747;
+    color: var(--darkgray);
 }
 .project-date::after{
     content: '';
@@ -84,7 +84,7 @@
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: #ffc107 transparent transparent transparent;
+    border-color: var(--yellow) transparent transparent transparent;
 }
 
 @media screen and (min-width: 425px){

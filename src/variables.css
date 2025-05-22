@@ -1,0 +1,19 @@
+:root, :host{
+  --body-dark-bg: #0c161f;
+  --light-bg: #e9ebec;
+  --text-dark: #3d3d3d;
+  --gray: #575757;
+  --darkgray: #474747;
+  --white: #fff;
+  --skill-ICON: #156cbd;
+  --contact-btn: #f8f9fa;
+  --yellow: #ffc107;
+  --Light-gray: #b8b8b8;
+  --text-white: #f2f2f2;
+  --dark-light-black: #191f25;
+  --darkblue: #1a2027;
+  --border-dark: #353535;
+
+  --Cool-gray: #a3abb2;
+  --Very-light-gray: #d7d7d7;
+}

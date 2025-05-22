@@ -1,6 +1,6 @@
 <section class="relative flex flex-col flex-wrap w-full project pb-[15px] gap-7">
     <!-- პროექტების სორტირების Select -->
-    <select id="project_sort" class="w-full rounded-md project_inner_sortintSelect font h-[40px] max-w-[200px] text-base outline-none px-1.5" style="color: #a3abb2;" aria-label="Sort projects by">
+    <select id="project_sort" class="w-full rounded-md project_inner_sortintSelect font h-[40px] max-w-[200px] text-base outline-none px-1.5" style="color: var(--Cool-gray);" aria-label="Sort projects by">
         <option class="font" value="all" selected>{{text1}}</option>
         <option class="font" *ngFor="let sort of selectTexts" [value]="sort">{{sort}}</option>
     </select>
@@ -9,7 +9,7 @@
 
         @for (data of paginatedProjects(); track $index){
             <div class="project_card_item rounded-xl flex flex-col gap-3 max-w-[452px] relative w-full">
-                <div class="relative overflow-hidden rounded-lg pointer-events-none img_box aspect-video bg-[#0c161f] flex items-center justify-center">
+                <div class="relative overflow-hidden rounded-lg pointer-events-none img_box aspect-video bg-[var(--body-dark-bg)] flex items-center justify-center">
                     <div class="relative inset-0 z-0 flex loading newtons-cradle">
                         @for (dot of ["","","",""]; track $index){
                             <div class="newtons-cradle__dot bloc h-full w-[25%] origin-top"></div>
@@ -18,11 +18,11 @@
                     <img class="absolute inset-0 z-40 block object-cover w-full h-full select-none" loading="lazy" [srcset]="data.image_mobile + ' 600w, ' + data.image_desktop + ' 800w'" [sizes]="'(min-width: 600px) 800px, 600px'" [src]="data.image_desktop" alt="Project banner image"/>
                 </div>
                 <div class="relative w-full card_desc">
-                    <h2 class="font title text-2xl lg:text-[26px] text-[#b8b8b8]">{{ data.title }}</h2>
+                    <h2 class="font title text-2xl lg:text-[26px] text-[var(--Light-gray)]">{{ data.title }}</h2>
                     <div class="flex flex-wrap items-center justify-between gap-2">
-                        <p class="text-base font date md:text-lg projectDate text-[#b8b8b8]">{{ text2 }}: {{ newmontharr[$index] }}</p>
+                        <p class="text-base font date md:text-lg projectDate text-[var(--Light-gray)]">{{ text2 }}: {{ newmontharr[$index] }}</p>
                         <div class="absolute p-1 rounded-sm opacity-0 pointer-events-none select-none font date project-date left-10 top-1">{{ data.date }}</div>
-                        <a [href]="data.link" rel="nofollow" target="_blank" type="button" aria-label="project link btn" class="overflow-hidden text-base rounded-md cursor-pointer select-none font border-none card_btn px-2.5 py-2 sm:text-lg text-[#474747]">{{ text3 }}</a>
+                        <a [href]="data.link" rel="nofollow" target="_blank" type="button" aria-label="project link btn" class="overflow-hidden text-base rounded-md cursor-pointer select-none font border-none card_btn px-2.5 py-2 sm:text-lg text-[var(--darkgray)]">{{ text3 }}</a>
                     </div>
                 </div>
             </div>
@@ -34,18 +34,18 @@
     <nav class="relative flex items-center justify-center mt-2 pagination md:mt-3">
         <ul class="relative flex flex-row">
             <li class="flex overflow-hidden select-none">
-                <button type="button" aria-label="left btn" class="text-xl outline-none cursor-pointer font rounded-l-lg w-[40px] h-[40px]" style="color: #f2f2f2;" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
-                    <svg xmlns="http://www.w3.org/2000/svg"class="m-auto pointer-events-none" width="28" height="28" viewBox="0 0 24 24" fill="#f2f2f2"><path d="M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z"></path></svg>
+                <button type="button" aria-label="left btn" class="text-xl outline-none cursor-pointer font rounded-l-lg w-[40px] h-[40px]" style="color: var(--text-white);" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
+                    <svg xmlns="http://www.w3.org/2000/svg"class="m-auto pointer-events-none" width="28" height="28" viewBox="0 0 24 24" fill="var(--text-white)"><path d="M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z"></path></svg>
                 </button>
             </li>
 
             <li class="flex items-center justify-center overflow-hidden select-none" *ngFor="let page of getPaginationRange()">
-                <button type="button" aria-label="pagination number" class="text-xl outline-none cursor-pointer font w-[40px] h-[40px]" style="color: #f2f2f2;" [disabled]="currentPage === page" (click)="changePage(page)" [class.active]="currentPage === page"> {{ page }} </button>
+                <button type="button" aria-label="pagination number" class="text-xl outline-none cursor-pointer font w-[40px] h-[40px]" style="color: var(--text-white);" [disabled]="currentPage === page" (click)="changePage(page)" [class.active]="currentPage === page"> {{ page }} </button>
             </li>
 
             <li class="flex overflow-hidden select-none">
-                <button type="button" aria-label="right btn" class="text-xl outline-none cursor-pointer font rounded-r-lg w-[40px] h-[40px]" style="color: #f2f2f2;" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages" >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="m-auto pointer-events-none" width="28" height="28" viewBox="0 0 24 24" fill="#f2f2f2"><path d="M10.061 19.061 17.121 12l-7.06-7.061-2.122 2.122L12.879 12l-4.94 4.939z"></path></svg>
+                <button type="button" aria-label="right btn" class="text-xl outline-none cursor-pointer font rounded-r-lg w-[40px] h-[40px]" style="color: var(--text-white);" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages" >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="m-auto pointer-events-none" width="28" height="28" viewBox="0 0 24 24" fill="var(--text-white)"><path d="M10.061 19.061 17.121 12l-7.06-7.061-2.122 2.122L12.879 12l-4.94 4.939z"></path></svg>
                 </button>
             </li>
             
