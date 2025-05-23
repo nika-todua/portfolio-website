@@ -41,11 +41,11 @@ body{
 }
 
 body.usa-lang .font {
-  font-family: "Bebas Neue", serif !important;
+  font-family: var(--font-eng);
 }
 
 body.geo-lang .font {
-  font-family: "ArchyEDT-Bold", sans-serif !important;
+  font-family: var(--font-geo);
 }
 
 body {

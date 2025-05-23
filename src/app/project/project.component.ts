@@ -47,17 +47,24 @@ export class ProjectComponent {
     this.newmontharr = this.montharr.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)
     
     const start = (this.currentPage - 1) * this.itemsPerPage;
+    let projectobjectarray = this.projectarrayall.slice(start, start + this.itemsPerPage) 
+    let projectobjectarraySort = this.projectfilterarray.slice(start, start + this.itemsPerPage) 
+
+    let array:Project[] = []
+    array.length = 0;
+    
     if(!this.filterhidden){
-      return this.projectarrayall.slice(start, start + this.itemsPerPage);
+      array = projectobjectarray
     } else{
-      return this.projectfilterarray.slice(start, start + this.itemsPerPage);
+      array = projectobjectarraySort
     }
+    return array
   }
 
   getPaginationRange() {
     const total = this.totalPages;
     const current = this.currentPage;
-    const range:(number | any) = [];
+    const range:any = [];
     
     // ვიღებთ ეკრანის სიგანეს
     const isMobile = window.innerWidth <= 480; // 480px-ზე ნაკლები ეკრანი (მობილური)
@@ -102,7 +109,7 @@ export class ProjectComponent {
       .find(([minWidth]) => width >= minWidth)?.[1] ?? 0;
 
     window.scrollTo({
-      top: scrollTop - 25,
+      top: Math.max(scrollTop - 25, 0),
       left: 0,
       behavior: "smooth",
     });
@@ -139,10 +146,10 @@ export class ProjectComponent {
     const lang = isGeoLang ? "ka" : "en";
       
     const units = {
-        en: {
-          year: (n: number) => `${n} year${n !== 1 ? "s" : ""} ago`,
-          month: (n: number) => `${n} month${n !== 1 ? "s" : ""} ago`,
-          days: (n: number) => `${n} day${n !== 1 ? "s" : ""} ago`,
+      en: {
+        year: (n: number) => `${n} year${n !== 1 ? "s" : ""} ago`,
+        month: (n: number) => `${n} month${n !== 1 ? "s" : ""} ago`,
+        days: (n: number) => `${n} day${n !== 1 ? "s" : ""} ago`,
         today: "today",
       },
       ka: {
@@ -216,7 +223,6 @@ export class ProjectComponent {
     this.projectfilterarray.length = 0;
     if (this.totalPages >= 1){ this.currentPage = 1; }
     if (["all", "ყველა"].includes(tagname.toLowerCase())) {
-      this.project = [];
       this.projectarrayall = allArray;
       this.projectdates(this.projectarrayall);
       this.filterhidden = false;

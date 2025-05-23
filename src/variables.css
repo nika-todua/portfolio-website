@@ -1,19 +1,25 @@
-:root, :host{
-  --body-dark-bg: #0c161f;
-  --light-bg: #e9ebec;
-  --text-dark: #3d3d3d;
-  --gray: #575757;
-  --darkgray: #474747;
-  --white: #fff;
-  --skill-ICON: #156cbd;
-  --contact-btn: #f8f9fa;
-  --yellow: #ffc107;
-  --Light-gray: #b8b8b8;
-  --text-white: #f2f2f2;
-  --dark-light-black: #191f25;
-  --darkblue: #1a2027;
-  --border-dark: #353535;
+:root {
+  --body-dark-bg: rgb(12, 22, 31);         /* #0c161f */
+  --light-bg: rgb(233, 235, 236);          /* #e9ebec */
+  --text-dark: rgb(61, 61, 61);            /* #3d3d3d */
+  --gray: rgb(87, 87, 87);                 /* #575757 */
+  --darkgray: rgb(71, 71, 71);             /* #474747 */
+  --white: rgb(255, 255, 255);             /* #ffffff */
+  --skill-ICON: rgb(21, 108, 189);         /* #156cbd */
+  --contact-btn: rgb(248, 249, 250);       /* #f8f9fa */
+  --yellow: rgb(254, 190, 0);              /* #FEBE00 */
+  --Light-gray: rgb(184, 184, 184);        /* #b8b8b8 */
+  --text-white: rgb(242, 242, 242);        /* #f2f2f2 */
+  --dark-light-black: rgb(25, 31, 37);     /* #191f25 */
+  --darkblue: rgb(26, 32, 39);             /* #1a2027 */
+  --border-dark: rgb(53, 53, 53);          /* #353535 */
+  --Cool-gray: rgb(163, 171, 178);         /* #a3abb2 */
+  --Very-light-gray: rgb(215, 215, 215);   /* #d7d7d7 */
 
-  --Cool-gray: #a3abb2;
-  --Very-light-gray: #d7d7d7;
+
+  --font-eng: "Bebas Neue", serif;
+  --font-geo: "ArchyEDT-Bold", sans-serif;
+
+
+  --conent-max-w: 832px; /* 832px */
 }
