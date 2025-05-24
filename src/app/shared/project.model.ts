@@ -4,6 +4,5 @@ export class Project{
     link!:string;
     image_desktop!: string
     image_mobile!:string;
-    date!: string;
     tag!: string;
 }

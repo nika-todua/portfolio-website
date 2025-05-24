@@ -3,8 +3,8 @@
         max-width: 123px !important;
     }
     ul li span.number{
-        font-size: 24px;
-        height: 36px;
+        font-size: 22px;
+        height: 30px;
     }
     ul li p{
         font-size: 20px;
@@ -15,16 +15,16 @@
 }
 @media screen and (min-width: 576px) {
     ul li{
-        max-width: 139px !important;
+        max-width: 140px !important;
     }
     ul li span.number{
-        font-size: 26px;
-        height: 39px;
-    }
-    ul li span.number .plusText{
-        font-size: 36px !important;
+        font-size: 24px;
+        height: 34px;
     }
     ul li p{
         font-size: 22px;
+    }
+    ul li span.number .plusText{
+        font-size: 32px !important;
     }
 }

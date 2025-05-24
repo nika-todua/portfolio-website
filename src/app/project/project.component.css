@@ -70,23 +70,6 @@
     }
 }
 
-.project-date{
-    display: none !important;
-    background-color: var(--yellow);
-    font-size: 14px;
-    color: var(--darkgray);
-}
-.project-date::after{
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: var(--yellow) transparent transparent transparent;
-}
-
 @media screen and (min-width: 425px){
     .newtons-cradle {
         --uib-size: 106px;
@@ -109,14 +92,5 @@
     .project_card_item{
         top: 0;
         width: 100%;
-    }
-}
-@media screen and (min-width: 1024px){
-    .project-date{
-        display: flex !important;
-        transition: opacity 0.3s ease-in-out;
-    }
-    .projectDate:hover ~ .project-date{
-        opacity: 1;
     }
 }

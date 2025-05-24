@@ -22,10 +22,19 @@
   --yellow: rgb(254, 190, 0);              /* #FEBE00 */
 
 
-
-  --font-eng: "Bebas Neue", serif;
+  /* fonts style */
+  --font-eng: "Oswald", sans-serif;
   --font-geo: "ArchyEDT-Bold", sans-serif;
 
+  --font-Extra-Light: 200;
+  --font-Light: 300;
+  --font-regular: 400;
+  --font-Medium: 500;
+  --font-Semi-Bold: 600;
+  --font-Bold: 700;
+  --font-Extra-Bold: 800;
+  --font-Black: 900;
 
+  /* sizes */
   --conent-max-w: 832px; /* 832px */
 }

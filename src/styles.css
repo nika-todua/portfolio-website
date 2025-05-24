@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 @import "tailwindcss";
 
 *,*::after,*::before{
@@ -42,10 +42,12 @@ body{
 
 body.usa-lang .font {
   font-family: var(--font-eng);
+  font-weight: var(--font-regular);
 }
 
 body.geo-lang .font {
   font-family: var(--font-geo);
+  font-weight: var(--font-regular) !important;
 }
 
 body {

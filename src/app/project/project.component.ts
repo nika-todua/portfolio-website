@@ -17,7 +17,6 @@ export class ProjectComponent {
 
   text1:string = ''
   text2:string = ''
-  text3:string = ''
 
   constructor(private apisService : ApisService){
     this.apisService.getproject().subscribe((data:(Project[] | any)) => { this.getporjects(data) });
@@ -28,12 +27,10 @@ export class ProjectComponent {
     setTimeout(() => {
       if (document.querySelector("body")?.className.includes('usa-lang')) {
         this.text1 = 'All'
-        this.text2 = 'was published'
-        this.text3 = 'View website'
+        this.text2 = 'View website'
       } else if(document.querySelector("body")?.className.includes("geo-lang")){  
         this.text1 = 'ყველა'
-        this.text2 = 'გამოქვეყნდა'
-        this.text3 = 'საიტის ნახვა'
+        this.text2 = 'საიტის ნახვა'
       }
     }, 1);
   }
@@ -124,65 +121,10 @@ export class ProjectComponent {
     this.projectScroll();
   }
 
-  timeBetweenDates(date1: string, date2: string): string {
-    const parseDate = (str: string): Date => {
-      const [day, month, year] = str.split("-").map(Number);
-      return new Date(year, month - 1, day);
-    };
-  
-    const d1 = parseDate(date1);
-    const d2 = parseDate(date2);
-    
-    const timeDifference = d2.getTime() - d1.getTime();
-    
-    const seconds = Math.floor(timeDifference / 1000);
-    const days = Math.floor(seconds / (60 * 60 * 24)); // Total days difference
-    const months = Math.floor(days / 30.44); // 30.44 average days per month
-    const years = Math.floor(days / 365.25); // Average days per year
-  
-    // Language detection
-    const isGeoLang = typeof document !== "undefined" && document.body?.className.includes("geo-lang");
-    
-    const lang = isGeoLang ? "ka" : "en";
-      
-    const units = {
-      en: {
-        year: (n: number) => `${n} year${n !== 1 ? "s" : ""} ago`,
-        month: (n: number) => `${n} month${n !== 1 ? "s" : ""} ago`,
-        days: (n: number) => `${n} day${n !== 1 ? "s" : ""} ago`,
-        today: "today",
-      },
-      ka: {
-        year: (n: number) => `${n} წლის წინ`,
-        month: (n: number) => `${n} თვის წინ`,
-        days: (n: number) => `${n} დღის წინ`,
-        today: "დღეს",
-      },
-    };
-    
-    const t = units[lang];
-    
-    if (years > 0) {
-      return t.year(years);
-    } else if (months > 0) {
-      return t.month(months);
-    } else if (days > 0) {
-      return t.days(days);
-    }
-    return t.today;
-  }
   
   getporjects(data:Project[]){
     this.projectarrayall = data.sort((a: Project, b: Project) => b.id - a.id);
     this.sortingText();
-    this.projectdates(this.projectarrayall);
-  }
-
-  projectdates(array:(Project[] | any)) {
-    const pad = (num: number): string => String(num).padStart(2, '0');
-    const today = new Date();
-    const formattedToday = `${pad(today.getDate())}-${pad(today.getMonth() + 1)}-${today.getFullYear()}`;
-    this.montharr = array.map((item:any) => this.timeBetweenDates(item.date, formattedToday));
   }
 
   sortingText(){
@@ -224,11 +166,9 @@ export class ProjectComponent {
     if (this.totalPages >= 1){ this.currentPage = 1; }
     if (["all", "ყველა"].includes(tagname.toLowerCase())) {
       this.projectarrayall = allArray;
-      this.projectdates(this.projectarrayall);
       this.filterhidden = false;
     } else {
       const filteredProjects = this.filterProject(this.projectarrayall, tagname);
-      this.projectdates(filteredProjects);
       this.projectfilterarray = this.removeDuplicates(filteredProjects);
       this.filterhidden = true;
     }

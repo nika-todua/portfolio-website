@@ -1,5 +1,6 @@
 .cards p {
-    font-weight: 400;
+    font-weight: var(--font-Semi-Bold);
+    text-transform: uppercase;
     color: var(--Light-gray);
 }
 .cards .skill_inner_ul{
@@ -14,17 +15,9 @@
 }
 @media screen and (min-width: 480px) {
     .cards p {
-        font-size: 22px;
+        font-size: 20px;
     }
     .cards .skill_inner_ul li{
         font-size: 20px;
-    }
-}
-@media screen and (min-width: 768px) {
-    .cards p {
-        font-size: 24px;
-    }
-    .cards .skill_inner_ul li{
-        font-size: 22px;
     }
 }

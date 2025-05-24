@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ApisService } from '../apis.service';
 
 @Component({
   selector: 'app-skills',
@@ -8,29 +7,27 @@ import { ApisService } from '../apis.service';
   styleUrl: './skills.component.css'
 })
 export class SkillsComponent {
-
-
   frontentText:string = "";
-  toolsText:string = ""
+  toolsText:string = "";
 
-  arrayFrontend:string[] = ['HTML','CSS','SCSS','JAVASCRIPT','ANGULAR','BOOTSTRAP','TAILWINDCSS','TYPESCRIPT']
-  arrayTools:string[] = ['POSTMAN','GIT','Github']
+  arrayFrontend:string[] = ['HTML','CSS','SCSS','JAVASCRIPT','ANGULAR','BOOTSTRAP','TAILWINDCSS','TYPESCRIPT'];
+  arrayTools:string[] = ['POSTMAN','GIT','GITHUB'];
 
   
   languageSistem(){
     setTimeout(() => {
       if (document.querySelector("body")?.className.includes('usa-lang')) {
-        this.frontentText = 'Frontend Developer';
-        this.toolsText = 'Tools'
+        this.frontentText = 'Frontend development';
+        this.toolsText = 'Tools';
       } else if(document.querySelector("body")?.className.includes("geo-lang")){
-          this.frontentText = 'Frontend დეველოპერი';
-          this.toolsText = 'ხელსაწყოები'
+          this.frontentText = 'Frontend დეველოპმენტი';
+          this.toolsText = 'ხელსაწყოები';
       }
     }, 1);
-  }
+  };
 
   ngOnInit(){
-    this.languageSistem()
-  }
+    this.languageSistem();
+  };
 
 }
