@@ -2,11 +2,12 @@
     <!-- პროექტების სორტირების Select -->
     <select id="project_sort" class="w-full rounded-md project_inner_sortintSelect font h-[40px] max-w-[200px] text-base outline-none px-1.5" style="text-transform: capitalize; color: var(--Cool-gray); font-weight: var(--font-Semi-Bold);" aria-label="Sort projects by">
         <option class="font" style="text-transform: capitalize; font-weight: var(--font-Semi-Bold);" value="all" selected>{{text1}}</option>
-        <option class="font" style="text-transform: capitalize; font-weight: var(--font-Semi-Bold);" *ngFor="let sort of selectTexts" [value]="sort">{{sort}}</option>
+        @for (sort of selectTexts; track $index){
+            <option class="font" style="text-transform: capitalize; font-weight: var(--font-Semi-Bold);" [value]="sort">{{sort}}</option>
+        }
     </select>
 
     <div class="relative flex flex-wrap items-start justify-center w-full gap-3 project_card_cont">
-
         @for (data of paginatedProjects(); track $index){
             <div class="project_card_item rounded-xl flex flex-col gap-3 max-w-[452px] relative w-full">
                 <div class="relative overflow-hidden rounded-lg pointer-events-none img_box aspect-video bg-[var(--body-dark-bg)] flex items-center justify-center">
@@ -25,7 +26,6 @@
                 </div>
             </div>
         }
-        
     </div>
     
 
@@ -37,9 +37,11 @@
                 </button>
             </li>
 
-            <li class="flex items-center justify-center overflow-hidden select-none" *ngFor="let page of getPaginationRange()">
-                <button type="button" aria-label="pagination number" class="text-base outline-none cursor-pointer font w-[40px] h-[40px]" style="color: var(--text-white); font-weight: var(--font-Semi-Bold);" [disabled]="currentPage === page" (click)="changePage(page)" [class.active]="currentPage === page"> {{ page }} </button>
-            </li>
+            @for(page of getPaginationRange(); track $index){
+                <li class="flex items-center justify-center overflow-hidden select-none">
+                    <button type="button" aria-label="pagination number" class="text-base outline-none cursor-pointer font w-[40px] h-[40px]" style="color: var(--text-white); font-weight: var(--font-Semi-Bold);" [disabled]="currentPage === page" (click)="changePage(page)" [class.active]="currentPage === page"> {{ page }} </button>
+                </li>
+            }
 
             <li class="flex overflow-hidden select-none">
                 <button type="button" aria-label="right btn" class="text-base outline-none cursor-pointer font rounded-r-lg w-[40px] h-[40px]" style="color: var(--text-white);" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages" >
