@@ -1,8 +1,8 @@
 <section class="relative flex flex-col flex-wrap w-full project pb-[15px] gap-7">
     <!-- პროექტების სორტირების Select -->
     <select id="project_sort" class="w-full rounded-md project_inner_sortintSelect font h-[40px] max-w-[200px] text-base outline-none px-1.5" style="text-transform: capitalize; color: var(--Cool-gray); font-weight: var(--font-Semi-Bold);" aria-label="Sort projects by">
-        <option class="font" style="text-transform:capitalize; font-weight: var(--font-Semi-Bold);" value="all" selected>{{text1}}</option>
-        <option class="font" style="text-transform:capitalize; font-weight: var(--font-Semi-Bold);" *ngFor="let sort of selectTexts" [value]="sort">{{sort}}</option>
+        <option class="font" style="text-transform: capitalize; font-weight: var(--font-Semi-Bold);" value="all" selected>{{text1}}</option>
+        <option class="font" style="text-transform: capitalize; font-weight: var(--font-Semi-Bold);" *ngFor="let sort of selectTexts" [value]="sort">{{sort}}</option>
     </select>
 
     <div class="relative flex flex-wrap items-start justify-center w-full gap-3 project_card_cont">
@@ -20,7 +20,7 @@
                 <div class="relative w-full card_desc">
                     <div class="flex flex-col items-start justify-start gap-2">
                     <h2 class="font title text-2xl lg:text-[26px] text-[var(--Light-gray)]" style="font-weight: var(--font-Medium);">{{ data.title }}</h2>
-                        <a [href]="data.link" rel="nofollow" target="_blank" style="font-weight: var(--font-Medium);" type="button" aria-label="project link btn" class="overflow-hidden text-base rounded-md cursor-pointer select-none font border-none card_btn px-2.5 py-2 sm:text-lg text-[var(--darkgray)]">{{ text2 }}</a>
+                        <a [href]="data.link" rel="nofollow" target="_blank" style="font-weight: var(--font-Medium);" type="button" aria-label="project link btn" class="lowercase overflow-hidden text-base rounded-md cursor-pointer select-none font border-none card_btn px-2 py-1 sm:text-lg text-[var(--darkgray)]">{{ text2 }}</a>
                     </div>
                 </div>
             </div>
