@@ -8,20 +8,20 @@ import { Component } from '@angular/core';
 })
 export class TaskComponent {
 
-  projectbtnClass:string = 'btnActive'
-  skillbtnClass:string = ''
+  activeTab: 'project' | 'skill' = 'project';
+  componentShowHidden: boolean = false;
 
-  componentShowHidden:boolean = false
-
-  projectBTNEvent(){
-    this.componentShowHidden = false
-    this.projectbtnClass = 'btnActive'
-    this.skillbtnClass = ''
+  setActiveTab(tab: 'project' | 'skill') {
+    this.activeTab = tab;
+    this.componentShowHidden = tab === 'skill';
   }
-  skillBtnEvent(){
-    this.componentShowHidden = true
-    this.skillbtnClass = 'btnActive'
-    this.projectbtnClass = ''
+
+  get projectbtnClass(): string {
+    return this.activeTab === 'project' ? 'btnActive' : '';
+  }
+
+  get skillbtnClass(): string {
+    return this.activeTab === 'skill' ? 'btnActive' : '';
   }
 
   text1:string = ''

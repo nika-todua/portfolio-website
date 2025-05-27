@@ -1,7 +1,11 @@
 <section class="relative w-full pt-3 mx-auto socialLinks_cont max-w-[var(--conent-max-w)] h-[calc(100vh-72px-118px)] min-h-fit px-4 md:h-[calc(100vh-98px-118px)]">
     <aside class="relative top-sec">
-        <img [src]="desktopImg" alt="Profile image of {{username}}" width="140" height="140" class="object-cover mx-auto pointer-events-none select-none img-fluid aspect-square" loading="lazy" srcset="{{mobileImg}} 260w, {{desktopImg}} 457w" sizes="(max-width: 600px) 260px, 457px">
-        
+        <div class="profileIng flex items-center justify-center mx-auto max-w-36 max-h-36 rounded-full" style="background-color: red;">
+            <picture class="object-cover pointer-events-none select-none aspect-square">
+                <source media="(max-width:600px)" [srcset]="mobileImg">
+                <img [src]="desktopImg" alt="Profile image of {{username}}" loading="lazy" width="144" height="144" class="object-cover aspect-square">
+            </picture>
+        </div>
         <div class="mx-auto mt-4 text-center text-cont w-fit">
             <h1 class="font user-name text-[36px] sm:text-[44px]" style="color: var(--text-white); font-weight: var(--font-Semi-Bold);">{{username}}</h1>
             <p class="font bioText text-lg sm:text-xl" style="color: var(--Light-gray);">{{userbio}}</p>

@@ -1,7 +1,7 @@
 <div class="relative flex items-center justify-center w-full task_box">
     <nav class="relative flex items-center justify-center w-full rounded-lg task_box_wrapper p-[15px] max-w-[517px]">
-        <button aria-label="task btn 1" type="button" class="font select-none cursor-pointer py-4 w-[47%] text-sm {{projectbtnClass}} btn" [disabled]="projectbtnClass === 'btnActive' " style="color: var(--Light-gray); font-weight: var(--font-Semi-Bold); border-radius: .375rem;" (click)="projectBTNEvent()">{{text1}}</button>
-        <button aria-label="task btn 2" type="button" class="font select-none cursor-pointer py-4 w-[47%] text-sm {{skillbtnClass}} btn" [disabled]="skillbtnClass === 'btnActive' " style="color: var(--Light-gray); font-weight: var(--font-Semi-Bold); border-radius: .375rem;" (click)="skillBtnEvent()">{{text2}}</button>
+        <button (click)="setActiveTab('project')" aria-label="task btn 1" type="button" class="font select-none cursor-pointer py-4 w-[47%] text-sm {{projectbtnClass}} btn" [disabled]="!componentShowHidden" style="color: var(--Light-gray); font-weight: var(--font-Semi-Bold); border-radius: .375rem;">{{text1}}</button>
+        <button (click)="setActiveTab('skill')" aria-label="task btn 2" type="button" class="font select-none cursor-pointer py-4 w-[47%] text-sm {{skillbtnClass}} btn" [disabled]="componentShowHidden" style="color: var(--Light-gray); font-weight: var(--font-Semi-Bold); border-radius: .375rem;">{{text2}}</button>
     </nav>
 </div>
 

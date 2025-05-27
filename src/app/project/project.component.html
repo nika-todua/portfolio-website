@@ -16,7 +16,11 @@
                             <div class="newtons-cradle__dot bloc h-full w-[25%] origin-top"></div>
                         }
                     </div>
-                    <img class="absolute inset-0 z-40 block object-cover w-full h-full select-none" loading="lazy" [srcset]="data.image_mobile + ' 600w, ' + data.image_desktop + ' 800w'" [sizes]="'(min-width: 600px) 800px, 600px'" [src]="data.image_desktop" alt="Project banner image"/>
+
+                    <picture class="absolute inset-0 z-40 w-full h-full">
+                      <source media="(max-width:480px)" [srcset]="data.image_mobile">
+                      <img [src]="data.image_desktop" alt="Project banner image" loading="lazy" class="object-cover w-full h-full select-none">
+                    </picture>
                 </div>
                 <div class="relative w-full card_desc">
                     <div class="flex flex-col items-start justify-start gap-2">

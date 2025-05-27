@@ -1,10 +1,6 @@
 .cards p {
     font-weight: var(--font-Semi-Bold);
 }
-.cards .skill_inner_ul li{
-    font-size: 18px;
-    /* color: var(--text-white); */
-}
 @media screen and (min-width: 480px) {
     .cards p {
         font-size: 20px;
