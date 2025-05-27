@@ -73,16 +73,51 @@ export class ProjectComponent {
     } else {
       if (!isMobile) {
         // Desktop View: Show first page, nearby pages, and last page
-        if (current > 2) range.push(1, "...");
-        for (let i = Math.max(1, current - 1); i <= Math.min(total, current + 1); i++) {
-          range.push(i);
+        if (current > 3) range.push(1, "...");
+        
+        if (current >= 4) {
+          range.length = 0; // Clear the range if current is less than 4
+          if (current > 3) range.push(1, "...");
+          for (let i = Math.max(1, current - 1); i <= Math.min(total, current + 1); i++) {
+            range.push(i);
+          }
+
+          if (current < total - 1) range.push("...", total);
+          
+          if (total - 3 < current) {
+            for (let i = range.length - 1; i >= 0; i--) {
+              if (range[i] === '...') {
+                range.pop();
+              }
+            }
+            range.push(total);
+          }
+          
         }
-        if (current < total - 1) range.push("...", total);
+        
+        if (current < 4) {
+          for (let i = Math.max(1, current - 1); i <= Math.min(total, current + 2); i++) {
+            range.push(i);
+          }
+          if (current < total - 1) range.push("...", total);
+        }
+        
       } else {
         // Mobile View: Show 3 nearby pages
         for (let i = Math.max(1, current - 1); i <= Math.min(total, current + 1); i++) {
           range.push(i);
         }
+        
+        if (current < total - 1) range.push("...", total);
+        
+        if(total - 2 === current){
+          for (let i = range.length - 1; i >= 0; i--) {
+            if (range[i] === '...') {
+              range.splice(i, 1);
+            }
+          }
+        }
+
       }
     }
     return range;

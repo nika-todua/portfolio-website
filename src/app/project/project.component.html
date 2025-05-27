@@ -24,7 +24,7 @@
                 </div>
                 <div class="relative w-full card_desc">
                     <div class="flex flex-col items-start justify-start gap-2">
-                    <h2 class="font title text-2xl lg:text-[26px] text-[var(--Light-gray)]" style="font-weight: var(--font-Medium);">{{ data.title }}</h2>
+                        <h2 class="project-card-title font title text-lg text-[var(--Light-gray)]" style="font-weight: var(--font-Medium);">{{ data.title }}</h2>
                         <a [href]="data.link" rel="nofollow" target="_blank" style="font-weight: var(--font-Medium);" type="button" aria-label="project link btn" class="lowercase overflow-hidden text-base rounded-md cursor-pointer select-none font border-none card_btn px-2 py-1 sm:text-lg text-[var(--darkgray)]">{{ text2 }}</a>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
 
             @for(page of getPaginationRange(); track $index){
                 <li class="flex items-center justify-center overflow-hidden select-none">
-                    <button type="button" aria-label="pagination number" class="text-base outline-none cursor-pointer font w-[40px] h-[40px]" style="color: var(--text-white); font-weight: var(--font-Semi-Bold);" [disabled]="currentPage === page" (click)="changePage(page)" [class.active]="currentPage === page"> {{ page }} </button>
+                    <button type="button" aria-label="pagination number" class="text-base sm:text-lg outline-none cursor-pointer font w-[40px] h-[40px]" style="color: var(--text-white); font-weight: var(--font-Semi-Bold);" [disabled]="currentPage === page" (click)="changePage(page)" [class.active]="currentPage === page"> {{ page }} </button>
                 </li>
             }
 
