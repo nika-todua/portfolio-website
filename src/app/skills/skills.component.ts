@@ -7,27 +7,37 @@ import { Component } from '@angular/core';
   styleUrl: './skills.component.css'
 })
 export class SkillsComponent {
-  frontentText:string = "";
-  toolsText:string = "";
-
-  arrayFrontend:string[] = ['HTML','CSS','SCSS','JAVASCRIPT','ANGULAR','BOOTSTRAP','TAILWINDCSS','TYPESCRIPT'];
-  arrayTools:string[] = ['POSTMAN','GIT','GITHUB'];
-
-  
-  languageSistem(){
-    setTimeout(() => {
-      if (document.querySelector("body")?.className.includes('usa-lang')) {
-        this.frontentText = 'Frontend development';
-        this.toolsText = 'Tools';
-      } else if(document.querySelector("body")?.className.includes("geo-lang")){
-          this.frontentText = 'Frontend დეველოპმენტი';
-          this.toolsText = 'ხელსაწყოები';
-      }
-    }, 1);
-  };
 
   ngOnInit(){
     this.languageSistem();
+  };
+
+  skillobject:any = [
+    {
+      title: '',
+      skill: [
+        'HTML','CSS','SCSS','JAVASCRIPT','ANGULAR','BOOTSTRAP','TAILWINDCSS','TYPESCRIPT'
+      ]
+    },
+    {
+      title: '',
+      skill: [
+        'POSTMAN','GIT','GITHUB'
+      ]
+    }
+  ]
+  
+
+  languageSistem(){
+    setTimeout(() => {
+      if (document.querySelector("body")?.className.includes('usa-lang')) {
+        this.skillobject[0].title = 'Frontend development';
+        this.skillobject[1].title = 'Tools';
+      } else if(document.querySelector("body")?.className.includes("geo-lang")){
+        this.skillobject[0].title = 'Frontend დეველოპმენტი';
+        this.skillobject[1].title = 'ხელსაწყოები';
+      }
+    }, 1);
   };
 
 }

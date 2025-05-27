@@ -1,23 +1,12 @@
 .cards p {
     font-weight: var(--font-Semi-Bold);
-    text-transform: uppercase;
-    color: var(--Light-gray);
-}
-.cards .skill_inner_ul{
-    margin-top: 16px !important;
-    width: auto;
-    height: auto;
-    grid-template-columns: repeat(2, 1fr) !important;
 }
 .cards .skill_inner_ul li{
     font-size: 18px;
-    color: var(--text-white);
+    /* color: var(--text-white); */
 }
 @media screen and (min-width: 480px) {
     .cards p {
-        font-size: 20px;
-    }
-    .cards .skill_inner_ul li{
         font-size: 20px;
     }
 }
