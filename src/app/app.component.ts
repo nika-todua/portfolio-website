@@ -40,7 +40,7 @@ export class AppComponent {
       let baseurlsplit = urlnase.split(tokenUrl)
       let originURL:any = baseurlsplit[0] + baseurlsplit[1]
       return window.location = originURL
-    } 
+    }
   }
   
   

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ApisService } from '../apis.service';
 import { Project } from '../shared/project.model';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 @Component({
   selector: 'app-project',
@@ -40,7 +42,7 @@ export class ProjectComponent {
   montharr:string[] = []
   newmontharr:string[] = []
 
-  paginatedProjects() {
+  paginatedProjects():any {
     this.newmontharr = this.montharr.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)
     
     const start = (this.currentPage - 1) * this.itemsPerPage;
@@ -219,4 +221,28 @@ export class ProjectComponent {
   }
 
 
+  ngOnInit() {
+    //list as many as you'd like
+    gsap.registerPlugin(ScrollTrigger);
+    
+    document.addEventListener("scroll", () => {
+      for (let i of this.paginatedProjects()) {
+        // Only act on even IDs
+        const selector = `#project_${i.id}`;
+        const box: HTMLElement | null = document.querySelector(selector);
+        
+        if (box && ScrollTrigger.isInViewport(box)) {
+          const tween = gsap.to(box, {
+            y: 0,
+            duration: 0.5,
+            opacity: 1,
+            delay: 0.15, // Set delay here directly
+          });
+        }
+      }
+    });
+
+    
+  }
+  
 }

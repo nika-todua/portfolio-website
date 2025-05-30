@@ -4,9 +4,13 @@
     border: 3px solid var(--border-dark);
 }
 .project_card_item{
+    opacity: 0;
     padding: 14px !important;
+    transform: translate(0, 50px);
     background-color: var(--darkblue);
+    transition-timing-function: cubic-bezier(0.58, 0.25, 0.28, 0.8) !important;
 }
+
 .card_btn{
     height: fit-content;
     background-color: var(--yellow);
