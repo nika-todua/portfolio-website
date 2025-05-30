@@ -232,12 +232,8 @@ export class ProjectComponent {
         const box: HTMLElement | null = document.querySelector(selector);
         
         if (box && ScrollTrigger.isInViewport(box)) {
-          const tween = gsap.to(box, {
-            y: 0,
-            duration: 0.5,
-            opacity: 1,
-            delay: 0.15, // Set delay here directly
-          });
+          const tween = gsap.to(box, { y: 0, duration: 0.3, opacity: 1 });
+          tween.delay(0.27);
         }
       }
     });
