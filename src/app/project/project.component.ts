@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { ApisService } from '../apis.service';
-import { Project } from '../shared/project.model';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ApisService } from '../apis.service';
+import { Project } from '../shared/project.model';
 
 @Component({
   selector: 'app-project',
@@ -12,122 +12,101 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 })
 export class ProjectComponent {
   filterhidden: boolean = false;
-  project: Project[] = []
-  selectTexts: string[] = []
-  projectfilterarray: Project[] = []
-  projectarrayall:(Project[] | any) = []
+  project: Project[] = [];
+  selectTexts: string[] = [];
+  projectfilterarray: Project[] = [];
+  projectarrayall: Project[] = [];
 
-  text1:string = ''
-  text2:string = ''
+  text1: string = '';
+  text2: string = '';
 
-  constructor(private apisService : ApisService){
-    this.apisService.getproject().subscribe((data:(Project[] | any)) => { this.getporjects(data) });
-    this.languageSistem()
+  constructor(private apisService: ApisService) {
+    this.apisService.getproject().subscribe((data:any) => {
+      this.getprojects(data);
+    });
+    this.languageSystem();
   }
 
-  languageSistem(){
+  // მეტენესის პროქტების და ფერების ტექსტის სისტემის ფუნქცია
+  languageSystem() {
     setTimeout(() => {
-      if (document.querySelector("body")?.className.includes('usa-lang')) {
-        this.text1 = 'All'
-        this.text2 = 'View website'
-      } else if(document.querySelector("body")?.className.includes("geo-lang")){  
-        this.text1 = 'ყველა'
-        this.text2 = 'საიტის ნახვა'
+      const bodyClass = document.querySelector('body')?.className || '';
+      if (bodyClass.includes('usa-lang')) {
+        this.text1 = 'All';
+        this.text2 = 'View website';
+      } else if (bodyClass.includes('geo-lang')) {
+        this.text1 = 'ყველა';
+        this.text2 = 'საიტის ნახვა';
       }
     }, 1);
   }
 
-  itemsPerPage:number = 6; // თითო გვერდზე ელემენტების რაოდენობა
-  currentPage:number = 1;
-  montharr:string[] = []
-  newmontharr:string[] = []
+  itemsPerPage: number = 6; // გვერდზე еლემენტების რაოდენობა
+  currentPage: number = 1;
+  montharr: string[] = [];
+  newmontharr: string[] = [];
 
-  paginatedProjects():any {
-    this.newmontharr = this.montharr.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)
-    
+  // ამოჭრის მიმდინარე გვერდისთვის შესაბამისი პროექტების მასივს
+  paginatedProjects(): Project[] {
+    // სრული და ფილტრული მასივების ამოსაჩნები ინდექსები
     const start = (this.currentPage - 1) * this.itemsPerPage;
-    let projectobjectarray = this.projectarrayall.slice(start, start + this.itemsPerPage) 
-    let projectobjectarraySort = this.projectfilterarray.slice(start, start + this.itemsPerPage) 
+    const pageAll = this.projectarrayall.slice(start, start + this.itemsPerPage);
+    const pageFiltered = this.projectfilterarray.slice(start, start + this.itemsPerPage);
 
-    let array:Project[] = []
-    array.length = 0;
-    
-    if(!this.filterhidden){
-      array = projectobjectarray
-    } else{
-      array = projectobjectarraySort
-    }
-    return array
+    // გაარჩევს, რომელი მასივი უნდა დაბრუნდეს
+    return !this.filterhidden ? pageAll : pageFiltered;
   }
 
-  getPaginationRange() {
+  // ჯამlobal გვერდების რაოდენობის გამოთვლა
+  get totalPages(): number {
+    const length = this.filterhidden ? this.projectfilterarray.length : this.projectarrayall.length;
+    return Math.ceil(length / this.itemsPerPage);
+  }
+
+  // გვერდის შეცვლა და გვერდის გადახვევა
+  changePage(page: any) {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.newmontharr = this.montharr.slice(
+        (page - 1) * this.itemsPerPage,
+        page * this.itemsPerPage
+      );
+      this.projectScroll();
+    }
+  }
+
+  // გვერდების ნავიგაციის დიაპაზონი
+  getPaginationRange(): (number | string)[] {
     const total = this.totalPages;
     const current = this.currentPage;
-    const range:any = [];
-    
-    // ვიღებთ ეკრანის სიგანეს
-    const isMobile = window.innerWidth <= 480; // 480px-ზე ნაკლები ეკრანი (მობილური)
-    // თუ 5-ზე ნაკლები გვერდია, ვაჩვენოთ ყველა
+    const range: (number | string)[] = [];
+    const isMobile = window.innerWidth <= 480;
+
     if (total <= 5) {
+      // თუ სულ <=5 გვერდია, აჩვენე ყველა
       for (let i = 1; i <= total; i++) {
         range.push(i);
       }
+    } else if (!isMobile) {
+      // დესკტოპზე
+      if (current > 3) range.push(1, '...');
+      const start = Math.max(1, current - 1);
+      const end = Math.min(total, current + 1);
+      for (let i = start; i <= end; i++) range.push(i);
+      if (current < total - 1) range.push('...', total);
     } else {
-      if (!isMobile) {
-        // Desktop View: Show first page, nearby pages, and last page
-        if (current > 3) range.push(1, "...");
-        
-        if (current >= 4) {
-          range.length = 0; // Clear the range if current is less than 4
-          if (current > 3) range.push(1, "...");
-          for (let i = Math.max(1, current - 1); i <= Math.min(total, current + 1); i++) {
-            range.push(i);
-          }
-
-          if (current < total - 1) range.push("...", total);
-          
-          if (total - 3 < current) {
-            for (let i = range.length - 1; i >= 0; i--) {
-              if (range[i] === '...') {
-                range.pop();
-              }
-            }
-            range.push(total);
-          }
-          
-        }
-        
-        if (current < 4) {
-          for (let i = Math.max(1, current - 1); i <= Math.min(total, current + 2); i++) {
-            range.push(i);
-          }
-          if (current < total - 1) range.push("...", total);
-        }
-        
-      } else {
-        // Mobile View: Show 3 nearby pages
-        for (let i = Math.max(1, current - 1); i <= Math.min(total, current + 1); i++) {
-          range.push(i);
-        }
-        
-        if (current < total - 1) range.push("...", total);
-        
-        if(total - 2 === current){
-          for (let i = range.length - 1; i >= 0; i--) {
-            if (range[i] === '...') {
-              range.splice(i, 1);
-            }
-          }
-        }
-
+      // მობილურზე
+      for (let i = Math.max(1, current - 1); i <= Math.min(total, current + 1); i++) {
+        range.push(i);
       }
+      if (current < total - 1) range.push('...', total);
     }
     return range;
   }
-  
-  projectScroll(){
-    const width = window.innerWidth;
 
+  // სწორ პოზიციაზე გვერდის ავტო-სკროლა ეკრანის ზომის მიხედვით
+  projectScroll() {
+    const width = window.innerWidth;
     const scrollMap = new Map<number, number>([
       [992, 685],
       [768, 686],
@@ -136,109 +115,99 @@ export class ProjectComponent {
       [425, 610],
       [370, 800],
       [340, 795],
-      [0, 891], // fallback
+      [0, 891],
     ]);
-
-    const scrollTop = Array.from(scrollMap.entries())
-      .find(([minWidth]) => width >= minWidth)?.[1] ?? 0;
-
-    window.scrollTo({
-      top: Math.max(scrollTop - 25, 0),
-      left: 0,
-      behavior: "smooth",
-    });
-  }
-  
-  get totalPages() {
-    return Math.ceil((this.filterhidden ? this.projectfilterarray.length : this.projectarrayall.length) / this.itemsPerPage);
+    const scrollTop = Array.from(scrollMap)
+      .find(([min]) => width >= min)?.[1] ?? 0;
+    window.scrollTo({ top: Math.max(scrollTop - 25, 0), left: 0, behavior: 'smooth' });
   }
 
-  changePage(page: number) {
-    (page >= 1 && page <= this.totalPages) && (this.currentPage = page, this.newmontharr = this.montharr.slice((page - 1) * this.itemsPerPage, page * this.itemsPerPage))
-    this.projectScroll();
-  }
-
-  
-  getporjects(data:Project[]){
-    this.projectarrayall = data.sort((a: Project, b: Project) => b.id - a.id);
+  // API-დან მიღებული პროექტების დამუშავება და დასორტვა
+  getprojects(data: Project[]) {
+    this.projectarrayall = data.sort((a, b) => b.id - a.id);
     this.sortingText();
   }
 
-  sortingText(){
-    const projectTags:any = Array.from(new Set(this.projectarrayall.map((element: Project) => element.tag)));
-    const sortedTags = this.sortWordsByFirstLetter(projectTags);
-    const otherIndex = sortedTags.indexOf("othen");
-    if (otherIndex > -1) {
-      sortedTags.splice(otherIndex, 1);
-      sortedTags.push("othen");
+  // ტეგების ელემენტების ხილვადობისა და სორტირების ფუნქციები
+  sortingText() {
+    const tags = Array.from(new Set(this.projectarrayall.map(p => p.tag)));
+    const sorted = this.sortWordsByFirstLetter(tags);
+    const idx = sorted.indexOf('othen');
+    if (idx > -1) {
+      sorted.splice(idx, 1);
+      sorted.push('othen');
     }
-    this.selectTexts = sortedTags;
-    this.selectfilter();
-  }
-  
-  sortWordsByFirstLetter(wordArray:string[]) {
-    return wordArray.sort((a:any, b:any) => a[0].toLowerCase().localeCompare(b[0].toLowerCase()));
+    this.selectTexts = sorted;
+    this.initFilterSelect();
   }
 
-  selectfilter() {
-    const selectEl = document.querySelector<HTMLSelectElement>("#project_sort");
+  // ტეგების ელემენტების ალფაბეტური სორტირება
+  sortWordsByFirstLetter(arr: string[]): string[] {
+    return arr.sort((a, b) => a[0].toLowerCase().localeCompare(b[0].toLowerCase()));
+  }
+
+  // <select> ელემენტის onchange ღონისძიების დაყენება
+  initFilterSelect() {
+    const selectEl = document.querySelector<HTMLSelectElement>('#project_sort');
     if (selectEl) {
-      // Remove previous event listeners to avoid duplicates
-      selectEl.onchange = (e: Event) => {
-        const select = e.target as HTMLSelectElement;
-        if (select) {
-          this.projectfilterEvent(select.value, this.projectarrayall);
-        }
+      selectEl.onchange = (e) => {
+        const tag = (e.target as HTMLSelectElement).value;
+        this.applyFilter(tag);
       };
     }
   }
-  
-  removeDuplicates(array: Project[]):any {
-    const uniqueArray = [...new Set(array)];
-    return uniqueArray;
+
+  // დუბლიკატების მოცილება
+  removeDuplicates(arr: Project[]): Project[] {
+    return Array.from(new Set(arr));
   }
 
-  projectfilterEvent(tagname: string, allArray:Project[]) {
-    this.projectfilterarray.length = 0;
-    if (this.totalPages >= 1){ this.currentPage = 1; }
-    if (["all", "ყველა"].includes(tagname.toLowerCase())) {
-      this.projectarrayall = allArray;
+  // პროექტების ფილტრაცია ტეგის მიხედვით და currentPage-ის გადაყენება
+  applyFilter(tag: string) {
+    this.projectfilterarray = [];
+    this.currentPage = 1;
+    if (['all', 'ყველა'].includes(tag.toLowerCase())) {
       this.filterhidden = false;
     } else {
-      const filteredProjects = this.filterProject(this.projectarrayall, tagname);
-      this.projectfilterarray = this.removeDuplicates(filteredProjects);
+      const filtered = this.filterProject(this.projectarrayall, tag);
+      this.projectfilterarray = this.removeDuplicates(filtered);
       this.filterhidden = true;
     }
-    // Trigger a slight scroll to refresh the view
-    window.scrollTo({ top: window.scrollY - 1, behavior: "smooth" });
-    window.scrollTo({ top: window.scrollY + 1, behavior: "smooth" });
+    window.scrollTo({ top: window.scrollY - 1, behavior: 'smooth' });
+    window.scrollTo({ top: window.scrollY + 1, behavior: 'smooth' });
   }
 
-  filterProject(array: Project[], tagname: string): Project[] {
-    return array.filter(el =>
-      el.tag.toLowerCase().includes(tagname.toLowerCase())
-    );
+  // პროექტების ელემენტების ფილტრაცია ტეგის მიხედვით
+  filterProject(arr: Project[], tag: string): Project[] {
+    return arr.filter(p => p.tag.toLowerCase().includes(tag.toLowerCase()));
   }
 
-
+  // GSAP ანიმაციების ინიციალიზაცია დოკუმენტის ლოდზე
   ngOnInit() {
-    //list as many as you'd like
     gsap.registerPlugin(ScrollTrigger);
-    
-    document.addEventListener("scroll", () => {
-      for (let i of this.paginatedProjects()) {
-        // Only act on even IDs
-        const selector = `#project_${i.id}`;
-        const box: HTMLElement | null = document.querySelector(selector);
-        
+    let isAnimating = false;
+  
+    async function animateSequentially(projects: Project[]) {
+      if (isAnimating) return;
+      isAnimating = true;
+      for (const proj of projects) {
+        const box = document.querySelector(`.project_${proj.id}`) as HTMLElement | null;
         if (box && ScrollTrigger.isInViewport(box)) {
-          const tween = gsap.to(box, { y: 0, duration: 0.3, opacity: 1 });
-          tween.delay(0.27);
+          const delay = Math.random() * 2 + 1;
+          await new Promise(r => setTimeout(r, delay * 200));
+          gsap.to(box, { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' });
         }
       }
-    });
-
-    
-  }
+      isAnimating = false;
+    }
   
+    let scrollTimeout: number | null = null;
+    document.addEventListener('scroll', () => {
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+      scrollTimeout = window.setTimeout(() => {
+        animateSequentially(this.paginatedProjects());
+      }, 60);
+    });
+  }
+
 }

@@ -10,21 +10,24 @@ export class HeaderComponent {
   darkmodeicon:boolean = false
   darkmodeCount:number = 0
 
-  // storage names
+  // localStorage-ს სახელი
   storage1name:string = "website-setting";
 
-  // dark mode event
+  // შავი და თეთრი თემის სახელები
   darktoken:string = "Dark";
   lighttoken:string = "Light";
-
+  
+  // ენის სახელები 
   usetoken:string = 'English';
   geotoken:string = 'Georgia';
 
+  // LocalStorage-ს ობიექტი რომელიც ინაცება ტეხატის სახით, ამით ხდება ენის და თემის შეცვლა
   localstorageArray:any = {
     theme: `${this.darktoken}`,
     language: `${this.usetoken}`
   }
   
+  // თეთრი და შავი თების გადამთველი
   darkmodeevent(){
     localStorage.clear();
     this.darkmodeCount = (this.darkmodeCount + 1) % 2;
@@ -37,14 +40,14 @@ export class HeaderComponent {
       this.darkmodeicon = false;
       this.localstorageArray.theme = this.darktoken;
     }
-    // save information
+    // მინაცემების შემნახველი
     localStorage.setItem(this.storage1name, JSON.stringify( this.localstorageArray ));
   }
   
   languageCount:number = 0
   flagimg:boolean = false
 
-  // language
+  // ენის ფადამთველი
 
   languageEvent(){
     localStorage.clear();
@@ -60,7 +63,7 @@ export class HeaderComponent {
       this.localstorageArray.language = this.usetoken;
       this.flagimg = false;
     }
-    // save information
+    // მინაცემების შემნახველი
     localStorage.setItem(this.storage1name, JSON.stringify(this.localstorageArray));
     location.reload();
   }
@@ -70,9 +73,10 @@ export class HeaderComponent {
     document.addEventListener("DOMContentLoaded", () => {
       const websettingstorage:any = localStorage.getItem(this.storage1name);
 
+      // თუ არ არის მონაცემები და თუ მომცმარებელი შემოდის პირველად ამ if ფუნქციაში შემოდის და რაც წერია თავდაპირველად იმას მიანიჭებს
       if ( websettingstorage === null ) { localStorage.setItem(this.storage1name, JSON.stringify(this.localstorageArray) ); location.reload(); }
       
-      // --dark/light mode-- 
+      // --თეთრი და შავი თემის შემცვლელი რომელიც რომ შედის მომხმარებელი ეგრევე ანიჭებს იმ მნიშვნელობას რაც შეცვალა-- 
       const theme = JSON.parse(websettingstorage).theme;
       if (theme === this.lighttoken) {
         document.body.classList.add("light_mode");
@@ -91,7 +95,7 @@ export class HeaderComponent {
         this.darkmodeicon = false;
       }
       
-      // --language event--
+      // --ენის შემცვლელი, რომელიც რომ შედის მომხმარებელი ეგრევე ანიჭებს იმ მნიშვნელობას რაც შეცვალა--
       const language = JSON.parse(websettingstorage).language;
       if (language === this.usetoken) {
         this.localstorageArray.language = this.usetoken;
@@ -113,10 +117,11 @@ export class HeaderComponent {
         this.flagimg = false;
       }
         
-        // save information
-        localStorage.setItem(this.storage1name, JSON.stringify(this.localstorageArray) );
-      });
-    }
-    
+      // მონაცემების შემცვლელი
+      localStorage.setItem(this.storage1name, JSON.stringify(this.localstorageArray) );
+    });
   }
+
+  
+}
   

@@ -11,6 +11,7 @@ export class FooterComponent {
   versionYear:number = 2025
   coppyText:string = 'All rigths reserved.'
 
+  // სასურველი ენაზე გადასვლის ფუნქცია
   languageSistem(){
     setTimeout(() => {
       if (document.querySelector("body")?.className.includes('usa-lang')) {

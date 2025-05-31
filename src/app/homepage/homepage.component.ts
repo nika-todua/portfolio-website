@@ -30,6 +30,7 @@ export class HomepageComponent {
   downloadBTN:string = ""
   contactBtn:string = ""
 
+  // ენის გადამთველი
   languageSistem(){
     setTimeout(() => {
       if (document.querySelector("body")?.className.includes('usa-lang')) {
@@ -57,7 +58,7 @@ export class HomepageComponent {
   seolink:string = document.URL
 
   ngOnInit(){
-    
+    // seo მეტა თეგებისთვის არის ეს დაწერილი
     this.titleService.setTitle("Nika Todua | Portfolio");
     this.metaTagService.addTags([
       {name: 'description', content: this.description},
