@@ -192,10 +192,17 @@ export class ProjectComponent {
       isAnimating = true;
       for (const proj of projects) {
         const box = document.querySelector(`.project_${proj.id}`) as HTMLElement | null;
+
         if (box && ScrollTrigger.isInViewport(box)) {
           const delay = Math.random() * 2 + 1;
-          await new Promise(r => setTimeout(r, delay * 200));
-          gsap.to(box, { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' });
+          await new Promise(r => setTimeout(r, delay * 185));
+          let tween = gsap.to(box, { opacity: 1, y: 0, pointerEvents:"auto", duration: 0.25 });
+        }
+        // აქელემენტს ემატება კლასი animated-in
+        if (box && box!.getAttributeNode('style') != null) {
+          if ( box!.getAttributeNode('style')!.value.includes("transform: translate(0px, 0px);") || box!.getAttributeNode('style')!.value.includes("transform: translate3d(0px, 0px, 0px);") && box!.getAttributeNode('style')!.value.includes("opacity: 1;")) {
+            box.classList.add("animated-in")
+          }
         }
       }
       isAnimating = false;
@@ -206,7 +213,7 @@ export class ProjectComponent {
       if (scrollTimeout) clearTimeout(scrollTimeout);
       scrollTimeout = window.setTimeout(() => {
         animateSequentially(this.paginatedProjects());
-      }, 60);
+      }, 7);
     });
   }
 

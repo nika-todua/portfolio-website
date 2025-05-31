@@ -9,6 +9,7 @@ import { Meta, Title } from '@angular/platform-browser';
 })
 export class HomepageComponent {
 
+  // სოციალური ქსელების მასივი
   socialMediaLinks = [
     { name: 'Instagram', link: 'https://www.instagram.com/nicktoduaa/' },
     { name: 'GitHub', link: 'https://github.com/nika-todua' },

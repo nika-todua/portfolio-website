@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { gsap } from "gsap";
+import { SplitText } from "gsap/SplitText";
 import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
@@ -9,16 +11,18 @@ import { Meta, Title } from '@angular/platform-browser';
 })
 export class LinksComponent {
 
-  constructor(private titleService: Title, private metaTagService: Meta){
-    this.languageSistem()
+  // constructor-ში ხდება ენის სისტემის ფუნქციის გამოძახება (პირველივე მომენტში როცა კომპონენტი ინიციალიზდება)
+  constructor(private titleService: Title, private metaTagService: Meta) {
+    this.languageSistem(); // აყენებს მომხმარებლის სახელს და ბიოგრაფიას ენის მიხედვით
   }
   
+  // სოციალური ბმულების მასივი — შეიცავს ლინკებს, იკონებს და ფონურ გრადიენტებს თითოეული პლატფორმისთვის
   socialLinksArray = [
     {
-      icon: 'global-line',
-      rel: 'follow',
-      name: 'Portfolio',
-      link: 'https://nika-todua.netlify.app/',
+      icon: 'global-line',               // აიქონი (UI-ისთვის)
+      rel: 'follow',                     // SEO-სთვის ლინკის ტიპი
+      name: 'Portfolio',                 // ბმულის სახელი
+      link: 'https://nika-todua.netlify.app/', // ბმულის URL
       boxgradient: `background:#e89c45; background: linear-gradient(to right, #15f746, #5766f5 100%) !important;`
     },
     {
@@ -56,58 +60,97 @@ export class LinksComponent {
       link: 'https://x.com/nika_todua2/',
       boxgradient: `background: #1DA1F2; background: linear-gradient( to right,#1DA1F2,#009ffc) !important;`
     }
-  ]
-
-  username:string = '';
-  userbio:string = '';
-
-  desktopImg:string = 'assets/img/profile_img_desktop.webp'
-  mobileImg:string = 'assets/img/profile_img_mobile.webp'
- 
+  ];
   
-  languageSistem(){
+  // მომხმარებლის სახელი და ბიო — იცვლება ენის მიხედვით
+  username: string = '';
+  userbio: string = '';
+  
+  // სურათების გზები სხვადასხვა მოწყობილობისთვის
+  desktopImg: string = 'assets/img/profile_img_desktop.webp';
+  mobileImg: string = 'assets/img/profile_img_mobile.webp';
+  
+  // ენის დამუშავების ფუნქცია — ცვლის სახელებს და ბიოგრაფიას
+  languageSistem() {
     setTimeout(() => {
       if (document.querySelector("body")?.className.includes('usa-lang')) {
-        this.username = 'Nika Todua'
-        this.userbio = 'If not us, then who?'
-      } else if(document.querySelector("body")?.className.includes("geo-lang")){
-        this.username = 'ნიკა თოდუა'
-        this.userbio = 'თუ არა ჩვენ, მაშინ ვინ?'
+        this.username = 'Nika Todua';
+        this.userbio = 'If not us, then who?'; // ინგლისურად
+      } else if (document.querySelector("body")?.className.includes("geo-lang")) {
+        this.username = 'ნიკა თოდუა';
+        this.userbio = 'თუ არა ჩვენ, მაშინ ვინ?'; // ქართულად
       }
-    }, 1);
+    }, 1); // დაგვიანება, რათა body class-ი იყოს ჩატვირთული
   }
   
-  // seo texts
-  description:string = "Hi, I'm Nika Todua, I'm a web developer and I make high-quality websites. I make websites using angular."
-  seokeiwords:string = "angular developer, frontend developer, forntent, nika, todua, Nika Todua, Nick Todua, portfolio, web dev, programmer, Website Developer, web app dev, Angular Dev, developer, nika's portfolio, Nikoloz Todua, senior developer, developer senior portfolio, developer portfolio, დეველოპერის პორტფოლიო საიტი, portfolio website, World Wide Web, პროგრამისტი, საიტის დამზადება, საიტის დეველოპერი, პროგრამირება, Web development, Portfolio"
-  seoimg:string = this.desktopImg;
-  seolink:string = document.URL
+  // SEO-ისთვის აუცილებელი ტექსტები
+  description: string = "Hi, I'm Nika Todua, I'm a web developer and I make high-quality websites. I make websites using angular.";
+  seokeiwords: string = "angular developer, frontend developer, ... პროგრამირება, Web development, Portfolio";
+  seoimg: string = this.desktopImg;
+  seolink: string = document.URL;
+  
+  // კომპონენტის ჩატვირთვისას ინიშნება გვერდის სათაური და ემატება მეტა თეგები SEO-სთვის
 
-  ngOnInit(){
+  textanimation(textID:string){
+    gsap.registerPlugin(SplitText);
+
+    let split = SplitText.create(`#${textID}`, {type:"chars,lines,words"});
     
-    this.titleService.setTitle("Nika Todua | Social Media Links");
+    let animation = gsap.from(split.chars, {
+      y: 150,
+      opacity: 0,
+      duration: 1,
+      yoyo: true,
+      delay: 0.2,
+      stagger: 0.01
+    })
+    animation.delay(0.1)
+    animation.play()
+
+  }
+  
+  
+  ngOnInit() {
+    
+    document.addEventListener("DOMContentLoaded", () =>{
+      
+      setTimeout(() => {
+        this.textanimation('personname')
+        this.textanimation('profesion')
+
+        for(let i = 0; i<= this.socialLinksArray.length; i++){
+          this.textanimation(`socialmedialinktext_${i}`)
+        }
+        
+      }, 1);
+      
+    })
+    
+    
+    this.titleService.setTitle("Nika Todua | Social Media Links"); // გვერდის ტაიტლი
+  
+    // SEO-სთვის საჭირო <meta> თეგები
     this.metaTagService.addTags([
-      {name: 'description', content: this.description},
-      {name: 'keywords', content: this.seokeiwords},
-      {name: 'author', content: 'Nika Todua'},
-      {name: 'image', content: document.baseURI + this.seoimg},
-      {name: 'og:title', content: 'Nika Todua | Social Media Links'},
-      {name: 'og:description', content: this.description },
-      {name: 'og:url', content: this.seolink},
-      {name: 'og:type', content: 'website'},
-      {name: 'og:image', content: document.baseURI + this.seoimg},
-      {name: 'og:image:alt', content: 'Nika Todua'},
-      {name: 'twitter:card', content: 'summary_large_image'},
-      {name: 'twitter:site', content: '@nika_todua2'},
-      {name: 'twitter:creator', content: '@nika_todua2'},
-      {name: 'twitter:description', content: this.description},
-      {name: 'twitter:url', content: this.seolink},
-      {name: 'twitter:image', content: document.baseURI + this.seoimg},
-      {name: 'robots', content: 'follow, nofollow'},
-      {name: 'googlebot', content: 'follow, nofollow'},
-      {name: 'googlebot-news', content: 'follow, nofollow'}
+      { name: 'description', content: this.description },
+      { name: 'keywords', content: this.seokeiwords },
+      { name: 'author', content: 'Nika Todua' },
+      { name: 'image', content: document.baseURI + this.seoimg },
+      { name: 'og:title', content: 'Nika Todua | Social Media Links' },
+      { name: 'og:description', content: this.description },
+      { name: 'og:url', content: this.seolink },
+      { name: 'og:type', content: 'website' },
+      { name: 'og:image', content: document.baseURI + this.seoimg },
+      { name: 'og:image:alt', content: 'Nika Todua' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@nika_todua2' },
+      { name: 'twitter:creator', content: '@nika_todua2' },
+      { name: 'twitter:description', content: this.description },
+      { name: 'twitter:url', content: this.seolink },
+      { name: 'twitter:image', content: document.baseURI + this.seoimg },
+      { name: 'robots', content: 'follow, nofollow' },
+      { name: 'googlebot', content: 'follow, nofollow' },
+      { name: 'googlebot-news', content: 'follow, nofollow' }
     ]);
   }
-  
-  
+
 }

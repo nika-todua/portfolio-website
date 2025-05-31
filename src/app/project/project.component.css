@@ -6,11 +6,20 @@
 .project_card_item{
     opacity: 0;
     padding: 14px !important;
+    pointer-events: none;
     transform: translate(0, 50px);
     background-color: var(--darkblue);
-    transition-timing-function: linear !important;
+    transition-timing-function: cubic-bezier(0.4, -0.04, 0.71, 0.96) !important;
+    -o-transition-timing-function: cubic-bezier(0.4, -0.04, 0.71, 0.96) !important;
+    -moz-transition-timing-function: cubic-bezier(0.4, -0.04, 0.71, 0.96) !important;
+    -webkit-transition-timing-function: cubic-bezier(0.4, -0.04, 0.71, 0.96) !important;
 }
-
+.animated-in{
+    opacity: 1 !important;
+    transition: all 0s !important;
+    pointer-events: auto !important;
+    transform: translate(0px, 0px) !important;
+}
 .card_btn{
     height: fit-content;
     background-color: var(--yellow);
