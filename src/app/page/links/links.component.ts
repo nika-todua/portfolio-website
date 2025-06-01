@@ -94,9 +94,16 @@ export class LinksComponent {
   textanimation(textID:string){
     gsap.registerPlugin(SplitText);
 
-    let split = SplitText.create(`#${textID}`, {type:"chars,lines,words"});
+    let split = SplitText.create(`#${textID}`, {type:"chars"});
     
-    let animation = gsap.fromTo(split.chars, {x: 100, opacity: 0, duration: 1.2, ease: "sine"},{
+    let animation = gsap.fromTo(split.chars,
+      {// აქედან იწყება ანიმაცია
+        x: 100,
+        opacity: 0,
+        duration: 0.9,
+        ease: "elastic"
+      },
+      {// აქ მთავრდება ანიმაცია
       x: -100,
       opacity: 1,
       stagger: 0.04
@@ -104,12 +111,34 @@ export class LinksComponent {
     animation.pause()
     animation.delay(0.5)
     animation.play()
+
+    let text = document.querySelector(`#${textID}`);
+    setTimeout(() => {
+
+      let animation2 = gsap.fromTo(split.chars,
+        {// აქედან იწყება ანიმაცია
+          x: 0,
+          opacity: 1,
+          duration: 0,
+          ease: "elastic"
+        },
+        {// აქ მთავრდება ანიმაცია
+          x: 0,
+          opacity: 1,
+          stagger: 0
+        }
+      )
+      animation2.pause()
+      text!.classList.remove("textanim")
+    }, 2500);
+
+
   }
   
   
   ngOnInit() {
     
-    document.addEventListener("DOMContentLoaded", () =>{
+    window.onload = ()=>{
       setTimeout(() => {
         this.textanimation('personname')
         this.textanimation('profesion')
@@ -117,9 +146,9 @@ export class LinksComponent {
         for(let i in this.socialLinksArray){
           this.textanimation(`socialmedialinktext_${i}`)
         }
-        
-      }, 2);
-    })
+
+      }, 1);
+    }
     
     
     this.titleService.setTitle("Nika Todua | Social Media Links"); // გვერდის ტაიტლი
