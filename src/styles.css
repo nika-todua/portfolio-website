@@ -12,10 +12,10 @@
 body{
   opacity: 0;
 
-  animation: showanim 750ms 1.3s linear forwards;
-  -o-animation: showanim 750ms 1.3s linear forwards;
-  -moz-animation: showanim 750ms 1.3s linear forwards;
-  -webkit-animation: showanim 750ms 1.3s linear forwards;
+  animation: showanim 600ms 0.1s linear forwards;
+  -o-animation: showanim 600ms 0.1s linear forwards;
+  -moz-animation: showanim 600ms 0.1s linear forwards;
+  -webkit-animation: showanim 600ms 0.1s linear forwards;
 }
 @keyframes showanim {
   from {

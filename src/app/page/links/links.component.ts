@@ -96,34 +96,29 @@ export class LinksComponent {
 
     let split = SplitText.create(`#${textID}`, {type:"chars,lines,words"});
     
-    let animation = gsap.from(split.chars, {
-      y: 150,
-      opacity: 0,
-      duration: 1,
-      yoyo: true,
-      delay: 0.2,
-      stagger: 0.01
+    let animation = gsap.fromTo(split.chars, {x: 100, opacity: 0, duration: 1.2, ease: "sine"},{
+      x: -100,
+      opacity: 1,
+      stagger: 0.04
     })
-    animation.delay(0.1)
+    animation.pause()
+    animation.delay(0.5)
     animation.play()
-
   }
   
   
   ngOnInit() {
     
     document.addEventListener("DOMContentLoaded", () =>{
-      
       setTimeout(() => {
         this.textanimation('personname')
         this.textanimation('profesion')
 
-        for(let i = 0; i<= this.socialLinksArray.length; i++){
+        for(let i in this.socialLinksArray){
           this.textanimation(`socialmedialinktext_${i}`)
         }
         
-      }, 1);
-      
+      }, 2);
     })
     
     

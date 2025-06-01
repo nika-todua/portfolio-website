@@ -196,7 +196,8 @@ export class ProjectComponent {
         if (box && ScrollTrigger.isInViewport(box)) {
           const delay = Math.random() * 2 + 1;
           await new Promise(r => setTimeout(r, delay * 185));
-          let tween = gsap.to(box, { opacity: 1, y: 0, pointerEvents:"auto", duration: 0.25 });
+          let tween = gsap.to(box, { opacity: 1, y: 0, pointerEvents:"auto", duration: 0.2 });
+          tween.play()
         }
         // აქელემენტს ემატება კლასი animated-in
         if (box && box!.getAttributeNode('style') != null) {
@@ -213,7 +214,7 @@ export class ProjectComponent {
       if (scrollTimeout) clearTimeout(scrollTimeout);
       scrollTimeout = window.setTimeout(() => {
         animateSequentially(this.paginatedProjects());
-      }, 7);
+      }, 3);
     });
   }
 
