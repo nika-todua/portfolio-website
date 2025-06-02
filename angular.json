@@ -37,7 +37,6 @@
               }
             ],
             "styles": [
-              "node_modules/remixicon/fonts/remixicon.css",
               "public/assets/geofont/css/archyedt-bold.min.css",
               "src/variables.css",
               "src/styles.css"
