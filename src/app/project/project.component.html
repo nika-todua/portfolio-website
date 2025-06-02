@@ -9,7 +9,7 @@
 
     <div class="relative flex flex-wrap items-start justify-center w-full gap-3 project_card_cont">
         @for (data of paginatedProjects(); track $index){
-            <div class="project_card_item rounded-xl flex flex-col gap-3 max-w-[452px] relative w-full project_{{data.id}}">
+            <div class="project_card_item rounded-xl flex flex-col gap-3 max-w-[452px] relative w-full" id="project_{{data.id}}">
                 <div class="relative overflow-hidden rounded-lg pointer-events-none img_box aspect-video bg-[var(--body-dark-bg)] flex items-center justify-center">
                     <div class="relative inset-0 z-0 flex loading newtons-cradle">
                         @for (dot of ["","","",""]; track $index){

@@ -84,7 +84,7 @@ export class ProfilefactsComponent {
       this.animateCount('year', () => this.elementArray[0].number++, this.skillyearyear, this.yearMax, 450, () => this.elementArray[0].pluseSet = true);
       this.animateCount('project', () => this.elementArray[1].number++, this.projectLength, this.projectMax, this.interval, () => this.elementArray[1].pluseSet = true);
       this.animateCount('customer', () => this.elementArray[2].number++, this.projectLength, this.customerMax, this.interval, () => this.elementArray[2].pluseSet = true);
-    }, 1300);
+    }, 95);
   }
 
   // კონკრეტული counter-ის ანიმაცია - increment ფუნქციის განსაზღვრა და გაჩერება როცა მიაღწევს მიზანს ან მაქსიმუმს

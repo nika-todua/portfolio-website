@@ -66,12 +66,12 @@ export class ProjectComponent {
   // გვერდის შეცვლა და გვერდის გადახვევა
   changePage(page: any) {
     if (page >= 1 && page <= this.totalPages) {
+      this.projectScroll();
       this.currentPage = page;
       this.newmontharr = this.montharr.slice(
         (page - 1) * this.itemsPerPage,
         page * this.itemsPerPage
       );
-      this.projectScroll();
     }
   }
 
@@ -191,31 +191,34 @@ export class ProjectComponent {
       if (isAnimating) return;
       isAnimating = true;
       for (const proj of projects) {
-        const box = document.querySelector(`.project_${proj.id}`) as HTMLElement | null;
-
+        const box:any = document.querySelector(`#project_${proj.id}`);
+        const delay = Math.random() * 2 + 1;
+        await new Promise(r => setTimeout(r, delay * 20));
+        
         if (box && ScrollTrigger.isInViewport(box)) {
-          const delay = Math.random() * 2 + 1;
-          await new Promise(r => setTimeout(r, delay * 185));
-          let tween = gsap.to(box, { opacity: 1, y: 0, pointerEvents:"auto", duration: 0.2 });
-          tween.play()
+          let tween = gsap.to(box, { opacity: 1, x: 0, pointerEvents:"auto", duration: 0.26 });
+          tween.delay(0.2)
         }
-        // აქელემენტს ემატება კლასი animated-in
+        
+        // აქ ელემენტს ემატება კლასი animated-in
         if (box && box!.getAttributeNode('style') != null) {
           if ( box!.getAttributeNode('style')!.value.includes("transform: translate(0px, 0px);") || box!.getAttributeNode('style')!.value.includes("transform: translate3d(0px, 0px, 0px);") && box!.getAttributeNode('style')!.value.includes("opacity: 1;")) {
             box.classList.add("animated-in")
           }
         }
+        
       }
       isAnimating = false;
     }
-  
-    let scrollTimeout: number | null = null;
     document.addEventListener('scroll', () => {
-      if (scrollTimeout) clearTimeout(scrollTimeout);
-      scrollTimeout = window.setTimeout(() => {
-        animateSequentially(this.paginatedProjects());
-      }, 3);
+      animateSequentially(this.paginatedProjects());
+
     });
+    document.addEventListener('scrollend', () => {
+      animateSequentially(this.paginatedProjects());
+    });
+      
+    
   }
 
 }

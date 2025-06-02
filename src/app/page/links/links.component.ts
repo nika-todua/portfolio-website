@@ -94,41 +94,30 @@ export class LinksComponent {
   textanimation(textID:string){
     gsap.registerPlugin(SplitText);
 
-    let split = SplitText.create(`#${textID}`, {type:"chars"});
+    let text = document.querySelector(`#${textID}`);
+
+    let split = SplitText.create(text, {type:"chars, words"});
     
     let animation = gsap.fromTo(split.chars,
       {// აქედან იწყება ანიმაცია
         x: 100,
         opacity: 0,
-        duration: 0.9,
-        ease: "elastic"
+        duration: 0.3,
+        ease: "sine.out"
       },
       {// აქ მთავრდება ანიმაცია
       x: -100,
       opacity: 1,
-      stagger: 0.04
+      duration: 0.3,
+      stagger: 0.05
     })
-    animation.pause()
-    animation.delay(0.5)
     animation.play()
 
-    let text = document.querySelector(`#${textID}`);
     setTimeout(() => {
-
-      let animation2 = gsap.fromTo(split.chars,
-        {// აქედან იწყება ანიმაცია
-          x: 0,
-          opacity: 1,
-          duration: 0,
-          ease: "elastic"
-        },
-        {// აქ მთავრდება ანიმაცია
-          x: 0,
-          opacity: 1,
-          stagger: 0
-        }
-      )
-      animation2.pause()
+      for (let i = 0; i < split.chars.length; i++) {
+        const element: any = split.chars[i];
+        element!.style.transform = 'translate(0px, 0px)';
+      }
       text!.classList.remove("textanim")
     }, 2500);
 
