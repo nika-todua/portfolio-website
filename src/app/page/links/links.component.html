@@ -15,7 +15,7 @@
     <aside class="relative flex items-start justify-center w-full mt-5 bottom_sec">
         <div class="relative flex flex-wrap items-center justify-center w-full gap-4 soc_listboc max-w-[425px]">
             @for (data of socialLinksArray; track $index){
-                <button class="flex items-center justify-center w-full overflow-hidden rounded-lg cursor-pointer soc-boc-item font h-[58px] bg-transparent">
+                <button class="flex items-center justify-center w-full overflow-hidden rounded-lg cursor-pointer soc-boc-item h-[58px] bg-transparent">
                     <a [href]="data.link" rel="{{data.rel}}" target="_blank" class="flex items-center justify-center w-full h-full" [style]="data.boxgradient">
                         <span class="pointer-events-none icons">
                             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" class="flex mr-2 pointer-events-none" style="fill: var(--text-white) !important;" viewBox="0 0 24 24">
@@ -36,7 +36,7 @@
                                 }
                             </svg>
                         </span>
-                        <span class="text-xl pointer-events-none text sm:text-[22px] textanim" id="socialmedialinktext_{{$index}}" style="color: var(--text-white) !important;">{{data.name}}</span>
+                        <span class="text-xl pointer-events-none text sm:text-[22px] textanim" id="socialmedialinktext_{{$index}}" style="color: var(--text-white) !important; font-family: var(--font-eng) !important; ">{{data.name}}</span>
                     </a>
                 </button>
             }

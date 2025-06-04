@@ -8,10 +8,10 @@
     padding: 14px !important;
     pointer-events: none;
     background-color: var(--darkblue);
-    transition-timing-function: cubic-bezier(0.59, 1.09, 0.58, 0.98) !important;
-    -o-transition-timing-function: cubic-bezier(0.59, 1.09, 0.58, 0.98) !important;
-    -moz-transition-timing-function: cubic-bezier(0.59, 1.09, 0.58, 0.98) !important;
-    -webkit-transition-timing-function: cubic-bezier(0.59, 1.09, 0.58, 0.98) !important;
+    transition-timing-function: cubic-bezier(0,1.5,1,1.5) !important;
+    -o-transition-timing-function: cubic-bezier(0,1.5,1,1.5) !important;
+    -moz-transition-timing-function: cubic-bezier(0,1.5,1,1.5) !important;
+    -webkit-transition-timing-function: cubic-bezier(0,1.5,1,1.5) !important;
 }
 .project_card_item:nth-child(odd){
     transform: translate(-100%, 0);
@@ -24,6 +24,7 @@
     transition: all 0s !important;
     pointer-events: auto !important;
     transform: translate(0px, 0px) !important;
+    transform: translate3d(0px, 0px, 0px) !important;
 }
 .card_btn{
     height: fit-content;

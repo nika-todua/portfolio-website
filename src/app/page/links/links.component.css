@@ -1,10 +1,10 @@
 .textanim {
     opacity: 0;
     transform: translate(100px, 0);
-    animation: anim 10ms 0.5s linear forwards;
-    -o-animation: anim 10ms 0.5s linear forwards;
-    -moz-animation: anim 10ms 0.5s linear forwards;
-    -webkit-animation: anim 10ms 0.5s linear forwards;
+    animation: anim 12ms 300ms ease forwards;
+    -o-animation: anim 12ms 300ms ease forwards;
+    -moz-animation: anim 12ms 300ms ease forwards;
+    -webkit-animation: anim 12ms 300ms ease forwards;
 }
 @keyframes anim {
     0%{

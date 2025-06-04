@@ -92,35 +92,44 @@ export class LinksComponent {
   // კომპონენტის ჩატვირთვისას ინიშნება გვერდის სათაური და ემატება მეტა თეგები SEO-სთვის
 
   textanimation(textID:string){
+    if (!textID) return;
     gsap.registerPlugin(SplitText);
 
-    let text = document.querySelector(`#${textID}`);
+    const text = document.getElementById(textID);
+    if (!text) return;
 
-    let split = SplitText.create(text, {type:"chars, words"});
-    
-    let animation = gsap.fromTo(split.chars,
-      {// აქედან იწყება ანიმაცია
+    // Avoid re-splitting if already split
+    if ((text as any)._isSplit) return;
+    (text as any)._isSplit = true;
+
+    const split = SplitText.create(text,  { type: "chars, lines", tag: "p" });
+
+    gsap.fromTo(
+      split.chars,
+      {
         x: 100,
         opacity: 0,
         duration: 0.3,
         ease: "sine.out"
       },
-      {// აქ მთავრდება ანიმაცია
-      x: -100,
-      opacity: 1,
-      duration: 0.3,
-      stagger: 0.05
-    })
-    animation.play()
+      {
+        x: -100,
+        opacity: 1,
+        duration: 0.3,
+        stagger: 0.04
+      }
+    );
 
     setTimeout(() => {
-      for (let i = 0; i < split.chars.length; i++) {
-        const element: any = split.chars[i];
-        element!.style.transform = 'translate(0px, 0px)';
+      for (const element of split.chars) {
+        (element as HTMLElement).style.transform = 'translate(0px, 0px)';
       }
-      text!.classList.remove("textanim")
-    }, 2500);
+      (text as HTMLElement).style.transform = 'translate(0px, 0px)';
+      (text as any)._isSplit = false;
 
+      
+    }, 2500);
+    
 
   }
   
@@ -136,7 +145,7 @@ export class LinksComponent {
           this.textanimation(`socialmedialinktext_${i}`)
         }
 
-      }, 1);
+      }, 2);
     }
     
     

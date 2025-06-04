@@ -186,36 +186,31 @@ export class ProjectComponent {
   ngOnInit() {
     gsap.registerPlugin(ScrollTrigger);
     let isAnimating = false;
-  
-    async function animateSequentially(projects: Project[]) {
+
+    const animateSequentially = async (projects: Project[]) => {
       if (isAnimating) return;
       isAnimating = true;
-      for (const proj of projects) {
-        const box:any = document.querySelector(`#project_${proj.id}`);
+      for (let proj = projects.length; proj >= this.itemsPerPage; proj--) {
+        const box = document.querySelector<HTMLElement>(`#project_${proj}`);
         const delay = Math.random() * 2 + 1;
-        await new Promise(r => setTimeout(r, delay * 20));
-        
+        await new Promise(r => setTimeout(r, delay * 15));
+
+        if (box && box.getAttribute('style') && 
+        ( box.getAttribute('style')!.includes("transform: translate(0px, 0px);") || box.getAttribute('style')!.includes("transform: translate3d(0px, 0px, 0px);") )
+        && box.getAttribute('style')!.includes("opacity: 1;")
+        ) {
+          box.classList.add("animated-in");
+        }
+
         if (box && ScrollTrigger.isInViewport(box)) {
-          let tween = gsap.to(box, { opacity: 1, x: 0, pointerEvents:"auto", duration: 0.26 });
-          tween.delay(0.2)
+          gsap.to(box, { opacity: 1, x: 0, pointerEvents: "auto", duration: 0.4, delay: 0.2 });
         }
-        
-        // აქ ელემენტს ემატება კლასი animated-in
-        if (box && box!.getAttributeNode('style') != null) {
-          if ( box!.getAttributeNode('style')!.value.includes("transform: translate(0px, 0px);") || box!.getAttributeNode('style')!.value.includes("transform: translate3d(0px, 0px, 0px);") && box!.getAttributeNode('style')!.value.includes("opacity: 1;")) {
-            box.classList.add("animated-in")
-          }
-        }
-        
       }
       isAnimating = false;
-    }
-    document.addEventListener('scroll', () => {
-      animateSequentially(this.paginatedProjects());
+    };
 
-    });
-    document.addEventListener('scrollend', () => {
-      animateSequentially(this.paginatedProjects());
+    document.addEventListener('scroll', () => {
+      animateSequentially(this.projectarrayall);
     });
       
     
