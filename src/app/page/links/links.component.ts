@@ -92,36 +92,54 @@ export class LinksComponent {
   // კომპონენტის ჩატვირთვისას ინიშნება გვერდის სათაური და ემატება მეტა თეგები SEO-სთვის
 
   textanimation(textID:string){
+    if (!textID) return;
+    let duration:number = 0.4
+    let positionX:number = 50
+    let animdelay:number = 0.6
+
+    // Get the root element
+    const root = document.documentElement;
+    // Update the CSS variable
+    root.style.setProperty('--text-position', `${positionX}px`);
+
+    const text = document.getElementById(textID);
+    
     gsap.registerPlugin(SplitText);
 
-    let text = document.querySelector(`#${textID}`);
+    if (!text) return;
 
-    let split = SplitText.create(text, {type:"chars, words"});
-    
-    let animation = gsap.fromTo(split.chars,
-      {// აქედან იწყება ანიმაცია
-        x: 100,
+    // Avoid re-splitting if already split
+    if ((text as any)._isSplit) return;
+    (text as any)._isSplit = true;
+
+    const split = SplitText.create(text,  { type: "chars, lines", tag: "p" });
+
+    gsap.fromTo(
+      split.chars,
+      {
+        x: positionX,
         opacity: 0,
-        duration: 0.3,
+        delay: animdelay,
+        duration: duration,
+        stagger: 0.05,
         ease: "sine.out"
       },
-      {// აქ მთავრდება ანიმაცია
-      x: -100,
-      opacity: 1,
-      duration: 0.3,
-      stagger: 0.05
-    })
-    animation.play()
+      {
+        x: -positionX,
+        opacity: 1,
+        delay: animdelay,
+        duration: duration,
+        stagger: 0.05
+      }
+    );
 
     setTimeout(() => {
-      for (let i = 0; i < split.chars.length; i++) {
-        const element: any = split.chars[i];
-        element!.style.transform = 'translate(0px, 0px)';
+      for (const element of split.chars) {
+        (element as HTMLElement).style.transform = 'translate(0px, 0px)';
       }
-      text!.classList.remove("textanim")
+      (text as HTMLElement).style.transform = 'translate(0px, 0px)';
+      (text as any)._isSplit = false;
     }, 2500);
-
-
   }
   
   
@@ -135,8 +153,7 @@ export class LinksComponent {
         for(let i in this.socialLinksArray){
           this.textanimation(`socialmedialinktext_${i}`)
         }
-
-      }, 1);
+      }, 2);
     }
     
     

@@ -49,6 +49,11 @@ body.geo-lang .font {
   font-weight: var(--font-regular) !important;
 }
 
+body.light_mode .links_text p p,
+.links_text p p{
+  color: var(--text-white) !important;
+}
+
 body {
   background-color: var(--body-dark-bg);
 }
@@ -127,4 +132,25 @@ body.light_mode .img_box {
 
 body.light_mode .cards .skill_inner_ul li svg {
   fill: var( --skill-ICON) !important;
+}
+
+.textanim {
+  opacity: 0;
+  transform: translate(var(--text-position), 0px);
+  -o-transform: translate(var(--text-position), 0px);
+  -ms-transform: translate(var(--text-position), 0px);
+  -moz-transform: translate(var(--text-position), 0px);
+  -webkit-transform: translate(var(--text-position), 0px);
+  
+  animation: anim 12ms 300ms ease forwards;
+  -o-animation: anim 12ms 300ms ease forwards;
+  -moz-animation: anim 12ms 300ms ease forwards;
+  -webkit-animation: anim 12ms 300ms ease forwards;
+}
+@keyframes anim {
+    0%{
+        opacity: 0;
+    }100%{
+        opacity: 1;
+    }
 }
