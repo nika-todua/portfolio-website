@@ -93,9 +93,19 @@ export class LinksComponent {
 
   textanimation(textID:string){
     if (!textID) return;
-    gsap.registerPlugin(SplitText);
+    let duration:number = 0.4
+    let positionX:number = 50
+    let animdelay:number = 0.6
+
+    // Get the root element
+    const root = document.documentElement;
+    // Update the CSS variable
+    root.style.setProperty('--text-position', `${positionX}px`);
 
     const text = document.getElementById(textID);
+    
+    gsap.registerPlugin(SplitText);
+
     if (!text) return;
 
     // Avoid re-splitting if already split
@@ -107,16 +117,19 @@ export class LinksComponent {
     gsap.fromTo(
       split.chars,
       {
-        x: 100,
+        x: positionX,
         opacity: 0,
-        duration: 0.3,
+        delay: animdelay,
+        duration: duration,
+        stagger: 0.05,
         ease: "sine.out"
       },
       {
-        x: -100,
+        x: -positionX,
         opacity: 1,
-        duration: 0.3,
-        stagger: 0.04
+        delay: animdelay,
+        duration: duration,
+        stagger: 0.05
       }
     );
 
@@ -126,11 +139,7 @@ export class LinksComponent {
       }
       (text as HTMLElement).style.transform = 'translate(0px, 0px)';
       (text as any)._isSplit = false;
-
-      
     }, 2500);
-    
-
   }
   
   
@@ -144,7 +153,6 @@ export class LinksComponent {
         for(let i in this.socialLinksArray){
           this.textanimation(`socialmedialinktext_${i}`)
         }
-
       }, 2);
     }
     
