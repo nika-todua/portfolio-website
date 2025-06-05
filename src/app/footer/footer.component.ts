@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
-
   versionYear:number = 2025
   coppyText:string = 'All rigths reserved.'
 
@@ -25,6 +24,5 @@ export class FooterComponent {
   ngOnInit(){
     this.languageSistem()
   }
-  
   
 }
