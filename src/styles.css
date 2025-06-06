@@ -134,19 +134,6 @@ body.light_mode .cards .skill_inner_ul li svg {
   fill: var( --skill-ICON) !important;
 }
 
-.textanim {
-  opacity: 0;
-  transform: translate(var(--text-position), 0px);
-  -o-transform: translate(var(--text-position), 0px);
-  -ms-transform: translate(var(--text-position), 0px);
-  -moz-transform: translate(var(--text-position), 0px);
-  -webkit-transform: translate(var(--text-position), 0px);
-  
-  animation: anim 12ms 300ms ease forwards;
-  -o-animation: anim 12ms 300ms ease forwards;
-  -moz-animation: anim 12ms 300ms ease forwards;
-  -webkit-animation: anim 12ms 300ms ease forwards;
-}
 @keyframes anim {
     0%{
         opacity: 0;

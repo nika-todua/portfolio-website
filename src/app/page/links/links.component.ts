@@ -91,17 +91,27 @@ export class LinksComponent {
   
   // კომპონენტის ჩატვირთვისას ინიშნება გვერდის სათაური და ემატება მეტა თეგები SEO-სთვის
 
+  
+  Xposition:number = 60
+  textStartposition = `opacity:0;
+                       animation: anim 12ms 300ms ease forwards;
+                       -o-animation: anim 12ms 300ms ease forwards;
+                       -moz-animation: anim 12ms 300ms ease forwards;
+                       -webkit-animation: anim 12ms 300ms ease forwards;
+                       transform: translate(${this.Xposition}px, 0px);
+                       -o-transform: translate(${this.Xposition}px, 0px);
+                       -ms-transform: translate(${this.Xposition}px, 0px);
+                       -moz-transform: translate(${this.Xposition}px, 0px);
+                       -webkit-transform: translate(${this.Xposition}px, 0px);`
+  
+  
+
   textanimation(textID:string){
     if (!textID) return;
-    let duration:number = 0.4
-    let positionX:number = 50
+    let duration:number = 0.3
     let animdelay:number = 0.6
 
-    // Get the root element
-    const root = document.documentElement;
-    // Update the CSS variable
-    root.style.setProperty('--text-position', `${positionX}px`);
-
+    // return
     const text = document.getElementById(textID);
     
     gsap.registerPlugin(SplitText);
@@ -117,7 +127,7 @@ export class LinksComponent {
     gsap.fromTo(
       split.chars,
       {
-        x: positionX,
+        x: 0,
         opacity: 0,
         delay: animdelay,
         duration: duration,
@@ -125,7 +135,7 @@ export class LinksComponent {
         ease: "sine.out"
       },
       {
-        x: -positionX,
+        x: -this.Xposition,
         opacity: 1,
         delay: animdelay,
         duration: duration,

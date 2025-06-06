@@ -98,21 +98,21 @@ export class HeaderComponent {
       // --ენის შემცვლელი, რომელიც რომ შედის მომხმარებელი ეგრევე ანიჭებს იმ მნიშვნელობას რაც შეცვალა--
       const language = JSON.parse(websettingstorage).language;
       if (language === this.usetoken) {
+        document.body.classList.add("usa-lang");
         this.localstorageArray.language = this.usetoken;
         document.body.classList.remove("geo-lang");
-        document.body.classList.add("usa-lang");
         this.languageCount = 0;
         this.flagimg = false;
       } else if (language === this.geotoken) {
+        document.body.classList.add("geo-lang");
         this.localstorageArray.language = this.geotoken;
         document.body.classList.remove("usa-lang");
-        document.body.classList.add("geo-lang");
         this.languageCount = 1;
         this.flagimg = true;
       } else {
+        document.body.classList.add("usa-lang");
         this.localstorageArray.language = this.usetoken;
         document.body.classList.remove("geo-lang");
-        document.body.classList.add("usa-lang");
         this.languageCount = 0;
         this.flagimg = false;
       }
