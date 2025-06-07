@@ -203,7 +203,7 @@ export class ProjectComponent {
         }
 
         if (box && ScrollTrigger.isInViewport(box)) {
-          gsap.to(box, { opacity: 1, x: 0, pointerEvents: "auto", duration: 0.4, delay: 0.2 });
+          gsap.to(box, { opacity: 1, x: 0, pointerEvents: "auto", duration: 0.45, delay: 0.15 });
         }
       }
       isAnimating = false;

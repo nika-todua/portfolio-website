@@ -93,19 +93,18 @@ export class LinksComponent {
 
   
   Xposition:number = 60
-  textStartposition = `opacity:0;
-                       animation: anim 12ms 300ms ease forwards;
-                       -o-animation: anim 12ms 300ms ease forwards;
-                       -moz-animation: anim 12ms 300ms ease forwards;
-                       -webkit-animation: anim 12ms 300ms ease forwards;
-                       transform: translate(${this.Xposition}px, 0px);
-                       -o-transform: translate(${this.Xposition}px, 0px);
-                       -ms-transform: translate(${this.Xposition}px, 0px);
-                       -moz-transform: translate(${this.Xposition}px, 0px);
-                       -webkit-transform: translate(${this.Xposition}px, 0px);`
+  textStartposition:string =`opacity: 0;
+                             animation: showanim 12ms 300ms ease forwards;
+                             -o-animation: showanim 12ms 300ms ease forwards;
+                             -moz-animation: showanim 12ms 300ms ease forwards;
+                             -webkit-animation: showanim 12ms 300ms ease forwards;
+                             transform: translate(${this.Xposition}px, 0px);
+                             -o-transform: translate(${this.Xposition}px, 0px);
+                             -ms-transform: translate(${this.Xposition}px, 0px);
+                             -moz-transform: translate(${this.Xposition}px, 0px);
+                             -webkit-transform: translate(${this.Xposition}px, 0px);`
   
   
-
   textanimation(textID:string){
     if (!textID) return;
     let duration:number = 0.3
@@ -143,11 +142,29 @@ export class LinksComponent {
       }
     );
 
+    function removeDuplicateCSS(text:any) {
+      const declarations = text.split(";").map((decl:any) => decl.trim()).filter(Boolean);
+      const seen = new Map();
+
+      for (let decl of declarations) {
+        const [prop, ...valueParts] = decl.split(":");
+        const property = prop.trim();
+        const value = valueParts.join(":").trim();
+        seen.set(property, value);
+      }
+    
+      return Array.from(seen.entries())
+        .map(([prop, value]) => `${prop}: ${value}`)
+        .join("; ") + ";";
+    }
+
+
     setTimeout(() => {
       for (const element of split.chars) {
-        (element as HTMLElement).style.transform = 'translate(0px, 0px)';
+        let elementstyle = element.getAttribute('style') + ' ' + 'transform: translate3d(0px, 0px, 0px) !important; -o-transform: translate(0px, 0px) translate3d(0px, 0px, 0px) !important; -ms-transform: translate(0px, 0px) translate3d(0px, 0px, 0px) !important; -moz-transform: translate(0px, 0px) translate3d(0px, 0px, 0px) !important; -webkit-transform: translate(0px, 0px) translate3d(0px, 0px, 0px) !important;'
+        element.setAttribute("style", removeDuplicateCSS(elementstyle))
       }
-      (text as HTMLElement).style.transform = 'translate(0px, 0px)';
+      text.classList.add("textstartposition");
       (text as any)._isSplit = false;
     }, 2500);
   }

@@ -17,8 +17,8 @@
                         }
                     </div>
 
-                    <picture class="absolute inset-0 z-40 w-full h-full">
-                      <source media="(max-width:480px)" [srcset]="data.image_mobile">
+                    <picture class="absolute inset-0 z-40 w-full h-full object-cover">
+                      <source media="(max-width: 480px)" [srcset]="data.image_mobile">
                       <img [src]="data.image_desktop" alt="Project banner image" loading="lazy" class="object-cover w-full h-full select-none">
                     </picture>
                 </div>

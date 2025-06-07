@@ -3,10 +3,10 @@
 @import "tailwindcss";
 
 *,*::after,*::before{
-  transition: all 240ms cubic-bezier(0.4, 0.09, 0.63, 0.98) !important;
-  -o-transition: all 240ms cubic-bezier(0.4, 0.09, 0.63, 0.98) !important;
-  -moz-transition: all 240ms cubic-bezier(0.4, 0.09, 0.63, 0.98) !important;
-  -webkit-transition: all 240ms cubic-bezier(0.4, 0.09, 0.63, 0.98) !important;
+  transition: color 240ms cubic-bezier(0.4, 0.09, 0.63, 0.98), background-color 240ms cubic-bezier(0.4, 0.09, 0.63, 0.98) !important;
+  -o-transition: color 240ms cubic-bezier(0.4, 0.09, 0.63, 0.98), background-color 240ms cubic-bezier(0.4, 0.09, 0.63, 0.98) !important;
+  -moz-transition: color 240ms cubic-bezier(0.4, 0.09, 0.63, 0.98), background-color 240ms cubic-bezier(0.4, 0.09, 0.63, 0.98) !important;
+  -webkit-transition: color 240ms cubic-bezier(0.4, 0.09, 0.63, 0.98), background-color 240ms cubic-bezier(0.4, 0.09, 0.63, 0.98) !important;
 }
 
 body{
@@ -17,15 +17,37 @@ body{
   -webkit-animation: showanim 600ms 0.1s linear forwards;
 }
 @keyframes showanim {
-  from {
+  0% {
     opacity: 0;
   }
-
-  to {
+  100% {
     opacity: 1;
   }
 }
-
+@-o-keyframes showanim{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+@-moz-keyframes showanim{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+@-webkit-keyframes showanim{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -132,12 +154,4 @@ body.light_mode .img_box {
 
 body.light_mode .cards .skill_inner_ul li svg {
   fill: var( --skill-ICON) !important;
-}
-
-@keyframes anim {
-    0%{
-        opacity: 0;
-    }100%{
-        opacity: 1;
-    }
 }
