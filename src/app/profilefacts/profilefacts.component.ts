@@ -34,13 +34,14 @@ export class ProfilefactsComponent {
   ngOnInit(): void {
 
     let set3 = setInterval(() => {
-      this.projectLength = this.message; // პროექტების რაოდენობის შენახვა
+      this.projectLength = this.message.length; // პროექტების რაოდენობის შენახვა
       this.interval = this.getIntervalByLength(this.projectLength); // ინტერვალის გამოთვლა პროექტების რაოდენობის მიხედვით
-      if(this.projectLength > 0){
-        clearInterval(set3)
+      
+      if(this.message[0] !== undefined){
+        if(this.projectLength > 0 || this.projectLength === this.message[0].id){
+          clearInterval(set3)
+        }
       }
-      
-      
     }, 1);
     this.startCounters(); // ანიმაციის დაწყება
     this.initializeData();
