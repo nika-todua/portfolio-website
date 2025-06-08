@@ -38,7 +38,7 @@ export class ProfilefactsComponent {
       this.interval = this.getIntervalByLength(this.projectLength); // ინტერვალის გამოთვლა პროექტების რაოდენობის მიხედვით
       
       if(this.message[0] !== undefined){
-        if(this.projectLength > 0 || this.projectLength === this.message[0].id){
+        if(this.projectLength > 0 && this.projectLength === this.message[0].id){
           clearInterval(set3)
         }
       }
