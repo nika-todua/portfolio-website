@@ -7,7 +7,7 @@
 
 <section class="relative flex w-full mt-[65px] min-h-[330px] max-h-max">
     @if (!componentShowHidden){
-        <app-project class="relative flex w-full"></app-project>
+        <app-project class="relative flex w-full" [projectmessage]="messageArray"></app-project>
     } @else {
         <app-skills class="relative flex w-full"></app-skills>
     }

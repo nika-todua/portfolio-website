@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-task',
@@ -7,6 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './task.component.css'
 })
 export class TaskComponent {
+
+  @Input() messageArray: any  = [];
+  
+  projectArray = []
+  
 
   // აქტიური ჩანართის განსაზღვრა: საწყისი მნიშვნელობა არის 'project'
   activeTab: 'project' | 'skill' = 'project';
@@ -22,6 +27,7 @@ export class TaskComponent {
   
   // getter ფუნქცია, რომელიც აბრუნებს კლასს project ღილაკისთვის
   get projectbtnClass(): string {
+    this.projectArray = this.messageArray
     return this.activeTab === 'project' ? 'btnActive' : ''; // თუ არჩეულია project, უბრუნებს კლასს
   }
   
@@ -50,6 +56,22 @@ export class TaskComponent {
   // კომპონენტის ჩატვირთვისას გამოძახებულია ენის დაყენება
   ngOnInit() {
     this.languageSistem();
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+      let set = setInterval(() => {
+        
+        this.projectArray = this.messageArray
+
+        if (this.messageArray.length > 0) {
+          return clearInterval(set)
+        }
+      }, 1);
+      
+    });
+    
+    
   }
 
   

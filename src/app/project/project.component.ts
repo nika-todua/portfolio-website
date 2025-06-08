@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ApisService } from '../apis.service';
 import { Project } from '../shared/project.model';
 
 @Component({
@@ -11,6 +10,9 @@ import { Project } from '../shared/project.model';
   styleUrl: './project.component.css'
 })
 export class ProjectComponent {
+
+  @Input() projectmessage: any = [];
+
   filterhidden: boolean = false;
   project: Project[] = [];
   selectTexts: string[] = [];
@@ -20,11 +22,18 @@ export class ProjectComponent {
   text1: string = '';
   text2: string = '';
 
-  constructor(private apisService: ApisService) {
-    this.apisService.getproject().subscribe((data:any) => {
-      this.getprojects(data);
-    });
+  constructor() {
     this.languageSystem();
+
+    let setproject = setInterval(() => {
+      this.projectarrayall = this.projectmessage.sort((a:any, b:any) => b.id - a.id);
+      this.sortingText();
+
+      if(this.projectarrayall.length > 0){
+        clearInterval(setproject)
+      }
+    }, 1);
+    
   }
 
   // მეტენესის პროქტების და ფერების ტექსტის სისტემის ფუნქცია
@@ -122,12 +131,6 @@ export class ProjectComponent {
     window.scrollTo({ top: Math.max(scrollTop - 25, 0), left: 0, behavior: 'smooth' });
   }
 
-  // API-დან მიღებული პროექტების დამუშავება და დასორტვა
-  getprojects(data: Project[]) {
-    this.projectarrayall = data.sort((a, b) => b.id - a.id);
-    this.sortingText();
-  }
-
   // ტეგების ელემენტების ხილვადობისა და სორტირების ფუნქციები
   sortingText() {
     const tags = Array.from(new Set(this.projectarrayall.map(p => p.tag)));
@@ -211,9 +214,7 @@ export class ProjectComponent {
 
     document.addEventListener('scroll', () => {
       animateSequentially(this.projectarrayall);
-    });
-      
-    
+    }); 
   }
 
 }

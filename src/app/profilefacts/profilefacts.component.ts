@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { ApisService } from '../apis.service';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-profilefacts',
@@ -8,6 +7,8 @@ import { ApisService } from '../apis.service';
   styleUrl: './profilefacts.component.css'
 })
 export class ProfilefactsComponent {
+
+  @Input() message: any = 0;
 
   // სამუშაო გამოცდილების წლების დინამიკური გამოთვლა (2022 წლიდან დღემდე)
   readonly skillyearyear: number = new Date().getFullYear() - 2022;
@@ -30,21 +31,27 @@ export class ProfilefactsComponent {
   // პროექტების რაოდენობა, რომელიც მოგვაქვს API-დან
   projectLength: number = 0;
 
-  // constructor-ში ინიციალიზირდება მონაცემები
-  constructor(private api: ApisService) {
+  ngOnInit(): void {
+
+    let set3 = setInterval(() => {
+      this.projectLength = this.message; // პროექტების რაოდენობის შენახვა
+      this.interval = this.getIntervalByLength(this.projectLength); // ინტერვალის გამოთვლა პროექტების რაოდენობის მიხედვით
+      if(this.projectLength > 0){
+        clearInterval(set3)
+      }
+      
+      
+    }, 1);
+    this.startCounters(); // ანიმაციის დაწყება
     this.initializeData();
   }
-
+  
   // ამ მეთოდში იტვირთება პროექტების რაოდენობა API-დან და იწყება counters-ების ანიმაცია
-  private initializeData(): void {
-    this.api.getproject().subscribe((data: any) => {
-      this.projectLength = data.length; // პროექტების რაოდენობის შენახვა
-      this.interval = this.getIntervalByLength(this.projectLength); // ინტერვალის გამოთვლა პროექტების რაოდენობის მიხედვით
-      this.startCounters(); // ანიმაციის დაწყება
-    });
-
+  private initializeData(): void {      
     // ენის ჩატვირთვა პატარა დაგვიანებით, რათა მოესწროს body class-ის დაფიქსირება
-    setTimeout(() => this.loadLanguage(), 1);
+    setTimeout(() => {
+      this.loadLanguage()
+    }, 1);
   }
 
   // ანიმაციის ინტერვალის განსაზღვრა პროექტების რაოდენობის მიხედვით

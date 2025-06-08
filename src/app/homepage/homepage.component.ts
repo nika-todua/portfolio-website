@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { ApisService } from '../apis.service';
 
 @Component({
   selector: 'app-homepage',
@@ -9,8 +10,10 @@ import { Meta, Title } from '@angular/platform-browser';
 })
 export class HomepageComponent {
 
+  projectArray:any = []
+
   // სოციალური ქსელების მასივი
-  socialMediaLinks = [
+  socialMediaLinks:any = [
     { name: 'Instagram', link: 'https://www.instagram.com/nicktoduaa/' },
     { name: 'GitHub', link: 'https://github.com/nika-todua' },
     { name: 'X-twitter', link: 'https://x.com/nika_todua2'},
@@ -18,8 +21,18 @@ export class HomepageComponent {
   ]
   
   
-  constructor(private titleService: Title, private metaTagService: Meta){
+  constructor(private titleService: Title, private metaTagService: Meta, public api: ApisService){
     this.languageSistem()
+    
+    this.api.getproject().subscribe((data: any) => {
+
+      this.projectArray = data
+      
+      // console.log( this.projectArray );
+
+    });
+    
+    
   }
   
   

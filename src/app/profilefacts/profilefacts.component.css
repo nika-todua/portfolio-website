@@ -1,4 +1,11 @@
 @media screen and (min-width: 425px) {
+    ul{
+        margin: 0 auto;
+        max-width: 405px;
+        gap: 2px;
+        flex-wrap: nowrap;
+        justify-content: space-between !important;
+    }
     ul li{
         max-width: 123px !important;
     }

@@ -1,6 +1,7 @@
 @media screen and (min-width: 425px) {
     .profile_cont{
         padding: 6px;
+        flex-wrap: nowrap !important;
         width: fit-content !important;
         max-width: none !important;
     }
