@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ApisService } from '../apis.service';
+import { Project } from '../shared/project.model';
 
 @Component({
   selector: 'app-homepage',
@@ -10,7 +11,7 @@ import { ApisService } from '../apis.service';
 })
 export class HomepageComponent {
 
-  projectArray:any = []
+  projectArray:Project[] = []
 
   // სოციალური ქსელების მასივი
   socialMediaLinks:any = [
@@ -23,14 +24,9 @@ export class HomepageComponent {
   
   constructor(private titleService: Title, private metaTagService: Meta, public api: ApisService){
     this.languageSistem()
-    
-    this.api.getproject().subscribe((data: any) => {
-      this.projectArray = data
-    });
-    
-    
+
+    this.api.getproject().subscribe((data: any) => this.projectArray = data );
   }
-  
   
   personDesktopImage:string = 'assets/img/profile_img_desktop.webp'
   personModileImage:string = 'assets/img/profile_img_mobile.webp'

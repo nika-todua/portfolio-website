@@ -104,11 +104,10 @@ export class LinksComponent {
                              -moz-transform: translate(${this.Xposition}px, 0px);
                              -webkit-transform: translate(${this.Xposition}px, 0px);`
   
-  
   textanimation(textID:string){
     if (!textID) return;
-    let duration:number = 0.3
-    let animdelay:number = 0.6
+    let duration:number = 0.25
+    let animdelay:number = 0.7
 
     // return
     const text = document.getElementById(textID);

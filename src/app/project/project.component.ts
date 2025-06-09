@@ -210,6 +210,17 @@ export class ProjectComponent {
             duration: 0.45,
             delay: 0.15
           });
+          
+          for (const i of boxel) {
+            let element = i.getAttribute("style")
+            if (element !== null) {
+              const hasTransform = element.includes("transform: translate3d(0px, 0px, 0px);") || element.includes("transform: translate(0px, 0px);");
+              const hasOpacity = element.includes("opacity: 1;");
+              if (hasTransform && hasOpacity) {
+                i.classList.add("animated-in");
+              }
+            }
+          }
         }
       }
     }
