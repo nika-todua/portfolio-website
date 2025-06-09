@@ -36,8 +36,8 @@ export class ProfilefactsComponent {
     let set3 = setInterval(() => {
       this.projectLength = this.message.length; // პროექტების რაოდენობის შენახვა
       this.interval = this.getIntervalByLength(this.projectLength); // ინტერვალის გამოთვლა პროექტების რაოდენობის მიხედვით
-
-      if(this.message[0] !== undefined && this.projectLength === this.message[0].id){
+      
+      if(this.message[0] !== undefined){
         clearInterval(set3)
         this.startCounters(); // ანიმაციის დაწყება
       }

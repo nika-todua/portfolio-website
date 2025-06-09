@@ -1,5 +1,5 @@
 export class Project{
-    id!:number;
+    id!:string;
     title!:string;
     link!:string;
     image_desktop!: string

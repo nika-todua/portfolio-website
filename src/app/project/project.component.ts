@@ -26,9 +26,8 @@ export class ProjectComponent {
     this.languageSystem();
 
     let setproject = setInterval(() => {
-      this.projectarrayall = this.projectmessage.sort((a:any, b:any) => b.id - a.id);
+      this.projectarrayall = this.projectmessage.sort((a:any, b:any) => Number(b.id) - Number(a.id));
       this.sortingText();
-
       if(this.projectarrayall.length > 0){
         clearInterval(setproject)
       }
@@ -170,12 +169,14 @@ export class ProjectComponent {
     this.projectfilterarray = [];
     this.currentPage = 1;
     if (['all', 'ყველა'].includes(tag.toLowerCase())) {
+      this.gsapanimatio(this.projectarrayall, this.itemsPerPage);
       this.filterhidden = false;
-    } else {
+    } else if ( !['all', 'ყველა'].includes(tag.toLowerCase()) ) {
       const filtered = this.filterProject(this.projectarrayall, tag);
       this.projectfilterarray = this.removeDuplicates(filtered);
       this.filterhidden = true;
-    }
+      this.gsapanimatio(this.projectfilterarray, 0);
+    }    
     window.scrollTo({ top: window.scrollY - 1, behavior: 'smooth' });
     window.scrollTo({ top: window.scrollY + 1, behavior: 'smooth' });
   }
@@ -184,36 +185,41 @@ export class ProjectComponent {
   filterProject(arr: Project[], tag: string): Project[] {
     return arr.filter(p => p.tag.toLowerCase().includes(tag.toLowerCase()));
   }
-
+  
   // GSAP ანიმაციების ინიციალიზაცია დოკუმენტის ლოდზე
-  ngOnInit() {
+  isAnimating = false;
+  async gsapanimatio(projects: Project[], itemsPerPage: any) {
+    if (this.isAnimating) return;
+    this.isAnimating = true;
     gsap.registerPlugin(ScrollTrigger);
-    let isAnimating = false;
+    
+    const delayMultiplier = 15;
 
-    const animateSequentially = async (projects: Project[]) => {
-      if (isAnimating) return;
-      isAnimating = true;
-      for (let proj = projects.length; proj >= this.itemsPerPage; proj--) {
-        const box = document.querySelector<HTMLElement>(`#project_${proj}`);
-        const delay = Math.random() * 2 + 1;
-        await new Promise(r => setTimeout(r, delay * 15));
+    for (let i = projects.length; i >= itemsPerPage; i--) {
+      const boxel:any = document.querySelectorAll<HTMLElement>('.project_card_item');
+      if (!boxel) continue;
+      const delay = (Math.random() * 2 + 1) * delayMultiplier;
+      await new Promise(resolve => setTimeout(resolve, delay));
 
-        if (box && box.getAttribute('style') && 
-        ( box.getAttribute('style')!.includes("transform: translate(0px, 0px);") || box.getAttribute('style')!.includes("transform: translate3d(0px, 0px, 0px);") )
-        && box.getAttribute('style')!.includes("opacity: 1;")
-        ) {
-          box.classList.add("animated-in");
-        }
-
+      for (const box of boxel) {
         if (box && ScrollTrigger.isInViewport(box)) {
-          gsap.to(box, { opacity: 1, x: 0, pointerEvents: "auto", duration: 0.45, delay: 0.15 });
+          gsap.to(box, {
+            opacity: 1,
+            x: 0,
+            pointerEvents: "auto",
+            duration: 0.45,
+            delay: 0.15
+          });
         }
       }
-      isAnimating = false;
-    };
-
+    }
+    this.isAnimating = false
+  }
+  
+  ngOnInit() {
+    
     document.addEventListener('scroll', () => {
-      animateSequentially(this.projectarrayall);
+      this.gsapanimatio(this.projectarrayall, this.itemsPerPage);
     }); 
   }
 

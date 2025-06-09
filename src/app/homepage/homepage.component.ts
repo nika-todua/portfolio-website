@@ -25,11 +25,7 @@ export class HomepageComponent {
     this.languageSistem()
     
     this.api.getproject().subscribe((data: any) => {
-
       this.projectArray = data
-      
-      // console.log( this.projectArray );
-
     });
     
     
