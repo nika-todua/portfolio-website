@@ -174,8 +174,8 @@ export class ProjectComponent {
     } else if ( !['all', 'ყველა'].includes(tag.toLowerCase()) ) {
       const filtered = this.filterProject(this.projectarrayall, tag);
       this.projectfilterarray = this.removeDuplicates(filtered);
-      this.filterhidden = true;
       this.gsapanimatio(this.projectfilterarray, 0);
+      this.filterhidden = true;
     }    
     window.scrollTo({ top: window.scrollY - 1, behavior: 'smooth' });
     window.scrollTo({ top: window.scrollY + 1, behavior: 'smooth' });
@@ -188,7 +188,7 @@ export class ProjectComponent {
   
   // GSAP ანიმაციების ინიციალიზაცია დოკუმენტის ლოდზე
   isAnimating = false;
-  async gsapanimatio(projects: Project[], itemsPerPage: any) {
+  async gsapanimatio(projects: Project[], itemsPerPage: number) {
     if (this.isAnimating) return;
     this.isAnimating = true;
     gsap.registerPlugin(ScrollTrigger);
@@ -218,6 +218,8 @@ export class ProjectComponent {
               const hasOpacity = element.includes("opacity: 1;");
               if (hasTransform && hasOpacity) {
                 i.classList.add("animated-in");
+              }else{
+                i.classList.remove("animated-in");
               }
             }
           }

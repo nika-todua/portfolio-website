@@ -108,8 +108,7 @@ export class LinksComponent {
     if (!textID) return;
     let duration:number = 0.25
     let animdelay:number = 0.7
-
-    // return
+    
     const text = document.getElementById(textID);
     
     gsap.registerPlugin(SplitText);
