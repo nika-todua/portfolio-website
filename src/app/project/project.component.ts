@@ -11,10 +11,9 @@ import { Project } from '../shared/project.model';
 })
 export class ProjectComponent {
 
-  @Input() projectmessage: any = [];
+  @Input() projectmessage: Project[] = [];
 
   filterhidden: boolean = false;
-  project: Project[] = [];
   selectTexts: string[] = [];
   projectfilterarray: Project[] = [];
   projectarrayall: Project[] = [];
@@ -183,7 +182,14 @@ export class ProjectComponent {
 
   // პროექტების ელემენტების ფილტრაცია ტეგის მიხედვით
   filterProject(arr: Project[], tag: string): Project[] {
-    return arr.filter(p => p.tag.toLowerCase().includes(tag.toLowerCase()));
+    let result:Project[] = []
+    result.length = 0
+    arr.forEach((element:Project) => {
+      if (element.tag.toLocaleLowerCase() === tag.toLocaleLowerCase()) {
+        result.push(element)
+      }
+    });    
+    return result
   }
   
   // GSAP ანიმაციების ინიციალიზაცია დოკუმენტის ლოდზე
