@@ -7,32 +7,33 @@
         }
     </select>
 
-    <div class="relative flex flex-wrap items-start justify-center w-full gap-3 project_card_cont">
+    <!-- project card container -->
+    <section class="relative flex flex-wrap items-start justify-center w-full gap-3 project_card_cont">
         @for (data of paginatedProjects(); track $index){
-            <div class="project_card_item rounded-xl flex flex-col gap-3 max-w-[452px] relative w-full" id="project_{{data.id}}">
-                <div class="relative overflow-hidden rounded-lg pointer-events-none img_box aspect-video bg-[var(--body-dark-bg)] flex items-center justify-center">
-                    <div class="relative inset-0 z-0 flex loading newtons-cradle">
+            <div class="project_card_item rounded-xl flex flex-col gap-3 max-w-[452px] relative w-full animated-in" id="project_{{data.id}}">
+                <aside class="relative overflow-hidden rounded-lg img_box aspect-video bg-[var(--body-dark-bg)] flex items-center justify-center">
+                    <div class="relative inset-0 z-0 flex loading newtons-cradle pointer-events-none">
                         @for (dot of ["","","",""]; track $index){
-                            <div class="newtons-cradle__dot bloc h-full w-[25%] origin-top"></div>
+                            <div class="newtons-cradle__dot bloc h-full w-[25%] origin-top after:block after:w-full after:aspect-square after:rounded-full after:bg-[var(--uib-color)]"></div>
                         }
                     </div>
 
-                    <picture class="absolute inset-0 z-40 w-full h-full object-cover aspect-video">
-                      <source media="(max-width: 480px)" [srcset]="data.image_mobile">
+                    <picture class="absolute inset-0 flex z-40 w-full h-full object-cover aspect-video">
+                      <source media="(max-width: 540px)" [srcset]="data.image_mobile">
                       <img [src]="data.image_desktop" alt="Project banner image" loading="lazy" class="object-cover w-full h-full select-none aspect-video">
                     </picture>
-                </div>
-                <div class="relative w-full card_desc">
+                </aside>
+                <aside class="relative w-full card_desc">
                     <div class="flex flex-col items-start justify-start gap-2">
                         <h2 class="project-card-title font title text-lg text-[var(--Light-gray)]" style="font-weight: var(--font-Medium);">{{ data.title }}</h2>
                         <a [href]="data.link" rel="nofollow" target="_blank" style="font-weight: var(--font-Medium);" type="button" aria-label="project link btn" class="lowercase overflow-hidden text-base rounded-md cursor-pointer select-none font border-none card_btn px-2 py-1 sm:text-lg text-[var(--darkgray)]">{{ text2 }}</a>
                     </div>
-                </div>
+                </aside>
             </div>
         }
-    </div>
-    
+    </section>
 
+    <!-- Pagination -->
     <nav class="relative flex items-center justify-center mt-2 pagination md:mt-3">
         <ul class="relative flex flex-row">
             <li class="flex overflow-hidden select-none">

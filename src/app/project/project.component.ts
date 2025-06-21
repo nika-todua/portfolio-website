@@ -185,7 +185,7 @@ export class ProjectComponent {
     let result:Project[] = []
     result.length = 0
     arr.forEach((element:Project) => {
-      if (element.tag.toLocaleLowerCase() === tag.toLocaleLowerCase()) {
+      if ( element.tag.toLocaleLowerCase().includes(tag.toLocaleLowerCase()) ) {
         result.push(element)
       }
     });    

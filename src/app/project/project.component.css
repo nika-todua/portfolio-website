@@ -48,14 +48,6 @@
     width: var(--uib-size);
     height: fit-content !important;
 }
-.newtons-cradle__dot::after {
-    content: '';
-    display: block;
-    width: 100%;
-    aspect-ratio: 1/1;
-    border-radius: 50%;
-    background-color: var(--uib-color);
-}
 .newtons-cradle__dot:first-child {
     animation: swing var(--uib-speed) linear infinite;
 }
