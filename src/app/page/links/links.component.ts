@@ -93,16 +93,7 @@ export class LinksComponent {
 
   
   Xposition:number = 60
-  textStartposition:string =`opacity: 0;
-                             animation: showanim 12ms 300ms ease forwards;
-                             -o-animation: showanim 12ms 300ms ease forwards;
-                             -moz-animation: showanim 12ms 300ms ease forwards;
-                             -webkit-animation: showanim 12ms 300ms ease forwards;
-                             transform: translate(${this.Xposition}px, 0px);
-                             -o-transform: translate(${this.Xposition}px, 0px);
-                             -ms-transform: translate(${this.Xposition}px, 0px);
-                             -moz-transform: translate(${this.Xposition}px, 0px);
-                             -webkit-transform: translate(${this.Xposition}px, 0px);`
+  textStartpositionstyle:string =`opacity: 0; animation: showanim 12ms 300ms ease forwards; -o-animation: showanim 12ms 300ms ease forwards; -moz-animation: showanim 12ms 300ms ease forwards; -webkit-animation: showanim 12ms 300ms ease forwards; transform: translate(${this.Xposition}px, 0px); -o-transform: translate(${this.Xposition}px, 0px); -ms-transform: translate(${this.Xposition}px, 0px); -moz-transform: translate(${this.Xposition}px, 0px); -webkit-transform: translate(${this.Xposition}px, 0px);`
   
   textanimation(textID:string){
     if (!textID) return;

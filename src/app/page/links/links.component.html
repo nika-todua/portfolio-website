@@ -7,8 +7,8 @@
             </picture>
         </div>
         <div class="mx-auto mt-4 text-center text-cont w-fit">
-            <h1 class="textanim font user-name text-[36px] sm:text-[44px]" id="personname" [style]="textStartposition + 'color: var(--text-white); font-weight: var(--font-Semi-Bold);' ">{{username}}</h1>
-            <p class="textanim font bioText text-lg sm:text-xl" id="profesion" [style]="textStartposition + 'color: var(--Light-gray);' ">{{userbio}}</p>
+            <h1 class="textanim font user-name text-[36px] sm:text-[44px]" id="personname" [style]="textStartpositionstyle + 'color: var(--text-white); font-weight: var(--font-Semi-Bold);' ">{{username}}</h1>
+            <p class="textanim font bioText text-lg sm:text-xl" id="profesion" [style]="textStartpositionstyle + 'color: var(--Light-gray);' ">{{userbio}}</p>
         </div>
     </aside>
 
@@ -36,7 +36,7 @@
                                 }
                             </svg>
                         </span>
-                        <p class="text-xl pointer-events-none text sm:text-[22px] textanim links_text" id="socialmedialinktext_{{$index}}" [style]="textStartposition + 'color: var(--text-white) !important;  font-family: var(--font-eng) !important;' ">{{data.name}}</p>
+                        <p class="text-xl pointer-events-none text sm:text-[22px] textanim links_text" id="socialmedialinktext_{{$index}}" [style]="textStartpositionstyle + 'color: var(--text-white) !important;  font-family: var(--font-eng) !important;' ">{{data.name}}</p>
                     </a>
                 </button>
             }
