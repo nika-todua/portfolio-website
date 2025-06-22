@@ -2,20 +2,21 @@
     <aside class="relative top-sec overflow-hidden">
         <div class="profileIng flex items-center justify-center mx-auto max-w-36 max-h-36 rounded-full">
             <picture class="aspect-square w-36 h-36 pointer-events-none select-none object-cover">
-                <source [srcset]="mobileImg" media="(max-width:600px)">
-                <img [src]="desktopImg" [alt]="'Profile image of ' + username" loading="lazy" width="144" height="144" class="aspect-square w-36 h-36 object-cover">
-            </picture>
+                <source [attr.srcset]="mobileImg" media="(max-width:600px)">
+                <img [src]="desktopImg" [alt]="'Profile image of ' + username" priority width="144" height="144" class="aspect-square w-36 h-36 object-cover">
+                </picture>
+
         </div>
         <div class="mx-auto mt-4 text-center text-cont w-fit">
-            <h1 class="textanim font user-name text-[36px] sm:text-[44px]" id="personname" [style]="textStartpositionstyle + 'color: var(--text-white); font-weight: var(--font-Semi-Bold);' ">{{username}}</h1>
-            <p class="textanim font bioText text-lg sm:text-xl" id="profesion" [style]="textStartpositionstyle + 'color: var(--Light-gray);' ">{{userbio}}</p>
+            <h1 class="textanim font user-name text-4xl sm:text-[44px]" id="personname" [style]="textStartpositionstyle + 'color: var(--text-white); font-weight: var(--font-Semi-Bold);' ">{{username}}</h1>
+            <p class="textanim font bioText text-base sm:text-xl" id="profesion" [style]="textStartpositionstyle + 'color: var(--Light-gray);' ">{{userbio}}</p>
         </div>
     </aside>
 
     <aside class="relative flex items-start justify-center w-full mt-5 bottom_sec">
-        <div class="relative flex flex-wrap items-center justify-center w-full gap-4 soc_listboc max-w-[425px]">
+        <div class="relative flex flex-wrap items-center justify-center w-full gap-4 soc_listboc max-w-[352px]">
             @for (data of socialLinksArray; track $index){
-                <button class="flex items-center justify-center w-full overflow-hidden rounded-lg cursor-pointer soc-boc-item h-[58px] bg-transparent">
+                <button class="flex items-center justify-center w-full overflow-hidden rounded-lg cursor-pointer soc-boc-item h-[46px] bg-transparent sm:h-14">
                     <a [href]="data.link" rel="{{data.rel}}" target="_blank" class="flex items-center justify-center w-full h-full" [style]="data.boxgradient">
                         <span class="pointer-events-none icons">
                             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" class="flex mr-2 pointer-events-none" style="fill: var(--text-white) !important;" viewBox="0 0 24 24">

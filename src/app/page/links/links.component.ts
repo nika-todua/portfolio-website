@@ -67,8 +67,8 @@ export class LinksComponent {
   userbio: string = '';
   
   // სურათების გზები სხვადასხვა მოწყობილობისთვის
-  desktopImg: string = 'assets/img/profile_img_desktop.webp';
-  mobileImg: string = 'assets/img/profile_img_mobile.webp';
+  desktopImg: string = '/assets/img/profile_img_desktop.webp';
+  mobileImg: string = '/assets/img/profile_img_mobile.webp';
   
   // ენის დამუშავების ფუნქცია — ცვლის სახელებს და ბიოგრაფიას
   languageSistem() {
@@ -100,7 +100,7 @@ export class LinksComponent {
     let duration:number = 0.25
     let animdelay:number = 0.7
     
-    const text = document.getElementById(textID);
+    const text:any = document.getElementById(textID);
     
     gsap.registerPlugin(SplitText);
 
@@ -147,7 +147,6 @@ export class LinksComponent {
         .join("; ") + ";";
     }
 
-
     setTimeout(() => {
       for (const element of split.chars) {
         let elementstyle = element.getAttribute('style') + ' ' + 'transform: translate3d(0px, 0px, 0px) !important; -o-transform: translate(0px, 0px) translate3d(0px, 0px, 0px) !important; -ms-transform: translate(0px, 0px) translate3d(0px, 0px, 0px) !important; -moz-transform: translate(0px, 0px) translate3d(0px, 0px, 0px) !important; -webkit-transform: translate(0px, 0px) translate3d(0px, 0px, 0px) !important;'
@@ -155,7 +154,11 @@ export class LinksComponent {
       }
       text.classList.add("textstartposition");
       (text as any)._isSplit = false;
-    }, 2500);
+
+      if(text.classList.contains('textstartposition')){
+       text.innerHTML = text.textContent || '';
+      }
+    }, 1800);
   }
   
   

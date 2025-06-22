@@ -3,15 +3,15 @@
     <aside class="profile_cont w-full max-w-[337.500px] flex justify-center flex-wrap items-center gap-4.5 pt-1 mx-auto">
 
         <div class="overflow-hidden rounded-full profile_cont_img_box aspect-square w-[170px] h-auto border-[5px] border-transparent outline-[4px] outline-[var(--yellow)]">
-            <picture class="object-cover w-full h-full pointer-events-none select-none">
-              <source media="(max-width:600px)" [srcset]="personModileImage">
-              <img [src]="personDesktopImage" alt="Profile image" loading="lazy" class="object-cover w-full h-full select-none">
+           <picture class="object-cover w-full h-full pointer-events-none select-none">
+                <source media="(max-width:600px)" [attr.srcset]="personModileImage">
+                <img src="{{ personDesktopImage }}" alt="Profile image" priority width="600" height="600" class="object-cover w-full h-full select-none">
             </picture>
         </div>
 
         <div class="text-center profile_cont_text_box">
-            <h1 class="text-4xl font" style="color: var(--text-white); font-weight: var(--font-Semi-Bold);">{{personname}}</h1>
-            <p class="text-lg font" style="color: var(--Light-gray); font-weight: var(--font-Medium);">{{personprofesion}}</p>
+            <h1 class="text-4xl font" style="color: var(--text-white); font-weight: var(--font-Semi-Bold);"attr.aria-labelledby="{{personname}}">{{personname}}</h1>
+            <p class="text-lg font" style="color: var(--Light-gray); font-weight: var(--font-Medium);" attr.aria-labelledby="{{personprofesion}}">{{personprofesion}}</p>
             <ul aria-label="social media links array" class="flex justify-center gap-3 mt-2 max-w-[164px] social_links_list sm:justify-start">
                 @for (item of socialMediaLinks; track $index) {
                     <li>

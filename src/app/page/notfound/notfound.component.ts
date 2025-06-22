@@ -38,7 +38,7 @@ export class NotfoundComponent {
           this.clickback();
           return clearInterval(set);
         }
-      }, 1000);
+      }, 1500);
     });
 
     // SEO ტეგების დაყენება — Page Title, Open Graph, Twitter Card, და სხვა
