@@ -38,8 +38,8 @@ export class ProfilefactsComponent {
       this.interval = this.getIntervalByLength(this.projectLength); // ინტერვალის გამოთვლა პროექტების რაოდენობის მიხედვით
       
       if(this.message[0] !== undefined){
-        clearInterval(set3)
         this.startCounters(); // ანიმაციის დაწყება
+        clearInterval(set3)
       }
     }, 1);
     this.initializeData();

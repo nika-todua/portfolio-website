@@ -175,7 +175,7 @@ export class ProjectComponent {
       this.projectfilterarray = this.removeDuplicates(filtered);
       this.gsapanimatio(this.projectfilterarray, 0);
       this.filterhidden = true;
-    }    
+    }
     window.scrollTo({ top: window.scrollY - 1, behavior: 'smooth' });
     window.scrollTo({ top: window.scrollY + 1, behavior: 'smooth' });
   }
@@ -184,12 +184,12 @@ export class ProjectComponent {
   filterProject(arr: Project[], tag: string): Project[] {
     let result:Project[] = []
     result.length = 0
-    arr.forEach((element:Project) => {
-      if ( element.tag.toLocaleLowerCase().includes(tag.toLocaleLowerCase()) ) {
-        result.push(element)
+    for (const item of arr) {
+      if (item.tag.toLowerCase() === tag.toLowerCase()) {
+        result.push(item);
       }
-    });    
-    return result
+    }
+    return this.removeDuplicates(result)
   }
   
   // GSAP ანიმაციების ინიციალიზაცია დოკუმენტის ლოდზე
@@ -199,8 +199,8 @@ export class ProjectComponent {
     this.isAnimating = true;
     gsap.registerPlugin(ScrollTrigger);
     
-    const delayMultiplier = 15;
-
+    const delayMultiplier = 20;
+    
     for (let i = projects.length; i >= itemsPerPage; i--) {
       const boxel:any = document.querySelectorAll<HTMLElement>('.project_card_item');
       if (!boxel) continue;

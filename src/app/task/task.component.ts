@@ -11,7 +11,6 @@ export class TaskComponent {
   @Input() messageArray: any  = [];
   
   projectArray = []
-  
 
   // აქტიური ჩანართის განსაზღვრა: საწყისი მნიშვნელობა არის 'project'
   activeTab: 'project' | 'skill' = 'project';
@@ -61,7 +60,6 @@ export class TaskComponent {
     document.addEventListener("DOMContentLoaded", () => {
 
       let set = setInterval(() => {
-        
         this.projectArray = this.messageArray
 
         if (this.messageArray.length > 0) {

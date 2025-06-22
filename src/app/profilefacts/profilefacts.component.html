@@ -1,8 +1,7 @@
 <section class="w-full relative">
     <ul class="w-full flex flex-wrap justify-center items-start gap-3.5">
-        
         @for (item of elementArray; track $index) {
-            <li class="flex flex-col items-center text-center justify-items-start max-w-[90px]">
+            <li class="flex flex-col items-center text-center justify-items-start max-w-[90px]" aria-type="listitem">
                 <span class="flex items-center justify-center font number w-fit text-xl h-[30px]" style="color: var(--text-white);">{{item.number}}
                     @if(item.pluseSet){
                         <span class="plusText text-3xl ml-0.5" style="color: var(--text-white);">&#43;</span>
@@ -11,6 +10,5 @@
                 <p class="font text text-lg" style="color: var(--Light-gray);">{{item.key}}</p>
             </li>
         }
-            
     </ul>
 </section>
