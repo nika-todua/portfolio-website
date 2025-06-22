@@ -15,9 +15,17 @@
 }
 .project_card_item:nth-child(odd){
     transform: translate(-100%, 0);
+    -o-transform: translate(-100%, 0);
+    -ms-transform: translate(-100%, 0);
+    -moz-transform: translate(-100%, 0);
+    -webkit-transform: translate(-100%, 0);
 }
 .project_card_item:nth-child(even){
     transform: translate(100%, 0);
+    -o-transform: translate(100%, 0);
+    -ms-transform: translate(100%, 0);
+    -moz-transform: translate(100%, 0);
+    -webkit-transform: translate(100%, 0);
 }
 .animated-in{
     opacity: 1 !important;

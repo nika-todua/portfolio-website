@@ -2,20 +2,20 @@
     <!-- პროექტების სორტირების Select -->
     <select id="project_sort" class="w-full rounded-md project_inner_sortintSelect font h-[40px] max-w-[200px] text-base outline-none px-1.5" style="text-transform: capitalize; color: var(--Cool-gray); font-weight: var(--font-Semi-Bold);" aria-label="Sort projects by">
         <option class="font" style="text-transform: capitalize; font-weight: var(--font-Semi-Bold);" value="all" selected>{{text1}}</option>
-        @for (sort of selectTexts; track $index){
+        <ng-container *ngFor="let sort of selectTexts">
             <option class="font" style="text-transform: capitalize; font-weight: var(--font-Semi-Bold);" [value]="sort">{{sort}}</option>
-        }
+        </ng-container>
     </select>
 
     <!-- project card container -->
     <section class="relative flex flex-wrap items-start justify-center w-full gap-3 project_card_cont">
         @for (data of paginatedProjects(); track $index){
-            <div class="project_card_item rounded-xl flex flex-col gap-3 max-w-[452px] relative w-full animated-in" id="project_{{data.id}}">
+            <div class="project_card_item rounded-xl flex flex-col gap-3 max-w-[452px] relative w-full" id="project_{{data.id}}">
                 <aside class="relative overflow-hidden rounded-lg img_box aspect-video bg-[var(--body-dark-bg)] flex items-center justify-center">
                     <div class="relative inset-0 z-0 flex loading newtons-cradle pointer-events-none">
-                        @for (dot of ["","","",""]; track $index){
+                        <ng-container *ngFor="let i of [0,1,2,3,4]">
                             <div class="newtons-cradle__dot bloc h-full w-[25%] origin-top after:block after:w-full after:aspect-square after:rounded-full after:bg-[var(--uib-color)]"></div>
-                        }
+                        </ng-container>
                     </div>
 
                     <picture class="absolute inset-0 flex z-40 w-full h-full object-cover aspect-video">
@@ -37,23 +37,20 @@
     <nav class="relative flex items-center justify-center mt-2 pagination md:mt-3">
         <ul class="relative flex flex-row">
             <li class="flex overflow-hidden select-none">
-                <button type="button" aria-label="left btn" class="text-base outline-none cursor-pointer font rounded-l-lg w-[40px] h-[40px]" style="color: var(--text-white);" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
+                <button type="button" aria-label="left btn" class="text-base outline-none cursor-pointer font rounded-l-lg w-10 h-10" style="color: var(--text-white);" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
                     <svg xmlns="http://www.w3.org/2000/svg"class="m-auto pointer-events-none" width="28" height="28" viewBox="0 0 24 24" fill="var(--text-white)"><path d="M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z"></path></svg>
                 </button>
             </li>
-
-            @for(page of getPaginationRange(); track $index){
+            <ng-container *ngFor="let page of getPaginationRange()">
                 <li class="flex items-center justify-center overflow-hidden select-none">
-                    <button type="button" aria-label="pagination number" class="text-base sm:text-lg outline-none cursor-pointer font w-[40px] h-[40px]" style="color: var(--text-white); font-weight: var(--font-Semi-Bold);" [disabled]="currentPage === page" (click)="changePage(page)" [class.active]="currentPage === page"> {{ page }} </button>
+                    <button type="button" aria-label="pagination number" class="text-base sm:text-lg outline-none cursor-pointer font w-10 h-10" style="color: var(--text-white); font-weight: var(--font-Semi-Bold);" [disabled]="currentPage === page" (click)="changePage(page)" [class.active]="currentPage === page"> {{ page }} </button>
                 </li>
-            }
-
+            </ng-container>
             <li class="flex overflow-hidden select-none">
-                <button type="button" aria-label="right btn" class="text-base outline-none cursor-pointer font rounded-r-lg w-[40px] h-[40px]" style="color: var(--text-white);" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages" >
+                <button type="button" aria-label="right btn" class="text-base outline-none cursor-pointer font rounded-r-lg w-10 h-10" style="color: var(--text-white);" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages" >
                     <svg xmlns="http://www.w3.org/2000/svg" class="m-auto pointer-events-none" width="28" height="28" viewBox="0 0 24 24" fill="var(--text-white)"><path d="M10.061 19.061 17.121 12l-7.06-7.061-2.122 2.122L12.879 12l-4.94 4.939z"></path></svg>
                 </button>
             </li>
-            
         </ul>
     </nav>
     
