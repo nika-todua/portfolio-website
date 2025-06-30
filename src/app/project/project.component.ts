@@ -171,6 +171,8 @@ export class ProjectComponent {
       this.gsapanimatio(this.projectarrayall, this.itemsPerPage);
       this.filterhidden = false;
     } else if ( !['all', 'ყველა'].includes(tag.toLowerCase()) ) {
+      this.projectfilterarray = [];
+      this.projectfilterarray.length = 0;
       const filtered = this.filterProject(this.projectarrayall, tag);
       this.projectfilterarray = this.removeDuplicates(filtered);
       this.gsapanimatio(this.projectfilterarray, 0);
@@ -184,11 +186,11 @@ export class ProjectComponent {
   filterProject(arr: Project[], tag: string): Project[] {
     let result:Project[] = []
     result.length = 0
-    for (const item of arr) {
+    arr.forEach((item: Project) => {
       if (item.tag.toLowerCase() === tag.toLowerCase()) {
         result.push(item);
       }
-    }
+    });
     return this.removeDuplicates(result)
   }
   

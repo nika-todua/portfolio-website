@@ -19,8 +19,9 @@
                     </div>
 
                     <picture class="absolute inset-0 flex z-40 w-full h-full object-cover aspect-video">
-                      <source media="(max-width: 540px)" [srcset]="data.image_mobile">
-                      <img [src]="data.image_desktop" alt="Project banner image" loading="lazy" class="object-cover w-full h-full select-none aspect-video">
+                        <source media="(min-width: 541px)" [srcset]="data.image_desktop">
+                        <source media="(max-width: 540px)" [srcset]="data.image_mobile">
+                        <img [src]="data.image_desktop" alt="Project banner image" loading="lazy" class="object-cover w-full h-full select-none aspect-video">
                     </picture>
                 </aside>
                 <aside class="relative w-full card_desc">
