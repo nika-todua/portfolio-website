@@ -97,7 +97,7 @@ export class LinksComponent {
   
   textanimation(textID:string){
     if (!textID) return;
-    let duration:number = 0.25
+    let duration:number = 0.23
     let animdelay:number = 0.7
     
     const text:any = document.getElementById(textID);
@@ -156,7 +156,7 @@ export class LinksComponent {
       (text as any)._isSplit = false;
 
       if(text.classList.contains('textstartposition')){
-       text.innerHTML = text.textContent || '';
+        text.innerHTML = text.textContent || '';
       }
     }, 1800);
   }
