@@ -26,7 +26,7 @@ export class ProfilefactsComponent {
   ];
 
   // ანიმაციის ინტერვალის საწყისი მნიშვნელობა
-  interval: number = 450;
+  interval: number = 250;
 
   // პროექტების რაოდენობა, რომელიც მოგვაქვს API-დან
   projectLength: number = 0;
@@ -56,9 +56,9 @@ export class ProfilefactsComponent {
   // ანიმაციის ინტერვალის განსაზღვრა პროექტების რაოდენობის მიხედვით
   private getIntervalByLength(length: number): number {
     const thresholds = [
-      { limit: 19, value: 225 },
-      { limit: 14, value: 350 },
-      { limit: 9,  value: 380 }
+      { limit: 24, value: 100 },
+      { limit: 19, value: 150 },
+      { limit: 9,  value: 200 },
     ];
 
     // თუ projectLength გადაჭარბებს მითითებულ ზღვარს, აბრუნებს შესაბამის ინტერვალს
@@ -87,7 +87,7 @@ export class ProfilefactsComponent {
   private startCounters(): void {
     setTimeout(() => {
       // თითოეულ counter-ს გაეშვება თავისი ანიმაცია შესაბამისი მნიშვნელობით
-      this.animateCount('year', () => this.elementArray[0].number++, this.skillyearyear, this.yearMax, 450, () => this.elementArray[0].pluseSet = true);
+      this.animateCount('year', () => this.elementArray[0].number++, this.skillyearyear, this.yearMax, 200, () => this.elementArray[0].pluseSet = true);
       this.animateCount('project', () => this.elementArray[1].number++, this.projectLength, this.projectMax, this.interval, () => this.elementArray[1].pluseSet = true);
       this.animateCount('customer', () => this.elementArray[2].number++, this.projectLength, this.customerMax, this.interval, () => this.elementArray[2].pluseSet = true);
     }, 95);
