@@ -20,9 +20,9 @@ export class ProfilefactsComponent {
 
   // მასივი, რომელიც შეიცავს თითოეული counter-ის (წლები, პროექტები, კლიენტები) მონაცემებს
   elementArray = [
-    { key: '', number: 0, pluseSet: false },
-    { key: '', number: 0, pluseSet: false },
-    { key: '', number: 0, pluseSet: false }
+    { name: '', number: 0, pluseSet: false },
+    { name: '', number: 0, pluseSet: false },
+    { name: '', number: 0, pluseSet: false }
   ];
 
   // ანიმაციის ინტერვალის საწყისი მნიშვნელობა
@@ -73,13 +73,13 @@ export class ProfilefactsComponent {
   // ენაზე დაყრდნობით ელემენტების ტექსტის დაყენება (USA ან GEO)
   private loadLanguage(): void {
     if (document.querySelector("body")?.className.includes('usa-lang')) {
-      this.elementArray[0].key = 'Years of work experience';
-      this.elementArray[1].key = 'Completed projects';
-      this.elementArray[2].key = 'Satisfied customers';
+      this.elementArray[0].name = 'Years of work experience';
+      this.elementArray[1].name = 'Completed projects';
+      this.elementArray[2].name = 'Satisfied customers';
     } else if(document.querySelector("body")?.className.includes("geo-lang")){
-      this.elementArray[0].key = 'წლიანი გამოცდილება';
-      this.elementArray[1].key = 'დასრულებული პროექტები';
-      this.elementArray[2].key = 'კმაყოფილი მომხმარებლები';
+      this.elementArray[0].name = 'წლიანი გამოცდილება';
+      this.elementArray[1].name = 'დასრულებული პროექტები';
+      this.elementArray[2].name = 'კმაყოფილი მომხმარებლები';
     }
   }
 

@@ -1,6 +1,6 @@
-@media screen and (min-width: 425px) {
-    ul{
-        flex-wrap: nowrap;
+@media screen and (min-width: 300px){
+    ul li{
+        max-width: 122.83px;
     }
     ul li span.number{
         font-size: 22px;
@@ -8,6 +8,19 @@
     }
     ul li p{
         font-size: 20px;
+    }
+} 
+@media screen and (min-width: 415px) {
+    ul{
+        width: 100% !important;
+        max-width: 436px !important;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 0px !important;
+    }
+    ul li{
+        width: 135.20px !important;
+        max-width: 135.20px !important;
     }
 }
 @media screen and (min-width: 576px) {
