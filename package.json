@@ -18,11 +18,11 @@
     "@angular/platform-browser-dynamic": "^20.0.4",
     "@angular/router": "^20.0.4",
     "@tailwindcss/postcss": "^4.0.15",
-    "@tailwindcss/vite": "^4.1.10",
+    "@tailwindcss/vite": "^4.1.11",
     "gsap": "^3.13.0",
     "postcss": "^8.5.3",
     "rxjs": "~7.8.0",
-    "tailwindcss": "^4.1.10",
+    "tailwindcss": "^4.1.11",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },
