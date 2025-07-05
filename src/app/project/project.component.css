@@ -1,13 +1,13 @@
 .project_inner_sortintSelect{
     font-weight: 400;
-    background-color: var(--body-dark-bg);
-    border: 3px solid var(--border-dark);
+    background-color: var(--color-dark-charcoal);
+    border: 3px solid var(--color-border);
 }
 .project_card_item{
     opacity: 0;
     padding: 14px !important;
     pointer-events: none;
-    background-color: var(--darkblue);
+    background-color: var(--color-gray);
     transition-timing-function: cubic-bezier(0,1.5,1,1.5) !important;
     -o-transition-timing-function: cubic-bezier(0,1.5,1,1.5) !important;
     -moz-transition-timing-function: cubic-bezier(0,1.5,1,1.5) !important;
@@ -43,11 +43,11 @@
     font-weight: 400;
 }
 .pagination ul li button{
-    background-color: var(--darkblue);
+    background-color: var(--color-gray);
 }
 .pagination ul li button.active{
     background-color: var(--yellow) !important;
-    color: var(--darkgray) !important;
+    color: var(--btn-text-color) !important;
 }
 .newtons-cradle {
     --uib-size: 75px;

@@ -1,31 +1,22 @@
 :root {
   /* Dark color */
-  --body-dark-bg: rgb(12, 22, 31);         /* #0c161f */
-  --dark-light-black: rgb(25, 31, 37);     /* #191f25 */
-  --darkblue: rgb(26, 32, 39);             /* #1a2027 */
-  --border-dark: rgb(53, 53, 53);          /* #353535 */
-  --darkgray: rgb(71, 71, 71);             /* #474747 */
-  --gray: rgb(87, 87, 87);                 /* #575757 */
-  --text-dark: rgb(61, 61, 61);            /* #3d3d3d */
-
-  /* light color */
-  --white: rgb(255, 255, 255);             /* #ffffff */
-  --light-bg: rgb(233, 235, 236);          /* #e9ebec */
-  --contact-btn: rgb(248, 249, 250);       /* #f8f9fa */
-  --text-white: rgb(248, 249, 250);        /* #f8f9fa */
-  --Very-light-gray: rgb(215, 215, 215);   /* #d7d7d7 */
-  --Light-gray: rgb(184, 184, 184);        /* #b8b8b8 */
-  --Cool-gray: rgb(163, 171, 178);         /* #a3abb2 */
-
+  --color-dark-charcoal: rgb(12, 22, 31);
+  --color-off-white: rgb(248, 249, 250);
+  --color-light-gray: rgb(184, 184, 184);
+  --color-gray: rgb(25, 31, 37);
+  --color-border: rgb(53, 53, 53);
+  
+  
+  
   /* Accent color */
-  --skill-ICON: rgb(21, 108, 189);         /* #156cbd */
-  --yellow: rgb(254, 190, 0);              /* #FEBE00 */
+  --skill-ICON: rgb(21, 108, 189);
+  --yellow: rgb(254, 190, 0);
+  --btn-text-color:rgb(71, 71, 71);
+  --white: rgb(248, 249, 250);
 
-
-  /* fonts style */
   --font-eng: "Oswald", sans-serif;
   --font-geo: "ArchyEDT-Bold", sans-serif;
-
+  
   --font-Extra-Light: 200;
   --font-Light: 300;
   --font-regular: 400;
@@ -34,11 +25,18 @@
   --font-Bold: 700;
   --font-Extra-Bold: 800;
   --font-Black: 900;
-
+  
   /* sizes */
   --conent-max-w: 832px; /* 832px */
-
-
+  
+  
   /* links page variavle */
   --text-position: 60px;
+}
+body.light_mode {
+  --color-dark-charcoal: rgb(233, 235, 236);
+  --color-off-white: rgb(61, 61, 61);
+  --color-light-gray: rgb(87, 87, 87);
+  --color-gray: rgb(248, 249, 250);
+  --color-border: rgb(248, 249, 250);
 }
