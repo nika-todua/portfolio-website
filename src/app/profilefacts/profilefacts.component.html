@@ -1,13 +1,13 @@
 <section class="w-full relative">
     <ul class="w-full flex flex-wrap justify-center items-start gap-3.5 mx-auto my-0 max-w-[435px]">
         @for (item of elementArray; track $index) {
-            <li class="flex flex-col items-center text-center justify-items-start max-w-[115px] w-max" aria-type="listitem" aria-hidden="true">
+            <li class="flex flex-col items-center text-center justify-items-start max-w-[105px] w-max" aria-type="listitem" aria-hidden="true">
                 <span class="flex items-center justify-center font number w-fit text-xl h-[30px]" style="color: var(--color-off-white); font-weight: var(--font-Medium);">{{item.number}}
                     <ng-container *ngIf="item.pluseSet">
                         <span class="plusText text-3xl ml-0.5" style="color: var(--color-off-white);">&#43;</span>
                     </ng-container>
                 </span>
-                <p class="font text text-lg" style="color: var(--color-light-gray); font-weight: var(--font-Medium);">{{item.name}}</p>
+                <p class="font text text-base" style="color: var(--color-light-gray); font-weight: var(--font-Medium);">{{item.name}}</p>
             </li>
         }
     </ul>

@@ -1,34 +1,43 @@
 @media screen and (min-width: 300px){
     ul li{
-        max-width: 122.83px;
+        max-width: 119px;
     }
     ul li span.number{
         font-size: 22px;
         height: 30px;
     }
     ul li p{
-        font-size: 20px;
+        font-size: 18px;
     }
 } 
-@media screen and (min-width: 415px) {
+@media screen and (min-width: 414px) {
     ul{
         width: 100% !important;
-        max-width: 436px !important;
+        max-width: 404px !important;
         flex-wrap: nowrap;
-        justify-content: space-between;
-        gap: 0px !important;
+        justify-content: center;
+        gap: 12px !important;
     }
     ul li{
-        width: 135.20px !important;
-        max-width: 135.20px !important;
+        width: 125px !important;
+        max-width: 125px !important;
     }
 }
 @media screen and (min-width: 576px) {
+    ul{
+        gap: 14px !important;
+        width: 100% !important;
+        max-width: fit-content !important;
+    }
+    ul li{
+        width: 100% !important;
+        max-width: 130px !important;
+    }
     ul li span.number{
         font-size: 24px;
         height: 34px;
     }
     ul li p{
-        font-size: 22px;
+        font-size: 20px;
     }
 }
