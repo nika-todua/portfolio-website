@@ -56,12 +56,11 @@ export class TaskComponent {
   ngOnInit() {
     this.languageSistem();
 
-
     document.addEventListener("DOMContentLoaded", () => {
 
       let set = setInterval(() => {
         this.projectArray = this.messageArray
-
+        
         if (this.messageArray.length > 0) {
           return clearInterval(set)
         }

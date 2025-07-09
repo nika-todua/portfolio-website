@@ -1,12 +1,12 @@
 .task_box_wrapper{
-    gap: 5%;
     background-color: var(--color-gray);
 }
 .btn{
     height: fit-content;
+    background-color: var(--color-gray);
 }
 .btnActive{
-    background-color: var(--color-dark-charcoal);
+    background-color: var(--color-dark-charcoal) !important;
 }
 
 @media screen and (min-width: 425px) {
