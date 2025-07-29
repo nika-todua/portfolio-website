@@ -1,6 +1,9 @@
 @media screen and (min-width: 300px){
+    ul{
+        gap: 10.51px !important;
+    }
     ul li{
-        max-width: 119px;
+        max-width: 116px;
     }
     ul li span.number{
         font-size: 22px;
@@ -8,6 +11,9 @@
     }
     ul li p{
         font-size: 18px;
+    }
+    ul li span .plusText{
+        font-size: 30px;
     }
 } 
 @media screen and (min-width: 414px) {
